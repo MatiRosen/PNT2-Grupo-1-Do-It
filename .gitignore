@@ -1,0 +1,11 @@
+*.class
+*.log
+*.iml
+*.classpath
+.idea/
+**/target/
+/target/
+.settings/
+.project
+.factorypath
+/node_modules
