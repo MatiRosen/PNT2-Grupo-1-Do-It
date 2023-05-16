@@ -1,3 +1,3 @@
 <template>
-  <h1>Chau</h1>
+  <h1>Sobre la página</h1>
 </template>

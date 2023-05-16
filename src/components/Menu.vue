@@ -3,5 +3,7 @@
 </script>
 
 <template>
-  <button>Login</button>
+  <button>Registrarse</button>
+  <button>Iniciar sesión como inversor</button>
+  <button>Iniciar sesión como creador</button>
 </template>
