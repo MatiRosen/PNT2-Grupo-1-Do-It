@@ -8,7 +8,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "mysql2": "^3.3.1",
     "pinia": "^2.0.36",
+    "sequelize": "^6.31.1",
     "vue": "^3.3.2",
     "vue-router": "^4.2.0"
   },

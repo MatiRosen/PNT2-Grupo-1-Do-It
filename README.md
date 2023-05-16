@@ -58,9 +58,12 @@ Además, en caso de no encontrar desarrolladores, Do It contará con sus propios
 
 ### Común entre ambos perfiles
 1. **Perfil**
-   - a
+   - Nombre
+   - Idioma
+   - Botón editar
 2. **Chat**
-   - a
+   - Lista de mensajes
+   - Botón de filtrado (por leidos, no leidos)
 
 ### Concretar el trato
 El inversor podrá confirmar que desea invertir en la idea, y entonces podrá usar créditos
