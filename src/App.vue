@@ -1,6 +1,7 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import Menu from "./components/Menu.vue"
+import HomeView from './views/HomeView.vue';
 </script>
 
 <template>
@@ -9,8 +10,11 @@ import Menu from "./components/Menu.vue"
 
     <div class="wrapper">
       <Menu></Menu>
+
     </div>
   </header>
+
+  <HomeView></HomeView>
 
   <RouterView />
 </template>
