@@ -9,6 +9,5 @@ const obtenerSucesionDeFibonacci = (n) => {
         sucesion[i] = sucesion[i - 2] + sucesion[i - 1];
     }
     return sucesion;
-    
 };
 </script>
