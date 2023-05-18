@@ -1,9 +1,9 @@
-<script>
-
+<script setup>
+  import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <button>Registrarse</button>
+  <RouterLink to="/registrarse">Registrarse</RouterLink>
   <button>Iniciar sesión como inversor</button>
   <button>Iniciar sesión como creador</button>
 </template>
