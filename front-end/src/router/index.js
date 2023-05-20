@@ -30,9 +30,9 @@ const router = createRouter({
             component: () => import("../views/LoginView.vue"),
         },
         { 
-            path:"",
-            name:"notFound",
-            component: () => import("../views/NotFoundView.vue"),
+            path:"/chat",
+            name:"chat",
+            component: () => import("../views/ChatView.vue"),
         }
     ],
 });

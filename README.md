@@ -29,7 +29,6 @@ Además, en caso de no encontrar desarrolladores, Do It contará con sus propios
 1. **Login**
    - Escribir email y contraseña
    - Verificamos el tipo de usuario y llevamos a un home u otro dependiendo el mismo
-
 # Hasta acá Mati
 
 ### Inversor
