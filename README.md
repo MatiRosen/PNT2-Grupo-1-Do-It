@@ -30,6 +30,8 @@ Además, en caso de no encontrar desarrolladores, Do It contará con sus propios
    - Escribir email y contraseña
    - Verificamos el tipo de usuario y llevamos a un home u otro dependiendo el mismo
 
+# Hasta acá Mati
+
 ### Inversor
 1. **Home**
    - Ideas ordenadas por popularidad
@@ -41,6 +43,8 @@ Además, en caso de no encontrar desarrolladores, Do It contará con sus propios
    - Botón de chat
 3. **Lista de inversiones**
    - Lista de inversiones ordenadas por orden de acuerdo
+
+# Hasta acá Arnold
 ### Creador
 1. **Home**
    - Lista de ideas propias + botón crear
@@ -55,6 +59,7 @@ Además, en caso de no encontrar desarrolladores, Do It contará con sus propios
    - Botón borrar (te lleva a la home)
 4. **Editar idea**
    - La misma info editable (A menos que tenga inversor)
+# Hasta aca Julia
 
 ### Común entre ambos perfiles
 1. **Perfil**
@@ -64,6 +69,7 @@ Además, en caso de no encontrar desarrolladores, Do It contará con sus propios
 2. **Chat**
    - Lista de mensajes
    - Botón de filtrado (por leidos, no leidos)
+# Hasta aca Fran
 
 ### Concretar el trato
 El inversor podrá confirmar que desea invertir en la idea, y entonces podrá usar créditos
