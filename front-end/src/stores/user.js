@@ -4,13 +4,14 @@ export const useUserStore = defineStore("user", {
     state: () => {
       return {
         user: {
-          email: "",
+          nombre: "",
+
         }
       };
     },
     actions: {
-      agregarUsuario(email) {
-        this.user.email = email;
+      agregarUsuario(nombre) {
+        this.user.nombre = nombre;
       }
     },
     getters: {

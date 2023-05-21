@@ -1,3 +1,4 @@
+import e from "express";
 import Servicio from "../servicio/usuarios.js";
 
 class Controlador {
@@ -30,6 +31,25 @@ class Controlador {
                 "Error al guardar usuario en el controlador: ",
                 error.message
             );
+        }
+    };
+
+    logUsuario = async (req, res) => {
+        try {
+            const usuario = req.body;
+            const usuarioLogueado = await this.servicio.logUsuario(usuario);
+
+            if (usuarioLogueado != null) {
+                res.status(200).json({ nombre: usuarioLogueado.nombre });
+            } else {
+                res.status(401).json({ error: "Credenciales inválidas" });
+            }
+        } catch (error) {
+            console.error(
+                "Error al loguear usuario en el controlador:",
+                error.message
+            );
+            res.status(500).json({ error: "Error interno del servidor" });
         }
     };
 

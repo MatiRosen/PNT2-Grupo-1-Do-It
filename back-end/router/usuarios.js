@@ -8,10 +8,13 @@ class Router {
     }
 
     start() {
-        this.router.get("/:email?", this.controlador.obtenerUsuarios);
-        this.router.post("/", this.controlador.guardarUsuario);
-        this.router.put("/:email", this.controlador.actualizarUsuario);
-        this.router.delete("/:email", this.controlador.eliminarUsuario);
+        // API REST FULL
+        this.router.get("/api/usuarios/:email?", this.controlador.obtenerUsuarios);
+        this.router.post("/api/usuarios", this.controlador.guardarUsuario);
+        this.router.put("/api/usuarios/:email", this.controlador.actualizarUsuario);
+        this.router.delete("/api/usuarios/:email", this.controlador.eliminarUsuario);
+
+        this.router.post("/login", this.controlador.logUsuario);
 
         return this.router;
     }

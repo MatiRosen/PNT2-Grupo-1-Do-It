@@ -1,10 +1,12 @@
 [
 	{
 		"email": "matias.rosenstein00@gmail.com",
+		"nombre": "Matias",
 		"contraseña": "test"
 	},
 	{
 		"email": "test@test",
+		"nombre": "Tester",
 		"contraseña": "test"
 	}
 ]
