@@ -2,7 +2,8 @@
     <div class="article__flex-container">
         <form class="article__form" name="form">
             <div class="article__form__section">
-                <input v-model="usuario.email"
+                <input
+                    v-model="usuario.email"
                     type="text"
                     name="Email"
                     id="txtMail"
@@ -13,7 +14,8 @@
                 <span class="text-danger"></span>
             </div>
             <div class="article__form__section">
-                <input v-model="usuario.contraseña"
+                <input
+                    v-model="usuario.contraseña"
                     type="password"
                     name="Contraseña"
                     id="txtContra"
@@ -28,27 +30,38 @@
                 <button @click="login">Iniciar sesión</button>
             </div>
         </form>
+
+        <div>{{ this.usuario.email }}</div>
     </div>
 </template>
 
 <script>
+import { storeToRefs } from "pinia";
+import { useUserStore } from "../stores/user";
+
 export default {
+    setup() {
+        const storeUser = useUserStore();
+        const { user } = storeToRefs(storeUser);
+        return {
+            user,
+        };
+    },
     data() {
         return {
-            usuarios: [],
             usuario: {
                 email: "",
                 contraseña: "",
             },
+            vue: this,
         };
     },
     methods: {
         login() {
+            this.storeUser.agregarUsuario(this.usuario.email);
         },
     },
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
