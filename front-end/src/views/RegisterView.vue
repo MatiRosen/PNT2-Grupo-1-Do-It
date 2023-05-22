@@ -5,8 +5,7 @@
         <form
             @submit.prevent="registrar(vue, usuario)"
             class="article__form"
-            name="form"
-        >
+            name="form">
             <div class="article__form__section">
                 <input
                     v-model="usuario.nombre"
@@ -15,8 +14,7 @@
                     id="txtNombre"
                     class="article__form__input"
                     placeholder="Nombre"
-                    required
-                />
+                    required />
                 <span class="text-danger"></span>
             </div>
             <div class="article__form__section">
@@ -27,8 +25,7 @@
                     id="txtApellido"
                     class="article__form__input"
                     placeholder="Apellido"
-                    required
-                />
+                    required />
                 <span class="text-danger"></span>
             </div>
             <div class="article__form__section">
@@ -39,8 +36,7 @@
                     id="txtEMail"
                     class="article__form__input"
                     placeholder="Email"
-                    required
-                />
+                    required />
                 <span class="text-danger"></span>
             </div>
             <div class="article__form__section">
@@ -51,8 +47,7 @@
                     id="numDni"
                     class="article__form__input"
                     placeholder="Documento de identificación"
-                    required
-                />
+                    required />
                 <span class="text-danger"></span>
             </div>
             <div class="article__form__section">
@@ -62,8 +57,7 @@
                     name="Nacimiento"
                     id="fechaNacimiento"
                     class="article__form__input"
-                    required
-                />
+                    required />
                 <span class="text-danger"></span>
             </div>
             <div class="article__form__section">
@@ -82,8 +76,7 @@
                     id="numTel"
                     class="article__form__input"
                     placeholder="Numero de telefono"
-                    required
-                />
+                    required />
                 <span class="text-danger"></span>
             </div>
             <div class="article__form__section">
@@ -94,8 +87,7 @@
                     id="txtDom"
                     class="article__form__input"
                     placeholder="Domicilio"
-                    required
-                />
+                    required />
                 <span class="text-danger"></span>
             </div>
             <div class="article__form__section">
@@ -106,8 +98,7 @@
                     id="txtContra"
                     class="article__form__input"
                     placeholder="Contraseña"
-                    required
-                />
+                    required />
                 <span class="text-danger"></span>
             </div>
             <div class="article__form__section">
@@ -121,8 +112,7 @@
                     id="creador"
                     class="article__form__input"
                     value="Creador"
-                    required
-                />
+                    required />
                 <label for="Creador">Creador</label>
                 <input
                     v-model="usuario.tipo"
@@ -131,8 +121,7 @@
                     id="Inversor"
                     class="article__form__input"
                     value="Inversor"
-                    required
-                />
+                    required />
                 <label class="article__form__label">Inversor</label>
                 <span class="text-danger"></span>
             </div>
@@ -149,7 +138,7 @@ import { storeToRefs } from "pinia";
 import { useUserStore } from "../stores/user";
 
 export default {
-    setup(){
+    setup() {
         const storeUser = useUserStore();
         const { user } = storeToRefs(storeUser);
         const { agregarUsuario } = storeUser;
@@ -183,13 +172,16 @@ export default {
             let respuesta = axios
                 .post("http://localhost:8080/api/usuarios", usuario)
                 .then(function (response) {
-                    vue.agregarUsuario(response.data.nombre, response.data.tipo, response.data.dinero);
-                    if (usuario.tipo == "Inversor"){
+                    vue.agregarUsuario(
+                        response.data.nombre,
+                        response.data.tipo,
+                        response.data.dinero
+                    );
+                    if (usuario.tipo == "Inversor") {
                         vue.$router.push("/inversor");
-                    }else if (usuario.tipo == "Creador"){
-                         vue.$router.push("/creador");
+                    } else if (usuario.tipo == "Creador") {
+                        vue.$router.push("/creador");
                     }
-                   
                 })
                 .catch(function (error) {
                     alert("Error de usuario y contraseña");

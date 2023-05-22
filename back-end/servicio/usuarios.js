@@ -26,10 +26,9 @@ class Servicio {
         }
     };
 
-    // actualizar
-    actualizarUsuario = async (id, usuario) => {
+    actualizarUsuario = async (email, usuario) => {
         const usuarioActualizado = await this.model.actualizarUsuario(
-            id,
+            email,
             usuario
         );
         return usuarioActualizado;

@@ -42,6 +42,11 @@ const router = createRouter({
             path:"/perfil",
             name:"perfil",
             component: () => import("../views/ProfileView.vue"),
+        },
+        {
+            path: "/billetera",
+            name: "billetera",
+            component: () => import("../views/inversor/BilleteraView.vue"),
         }
     ],
 });

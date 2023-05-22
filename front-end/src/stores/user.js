@@ -20,6 +20,9 @@ export const useUserStore = defineStore("user", {
             this.user.nombre = "";
             this.user.tipo = "";
             this.user.dinero = 0;
+        },
+        agregarDinero(dinero){
+            this.user.dinero += dinero;
         }
     },
     getters: {

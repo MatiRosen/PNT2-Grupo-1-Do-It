@@ -55,10 +55,10 @@ class Controlador {
     // Modificar
     actualizarUsuario = async (req, res) => {
         try {
-            const id = Number(req.params.id);
+            const email = req.params.email;
             const usuario = req.body;
             const usuarioActualizado = await this.servicio.actualizarUsuario(
-                id,
+                email,
                 usuario
             );
 

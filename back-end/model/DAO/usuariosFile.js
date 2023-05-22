@@ -44,47 +44,39 @@ class ModelFile {
         return usuario;
     };
 
-    // actualizar
-    actualizarUsuario = async (email, producto) => {
-        let productos = [];
+    actualizarUsuario = async (email, usuario) => {
+        let usuarios = [];
         try {
-            productos = JSON.parse(await this.leerArchivo());
+            usuarios = JSON.parse(await this.leerArchivo());
         } catch {}
 
-        producto.email = email;
-        const indice = productos.findIndex((producto) => producto.email === email);
-
+        const indice = usuarios.findIndex((usuario) => usuario.email === email);
         if (indice != -1) {
-            const productoAnterior = productos[indice];
-            const productoNuevo = { ...productoAnterior, ...producto };
+            const usuarioAnterior = usuarios[indice];
+            const usuarioNuevo = { ...usuarioAnterior, ...usuario };
 
-            productos.splice(indice, 1, productoNuevo);
+            usuarios.splice(indice, 1, usuarioNuevo);
             await this.escribirArchivo(usuarios);
 
-            return productoNuevo;
-        } else {
-            productos.push(producto);
-            await this.escribirArchivo(usuarios);
-
-            return producto;
+            return usuarioNuevo;
         }
     };
 
     eliminarUsuario = async (email) => {
-        let productos = [];
+        let usuarios = [];
         try {
-            productos = JSON.parse(await this.leerArchivo());
+            usuarios = JSON.parse(await this.leerArchivo());
         } catch {}
 
-        const indice = productos.findIndex((producto) => producto.email == email);
-        let producto;
+        const indice = usuarios.findIndex((usuario) => usuario.email == email);
+        let usuario;
 
         if (indice != -1) {
-            producto = productos.splice(indice, 1)[0];
+            usuario = usuarios.splice(indice, 1)[0];
         }
 
         await this.escribirArchivo(usuarios);
-        return producto;
+        return usuario;
     };
 }
 
