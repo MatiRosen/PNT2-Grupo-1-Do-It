@@ -1,10 +1,10 @@
 <template>
     <!--Preguntar como hacer que si hacen /login no se muestre el login porque ya estan logeados.-->
-    <div>
-        <RouterLink to="/"><button>Home</button></RouterLink>
-    </div>
 
     <div v-if="!estaLogueado">
+        <div>
+            <RouterLink to="/"><button>Home</button></RouterLink>
+        </div>
         <div>
             <RouterLink to="/registrarse"
                 ><button>Registrarse</button></RouterLink
@@ -17,6 +17,13 @@
     </div>
 
     <div v-if="estaLogueado">
+        <div v-if="esInversor">
+            <RouterLink to="/inversor"><button>Home</button></RouterLink>
+        </div>
+        <div v-else>
+            <RouterLink to="/creador"><button>Home</button></RouterLink>
+        </div>
+
         <div>
             <h3>{{ user.nombre }}</h3>
         </div>

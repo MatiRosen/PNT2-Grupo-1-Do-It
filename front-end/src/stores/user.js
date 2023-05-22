@@ -27,10 +27,10 @@ export const useUserStore = defineStore("user", {
             return this.user.nombre != "";
         },
         esInversor(){
-            return this.user.tipo == "inversor";
+            return this.user.tipo == "Inversor";
         },
         esCreador(){
-            return this.user.tipo == "creador";
+            return this.user.tipo == "Creador";
         }
     },
 });

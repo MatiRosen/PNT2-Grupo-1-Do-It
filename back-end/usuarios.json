@@ -10,8 +10,7 @@
 		"email": "test@test",
 		"nombre": "Tester",
 		"contraseña": "test",
-		"tipo": "Creador",
-		"dinero": 0
+		"tipo": "Creador"
 	},
 	{
 		"nombre": "Matias",
@@ -24,5 +23,18 @@
 		"direccion": "Hola 123",
 		"contraseña": "test123",
 		"tipo": "Creador"
+	},
+	{
+		"nombre": "Fran",
+		"apellido": "Lagares",
+		"email": "fran@lagares",
+		"dni": 12345678,
+		"nacimiento": "2023-06-01",
+		"genero": "hombre",
+		"telefono": 1234567890,
+		"direccion": "123123",
+		"contraseña": "Fran",
+		"tipo": "Inversor",
+		"dinero": 99999999
 	}
 ]

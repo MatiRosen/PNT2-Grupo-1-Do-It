@@ -130,7 +130,7 @@
                     name="Tipo"
                     id="Inversor"
                     class="article__form__input"
-                    value="Usuario"
+                    value="Inversor"
                     required
                 />
                 <label class="article__form__label">Inversor</label>
