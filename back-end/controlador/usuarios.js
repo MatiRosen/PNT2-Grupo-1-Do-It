@@ -1,4 +1,3 @@
-import e from "express";
 import Servicio from "../servicio/usuarios.js";
 
 class Controlador {
@@ -40,7 +39,7 @@ class Controlador {
             const usuarioLogueado = await this.servicio.logUsuario(usuario);
 
             if (usuarioLogueado != null) {
-                res.status(200).json({ nombre: usuarioLogueado.nombre });
+                res.status(200).json({ nombre: usuarioLogueado.nombre, tipo: usuarioLogueado.tipo, dinero: usuarioLogueado.dinero });
             } else {
                 res.status(401).json({ error: "Credenciales inválidas" });
             }

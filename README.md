@@ -18,6 +18,7 @@ Además, en caso de no encontrar desarrolladores, Do It contará con sus propios
 1. **Registro**
    - Nombre completo
    - DNI
+   - Fecha nacimiento
    - Email
    - Contraseña
    - Sexo

@@ -2,11 +2,15 @@
 	{
 		"email": "matias.rosenstein00@gmail.com",
 		"nombre": "Matias",
-		"contraseña": "test"
+		"contraseña": "test",
+		"tipo": "inversor",
+		"dinero": 500
 	},
 	{
 		"email": "test@test",
 		"nombre": "Tester",
-		"contraseña": "test"
+		"contraseña": "test",
+		"tipo": "creador",
+		"dinero": 0
 	}
 ]
