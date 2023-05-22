@@ -35,7 +35,7 @@
             </div>
         </form>
 
-        <div>{{ user.nombre }}</div>
+        <div v-if="estaLogueado">{{ user.nombre }}</div>
     </div>
 </template>
 
@@ -49,14 +49,17 @@ export default {
         const storeUser = useUserStore();
         const { user } = storeToRefs(storeUser);
         const { agregarUsuario } = storeUser;
+        let { estaLogueado } = storeToRefs(storeUser);
+
         return {
             user,
+            agregarUsuario,
+            estaLogueado,
         };
     },
     data() {
         return {
             usuario: {
-                nombre: "", // Para probar nomas
                 email: "",
                 contraseña: "",
             },
@@ -69,9 +72,8 @@ export default {
                 .post("http://localhost:8080/login", usuario)
                 .then(function (response) {
                     vue.usuario.nombre = response.data.nombre;
-                    vue.user = response.data;
-                    //vue.agregarUsuario(response.data);
-                    //vue.$router.push("/");
+                    vue.agregarUsuario(response.data.nombre, response.data.tipo, response.data.dinero);
+                    vue.$router.push("/");
                 })
                 .catch(function (error) {
                     alert("Error de usuario y contraseña");

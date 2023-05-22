@@ -2,7 +2,11 @@
     <form action=""></form>
 
     <div class="article__flex-container">
-        <form class="article__form" name="form">
+        <form
+            @submit.prevent="registrar(vue, usuario)"
+            class="article__form"
+            name="form"
+        >
             <div class="article__form__section">
                 <input
                     v-model="usuario.nombre"
@@ -47,6 +51,17 @@
                     id="numDni"
                     class="article__form__input"
                     placeholder="Documento de identificación"
+                    required
+                />
+                <span class="text-danger"></span>
+            </div>
+            <div class="article__form__section">
+                <input
+                    v-model="usuario.nacimiento"
+                    type="date"
+                    name="Nacimiento"
+                    id="fechaNacimiento"
+                    class="article__form__input"
                     required
                 />
                 <span class="text-danger"></span>
@@ -122,7 +137,7 @@
                 <span class="text-danger"></span>
             </div>
             <div class="article__form__section">
-                <button @click="registrar()">Registrarse</button>
+                <button>Registrarse</button>
             </div>
         </form>
     </div>
@@ -141,17 +156,19 @@ export default {
                 apellido: "",
                 email: "",
                 dni: "",
+                nacimiento: "",
                 genero: "",
                 telefono: "",
                 direccion: "",
                 password: "",
                 tipoUsuario: "",
             },
+            vue: this,
         };
     },
     methods: {
-        registrar() {
-            this.usuarios.push(this.usuario);
+        registrar(vue, usuario) {
+            vue.usuarios.push(usuario);
         },
     },
 };
