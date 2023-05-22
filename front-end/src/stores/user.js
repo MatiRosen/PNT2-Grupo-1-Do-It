@@ -28,6 +28,9 @@ export const useUserStore = defineStore("user", {
         },
         esInversor(){
             return this.user.tipo == "inversor";
+        },
+        esCreador(){
+            return this.user.tipo == "creador";
         }
     },
 });

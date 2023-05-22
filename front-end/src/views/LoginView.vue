@@ -1,5 +1,5 @@
 <template>
-    <div class="article__flex-container">
+    <div v-if="!estaLogueado" class="article__flex-container">
         <form
             @submit.prevent="login(usuario, vue)"
             class="article__form"
@@ -73,7 +73,12 @@ export default {
                 .then(function (response) {
                     vue.usuario.nombre = response.data.nombre;
                     vue.agregarUsuario(response.data.nombre, response.data.tipo, response.data.dinero);
-                    vue.$router.push("/");
+                    if (response.data.tipo == "Inversor"){
+                        vue.$router.push("/inversor");
+                    }else if (response.data.tipo == "Creador"){
+                         vue.$router.push("/creador");
+                    }
+                   
                 })
                 .catch(function (error) {
                     alert("Error de usuario y contraseña");

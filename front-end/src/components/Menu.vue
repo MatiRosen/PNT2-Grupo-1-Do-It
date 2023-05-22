@@ -25,7 +25,9 @@
         </div>
 
         <div>
-            <button @click="logout()">Cerrar sesión</button>
+            <RouterLink to="/"
+                ><button @click="logout()">Cerrar sesión</button></RouterLink
+            >
         </div>
 
         <div>

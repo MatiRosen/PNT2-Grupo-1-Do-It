@@ -17,8 +17,7 @@ class Servicio {
     };
 
     logUsuario = async (usuario) => {
-        const usuarios = await this.model.obtenerUsuarios();
-        const usuarioAux = usuarios.find(usuarioAux => usuario.email == usuarioAux.email);
+        const usuarioAux = await this.model.obtenerUsuarios(usuario.email);
 
         if (usuario && usuarioAux && usuario.contraseña == usuarioAux.contraseña) {
             return(usuarioAux)

@@ -3,14 +3,26 @@
 		"email": "matias.rosenstein00@gmail.com",
 		"nombre": "Matias",
 		"contraseña": "test",
-		"tipo": "inversor",
+		"tipo": "Inversor",
 		"dinero": 500
 	},
 	{
 		"email": "test@test",
 		"nombre": "Tester",
 		"contraseña": "test",
-		"tipo": "creador",
+		"tipo": "Creador",
 		"dinero": 0
+	},
+	{
+		"nombre": "Matias",
+		"apellido": "Rosenstein",
+		"email": "matias.rosen@cliente.com",
+		"dni": 12345678,
+		"nacimiento": "2023-05-05",
+		"genero": "hombre",
+		"telefono": 12345678,
+		"direccion": "Hola 123",
+		"contraseña": "test123",
+		"tipo": "Creador"
 	}
 ]

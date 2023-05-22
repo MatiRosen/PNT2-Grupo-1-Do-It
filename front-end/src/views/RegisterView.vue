@@ -100,9 +100,9 @@
             </div>
             <div class="article__form__section">
                 <input
-                    v-model="usuario.password"
+                    v-model="usuario.contraseña"
                     type="password"
-                    name="Password"
+                    name="Contraseña"
                     id="txtContra"
                     class="article__form__input"
                     placeholder="Contraseña"
@@ -115,9 +115,9 @@
                     Elige el tipo de usuario que eres:
                 </p>
                 <input
-                    v-model="usuario.tipoUsuario"
+                    v-model="usuario.tipo"
                     type="radio"
-                    name="TipoUsuario"
+                    name="Tipo"
                     id="creador"
                     class="article__form__input"
                     value="Creador"
@@ -125,9 +125,9 @@
                 />
                 <label for="Creador">Creador</label>
                 <input
-                    v-model="usuario.tipoUsuario"
+                    v-model="usuario.tipo"
                     type="radio"
-                    name="TipoUsuario"
+                    name="Tipo"
                     id="Inversor"
                     class="article__form__input"
                     value="Usuario"
@@ -141,16 +141,28 @@
             </div>
         </form>
     </div>
-    <div v-for="usuario in usuarios" :key="usuario.email">
-        {{ usuario.nombre }}
-    </div>
 </template>
 
 <script>
+import axios from "axios";
+import { storeToRefs } from "pinia";
+import { useUserStore } from "../stores/user";
+
 export default {
+    setup(){
+        const storeUser = useUserStore();
+        const { user } = storeToRefs(storeUser);
+        const { agregarUsuario } = storeUser;
+        let { estaLogueado } = storeToRefs(storeUser);
+
+        return {
+            user,
+            agregarUsuario,
+            estaLogueado,
+        };
+    },
     data() {
         return {
-            usuarios: [],
             usuario: {
                 nombre: "",
                 apellido: "",
@@ -160,15 +172,29 @@ export default {
                 genero: "",
                 telefono: "",
                 direccion: "",
-                password: "",
-                tipoUsuario: "",
+                contraseña: "",
+                tipo: "",
             },
             vue: this,
         };
     },
     methods: {
         registrar(vue, usuario) {
-            vue.usuarios.push(usuario);
+            let respuesta = axios
+                .post("http://localhost:8080/api/usuarios", usuario)
+                .then(function (response) {
+                    vue.agregarUsuario(response.data.nombre, response.data.tipo, response.data.dinero);
+                    if (usuario.tipo == "Inversor"){
+                        vue.$router.push("/inversor");
+                    }else if (usuario.tipo == "Creador"){
+                         vue.$router.push("/creador");
+                    }
+                   
+                })
+                .catch(function (error) {
+                    alert("Error de usuario y contraseña");
+                    console.log(error);
+                });
         },
     },
 };

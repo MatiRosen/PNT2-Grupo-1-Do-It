@@ -23,7 +23,7 @@ class ModelFile {
                 const usuario = usuarios.find(
                     (usuario) => usuario.email == email
                 );
-                return usuario || { error: "Usuario no encontrado" };
+                return usuario || { };
             } else {
                 return usuarios;
             }
