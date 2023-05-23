@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import userService from "../../services/userService";
 import { storeToRefs } from "pinia";
 import { useUserStore } from "../../stores/user";
 
@@ -40,15 +40,16 @@ export default {
     data() {
         return {
             usuario: {
-                dinero: 0,
+                dinero: 0
             },
             vue: this,
         };
     },
     methods: {
         agregarDinero: (usuario, user, vue) => {
-            let respuesta = axios
-                .put("http://localhost:8080/api/usuarios/" + user.email, usuario)
+            usuario.dinero += user.dinero;
+            userService
+                .sumarDinero(usuario, user.email)
                 .then(function (response) {
                     console.log(response.data);
                     vue.sumarDinero(response.data.dinero);

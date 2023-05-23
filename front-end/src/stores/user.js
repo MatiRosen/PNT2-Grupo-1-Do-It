@@ -22,7 +22,7 @@ export const useUserStore = defineStore("user", {
             this.$reset();
         },
         sumarDinero(dinero) {
-            this.user.dinero += dinero;
+            this.user.dinero = dinero;
         },
     },
     getters: {

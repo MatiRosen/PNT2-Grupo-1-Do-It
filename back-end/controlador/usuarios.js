@@ -5,6 +5,7 @@ class Controlador {
         this.servicio = new Servicio();
     }
 
+    // Eliminar
     obtenerUsuarios = async (req, res) => {
         try {
             const { email } = req.params;
@@ -25,6 +26,7 @@ class Controlador {
             // Agregar validacion de email unico
             const usuarioGuardado = await this.servicio.guardarUsuario(usuario);
 
+            
             res.json(usuarioGuardado);
         } catch {
             console.log(
@@ -63,12 +65,17 @@ class Controlador {
                 usuario
             );
 
-            res.json(usuarioActualizado);
+            if (usuarioActualizado != null) {
+                res.status(200).json({ dinero: usuarioActualizado.dinero });
+            } else {
+                res.status(404).json({ error: "Usuario no encontrado" });
+            }
         } catch (error) {
             console.log(
                 "Error al actualizar usuario en el controlador: ",
                 error.message
             );
+            res.status(500).json({ error: "Error interno del servidor" });
         }
     };
 
