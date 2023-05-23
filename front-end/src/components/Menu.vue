@@ -1,50 +1,54 @@
 <template>
-    <!--Preguntar como hacer que si hacen /login no se muestre el login porque ya estan logeados.-->
+    <nav class="navbar navbar-default">
+        <div v-if="estaLogueado">
+            <div v-if="esInversor">
+                <RouterLink to="/inversor"><button>Home</button></RouterLink>
+            </div>
+            <div v-else>
+                <RouterLink to="/creador"><button>Home</button></RouterLink>
+            </div>
 
-    <div v-if="!estaLogueado">
-        <div>
-            <RouterLink to="/"><button>Home</button></RouterLink>
-        </div>
-        <div>
-            <RouterLink to="/registrarse"
-                ><button>Registrarse</button></RouterLink
-            >
+            <div>
+                <h3>{{ user.nombre }}</h3>
+            </div>
+            <div>
+                <RouterLink to="/perfil"><button>Perfil</button></RouterLink>
+            </div>
+
+            <div>
+                <RouterLink to="/"
+                    ><button @click="logout()">
+                        Cerrar sesión
+                    </button></RouterLink
+                >
+            </div>
+
+            <div>
+                <RouterLink to="/chat"><button>Chat</button></RouterLink>
+            </div>
+
+            <div v-if="esInversor">
+                <p>${{ user.dinero }}</p>
+            </div>
         </div>
 
-        <div>
-            <RouterLink to="/login"><button>Iniciar sesión</button></RouterLink>
-        </div>
-    </div>
-
-    <div v-if="estaLogueado">
-        <div v-if="esInversor">
-            <RouterLink to="/inversor"><button>Home</button></RouterLink>
-        </div>
         <div v-else>
-            <RouterLink to="/creador"><button>Home</button></RouterLink>
-        </div>
+            <div>
+                <RouterLink to="/"><button>Home</button></RouterLink>
+            </div>
+            <div>
+                <RouterLink to="/registrarse"
+                    ><button>Registrarse</button></RouterLink
+                >
+            </div>
 
-        <div>
-            <h3>{{ user.nombre }}</h3>
+            <div>
+                <RouterLink to="/login"
+                    ><button>Iniciar sesión</button></RouterLink
+                >
+            </div>
         </div>
-        <div>
-            <RouterLink to="/perfil"><button>Perfil</button></RouterLink>
-        </div>
-
-        <div>
-            <RouterLink to="/"
-                ><button @click="logout()">Cerrar sesión</button></RouterLink
-            >
-        </div>
-
-        <div>
-            <RouterLink to="/chat"><button>Chat</button></RouterLink>
-        </div>
-
-        <div v-if="esInversor">
-            <p>${{ user.dinero }}</p>
-        </div>
-    </div>
+    </nav>
 </template>
 
 <script setup>

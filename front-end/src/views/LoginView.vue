@@ -1,10 +1,6 @@
 <template>
     <div v-if="!estaLogueado" class="article__flex-container">
-        <form
-            @submit.prevent="login(usuario, vue)"
-            class="article__form"
-            name="form"
-        >
+        <form @submit.prevent="loguear(usuario, vue)" name="form">
             <div class="article__form__section">
                 <input
                     v-model="usuario.email"
@@ -13,8 +9,7 @@
                     id="txtMail"
                     class="article__form__input"
                     placeholder="Email"
-                    required
-                />
+                    required />
                 <span class="text-danger"></span>
             </div>
             <div class="article__form__section">
@@ -25,13 +20,14 @@
                     id="txtContra"
                     class="article__form__input"
                     placeholder="Contraseña"
-                    required
-                />
+                    required />
                 <span class="text-danger"></span>
             </div>
 
             <div class="article__form__section">
-                <button type="submit">Iniciar sesión</button>
+                <button class="btn btn-primary" type="submit">
+                    Iniciar sesión
+                </button>
             </div>
         </form>
 
@@ -40,9 +36,9 @@
 </template>
 
 <script>
-import axios from "axios";
 import { storeToRefs } from "pinia";
 import { useUserStore } from "../stores/user";
+import userService from "../services/userService";
 
 export default {
     setup() {
@@ -55,6 +51,7 @@ export default {
             user,
             agregarUsuario,
             estaLogueado,
+            userService,
         };
     },
     data() {
@@ -67,18 +64,22 @@ export default {
         };
     },
     methods: {
-        login: (usuario, vue) => {
-            let respuesta = axios
-                .post("http://localhost:8080/login", usuario)
+        loguear: (usuario, vue) => {
+            userService
+                .login(usuario)
                 .then(function (response) {
                     vue.usuario.nombre = response.data.nombre;
-                    vue.agregarUsuario(response.data.nombre, response.data.tipo, response.data.dinero);
-                    if (response.data.tipo == "Inversor"){
+                    vue.agregarUsuario(
+                        response.data.nombre,
+                        response.data.email,
+                        response.data.tipo,
+                        response.data.dinero
+                    );
+                    if (response.data.tipo == "Inversor") {
                         vue.$router.push("/inversor");
-                    }else if (response.data.tipo == "Creador"){
-                         vue.$router.push("/creador");
+                    } else if (response.data.tipo == "Creador") {
+                        vue.$router.push("/creador");
                     }
-                   
                 })
                 .catch(function (error) {
                     alert("Error de usuario y contraseña");
@@ -89,5 +90,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

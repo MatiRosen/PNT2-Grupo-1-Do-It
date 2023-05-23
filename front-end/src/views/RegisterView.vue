@@ -126,16 +126,16 @@
                 <span class="text-danger"></span>
             </div>
             <div class="article__form__section">
-                <button>Registrarse</button>
+                <button class="btn btn-primary">Registrarse</button>
             </div>
         </form>
     </div>
 </template>
 
 <script>
-import axios from "axios";
 import { storeToRefs } from "pinia";
 import { useUserStore } from "../stores/user";
+import userService from "../services/userService";
 
 export default {
     setup() {
@@ -148,6 +148,7 @@ export default {
             user,
             agregarUsuario,
             estaLogueado,
+            userService,
         };
     },
     data() {
@@ -169,8 +170,8 @@ export default {
     },
     methods: {
         registrar(vue, usuario) {
-            let respuesta = axios
-                .post("http://localhost:8080/api/usuarios", usuario)
+            userService
+                .register(usuario)
                 .then(function (response) {
                     vue.agregarUsuario(
                         response.data.nombre,

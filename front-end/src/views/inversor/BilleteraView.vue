@@ -9,7 +9,7 @@
                     v-model="usuario.dinero"
                     type="number"
                     name="Dinero"
-                    id="numDinero"
+                    id="dinero"
                     class="article__form__input"
                     placeholder="Ingrese la cantidad de dinero que desea depositar"
                     required />
@@ -30,11 +30,11 @@ export default {
     setup() {
         const storeUser = useUserStore();
         const { user } = storeToRefs(storeUser);
-        const { agregarDinero } = storeUser;
+        const { sumarDinero } = storeUser;
 
         return {
             user,
-            agregarDinero,
+            sumarDinero,
         };
     },
     data() {
@@ -48,10 +48,10 @@ export default {
     methods: {
         agregarDinero: (usuario, user, vue) => {
             let respuesta = axios
-                .put("http://localhost:8080/usuarios/" + user.email, usuario)
+                .put("http://localhost:8080/api/usuarios/" + user.email, usuario)
                 .then(function (response) {
                     console.log(response.data);
-                    vue.agregarDinero(response.data.dinero);
+                    vue.sumarDinero(response.data.dinero);
 
                     vue.$router.push("/inversor");
                 })

@@ -50,6 +50,7 @@ class ModelFile {
             usuarios = JSON.parse(await this.leerArchivo());
         } catch {}
 
+
         const indice = usuarios.findIndex((usuario) => usuario.email === email);
         if (indice != -1) {
             const usuarioAnterior = usuarios[indice];

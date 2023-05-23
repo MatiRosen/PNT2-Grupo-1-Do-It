@@ -22,6 +22,7 @@ class Controlador {
     guardarUsuario = async (req, res) => {
         try {
             const usuario = req.body;
+            // Agregar validacion de email unico
             const usuarioGuardado = await this.servicio.guardarUsuario(usuario);
 
             res.json(usuarioGuardado);
@@ -39,7 +40,7 @@ class Controlador {
             const usuarioLogueado = await this.servicio.logUsuario(usuario);
 
             if (usuarioLogueado != null) {
-                res.status(200).json({ nombre: usuarioLogueado.nombre, tipo: usuarioLogueado.tipo, dinero: usuarioLogueado.dinero });
+                res.status(200).json({ nombre: usuarioLogueado.nombre, email:usuarioLogueado.email, tipo: usuarioLogueado.tipo, dinero: usuarioLogueado.dinero });
             } else {
                 res.status(401).json({ error: "Credenciales inválidas" });
             }
@@ -52,10 +53,10 @@ class Controlador {
         }
     };
 
-    // Modificar
     actualizarUsuario = async (req, res) => {
         try {
-            const email = req.params.email;
+            const { email } = req.params;
+            console.log(req.params);
             const usuario = req.body;
             const usuarioActualizado = await this.servicio.actualizarUsuario(
                 email,

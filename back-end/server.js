@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-app.use("/", new RouterUsuarios().start());
+app.use("/api/", new RouterUsuarios().start());
 
 const PORT = config.PORT;
 const server = app.listen(PORT, () =>

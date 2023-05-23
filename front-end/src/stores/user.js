@@ -5,35 +5,35 @@ export const useUserStore = defineStore("user", {
         return {
             user: {
                 nombre: "",
+                email: "",
                 tipo: "",
-                dinero: 0
+                dinero: 0,
             },
         };
     },
     actions: {
-        agregarUsuario(nombre, tipo, dinero = 0) {
+        agregarUsuario(nombre, email, tipo, dinero = 0) {
             this.user.nombre = nombre;
+            this.user.email = email;
             this.user.tipo = tipo;
             this.user.dinero = dinero;
         },
         eliminarUsuario() {
-            this.user.nombre = "";
-            this.user.tipo = "";
-            this.user.dinero = 0;
+            this.$reset();
         },
-        agregarDinero(dinero){
+        sumarDinero(dinero) {
             this.user.dinero += dinero;
-        }
+        },
     },
     getters: {
         estaLogueado() {
             return this.user.nombre != "";
         },
-        esInversor(){
+        esInversor() {
             return this.user.tipo == "Inversor";
         },
-        esCreador(){
+        esCreador() {
             return this.user.tipo == "Creador";
-        }
+        },
     },
 });
