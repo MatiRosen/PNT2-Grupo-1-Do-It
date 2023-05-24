@@ -82,8 +82,7 @@ export default {
                     }
                 })
                 .catch(function (error) {
-                    alert("Error de usuario y contraseña");
-                    console.log(error);
+                    alert(error.response.data);
                 });
         },
     },

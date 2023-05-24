@@ -1,4 +1,5 @@
 import Servicio from "../servicio/usuarios.js";
+import { InvalidCredentialsError, DatabaseError } from "../../errores.js";
 
 class Controlador {
     constructor() {
@@ -6,7 +7,7 @@ class Controlador {
     }
 
     // Eliminar
-    obtenerUsuarios = async (req, res) => {
+    /*obtenerUsuarios = async (req, res) => {
         try {
             const { email } = req.params;
             const usuarios = await this.servicio.obtenerUsuarios(email);
@@ -18,21 +19,23 @@ class Controlador {
                 error.message
             );
         }
-    };
+    };*/
 
     guardarUsuario = async (req, res) => {
         try {
             const usuario = req.body;
-            // Agregar validacion de email unico
             const usuarioGuardado = await this.servicio.guardarUsuario(usuario);
 
-            
             res.json(usuarioGuardado);
-        } catch {
-            console.log(
-                "Error al guardar usuario en el controlador: ",
-                error.message
-            );
+        } catch (error) {
+            if (error instanceof InvalidCredentialsError) {
+                res.status(400).json(error.message);
+            } else if (error instanceof DatabaseError) {
+                res.status(500).json({
+                    message:
+                        "Hubo un problema interno. Intente nuevamente más tarde.",
+                });
+            }
         }
     };
 
@@ -41,41 +44,38 @@ class Controlador {
             const usuario = req.body;
             const usuarioLogueado = await this.servicio.logUsuario(usuario);
 
-            if (usuarioLogueado != null) {
-                res.status(200).json({ nombre: usuarioLogueado.nombre, email:usuarioLogueado.email, tipo: usuarioLogueado.tipo, dinero: usuarioLogueado.dinero });
-            } else {
-                res.status(401).json({ error: "Credenciales inválidas" });
-            }
+            res.status(200).json(usuarioLogueado);
         } catch (error) {
-            console.error(
-                "Error al loguear usuario en el controlador:",
-                error.message
-            );
-            res.status(500).json({ error: "Error interno del servidor" });
+            if (error instanceof InvalidCredentialsError) {
+                res.status(400).json(error.message);
+            } else if (error instanceof DatabaseError) {
+                res.status(500).json({
+                    message:
+                        "Hubo un problema interno. Intente nuevamente más tarde.",
+                });
+            }
         }
     };
 
     actualizarUsuario = async (req, res) => {
         try {
             const { email } = req.params;
-            console.log(req.params);
             const usuario = req.body;
             const usuarioActualizado = await this.servicio.actualizarUsuario(
                 email,
                 usuario
             );
 
-            if (usuarioActualizado != null) {
-                res.status(200).json({ dinero: usuarioActualizado.dinero });
-            } else {
-                res.status(404).json({ error: "Usuario no encontrado" });
-            }
+            res.status(200).json(usuarioActualizado);
         } catch (error) {
-            console.log(
-                "Error al actualizar usuario en el controlador: ",
-                error.message
-            );
-            res.status(500).json({ error: "Error interno del servidor" });
+            if (error instanceof InvalidCredentialsError) {
+                res.status(400).json(error.message);
+            } else if (error instanceof DatabaseError) {
+                res.status(500).json({
+                    message:
+                        "Hubo un problema interno. Intente nuevamente más tarde.",
+                });
+            }
         }
     };
 

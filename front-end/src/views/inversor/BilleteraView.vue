@@ -51,14 +51,12 @@ export default {
             userService
                 .sumarDinero(usuario, user.email)
                 .then(function (response) {
-                    console.log(response.data);
                     vue.sumarDinero(response.data.dinero);
 
                     vue.$router.push("/inversor");
                 })
                 .catch(function (error) {
-                    alert("Error ingresando dinero");
-                    console.log(error);
+                    alert(error.response.data);
                 });
         },
     },

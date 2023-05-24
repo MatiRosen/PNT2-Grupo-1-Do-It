@@ -175,6 +175,7 @@ export default {
                 .then(function (response) {
                     vue.agregarUsuario(
                         response.data.nombre,
+                        response.data.email,
                         response.data.tipo,
                         response.data.dinero
                     );
@@ -185,8 +186,7 @@ export default {
                     }
                 })
                 .catch(function (error) {
-                    alert("Error de usuario y contraseña");
-                    console.log(error);
+                    alert(error.response.data);
                 });
         },
     },

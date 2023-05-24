@@ -1,16 +1,16 @@
 [
 	{
-		"email": "matias.rosenstein00@gmail.com",
 		"nombre": "Matias",
+		"apellido": "Rosenstein",
+		"email": "matias.rosenstein00@gmail.com",
+		"dni": 12345678,
+		"nacimiento": "2023-08-07",
+		"genero": "hombre",
+		"telefono": 1122334455,
+		"direccion": "Hola 123",
 		"contraseña": "test",
-		"tipo": "Inversor",
-		"dinero": 6500
-	},
-	{
-		"email": "test@test",
-		"nombre": "Tester",
-		"contraseña": "test",
-		"tipo": "Creador"
+		"tipo": "Creador",
+		"dinero": 5000
 	},
 	{
 		"nombre": "Matias",
