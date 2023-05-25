@@ -1,6 +1,5 @@
 import fs from "fs";
-import { DatabaseError } from "../../../errores.js";
-
+import { DatabaseError, InvalidCredentialsError } from "../../../errores.js";
 
 class ModelFile {
     constructor() {
@@ -10,23 +9,25 @@ class ModelFile {
     async leerArchivo() {
         return await fs.promises.readFile(this.nombreArchivo, "utf-8");
     }
-    
-    obtenerIdeas = async(email) => {
-        let ideas = []
+
+    obtenerIdeas = async (email) => {
+        let ideas = [];
         try {
-            ideas= JSON.parse(await this.leerArchivo())
+            ideas = JSON.parse(await this.leerArchivo());
         } catch {
-            throw new DatabaseError("Error al leer el archivo de ideas.")
+            throw new DatabaseError("Error al leer el archivo de ideas.");
         }
 
-        if(email) {
-            const ideasUsuario = ideas.filter((idea) => idea.email == email)
-            if(!ideasUsuario)
-                throw new InvalidCredentialsError("No hay ninguna idea asociada a ese email.")  
-            return ideasUsuario
+        if (email) {
+            const ideasUsuario = ideas.filter((idea) => idea.email == email);
+            if (!ideasUsuario)
+                throw new InvalidCredentialsError(
+                    "No hay ninguna idea asociada a ese email."
+                );
+            return ideasUsuario;
         }
-        return ideas
-    }
+        return ideas;
+    };
 }
 
-export default ModelFile
+export default ModelFile;

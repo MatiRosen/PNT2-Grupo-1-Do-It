@@ -106,7 +106,9 @@ class ModelFile {
         let usuarios = [];
         try {
             usuarios = JSON.parse(await this.leerArchivo());
-        } catch {}
+        } catch {
+            throw new DatabaseError("Error al leer el archivo de usuarios.");
+        }
 
         const indice = usuarios.findIndex((usuario) => usuario.email == email);
         let usuario;

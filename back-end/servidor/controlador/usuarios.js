@@ -1,5 +1,5 @@
 import Servicio from "../servicio/usuarios.js";
-import { InvalidCredentialsError, DatabaseError } from "../../errores.js";
+import { InvalidCredentialsError } from "../../errores.js";
 
 class Controlador {
     constructor() {
@@ -14,10 +14,17 @@ class Controlador {
 
             res.json(usuarios);
         } catch (error) {
-            console.log(
-                "Error al obtener usuarios en el controlador: ",
-                error.message
+           if (error instanceof InvalidCredentialsError) {
+                res.status(400).json(error.message);
+               
+            } else {
+                 res.status(500).json({
+                message:
+                    "Hubo un problema interno. Intente nuevamente más tarde.",
+            });
             );
+            }
+           
         }
     };*/
 
@@ -30,11 +37,12 @@ class Controlador {
         } catch (error) {
             if (error instanceof InvalidCredentialsError) {
                 res.status(400).json(error.message);
+            } else {
+                res.status(500).json({
+                    message:
+                        "Hubo un problema interno. Intente nuevamente más tarde.",
+                });
             }
-            res.status(500).json({
-                message:
-                    "Hubo un problema interno. Intente nuevamente más tarde.",
-            });
         }
     };
 
@@ -47,12 +55,12 @@ class Controlador {
         } catch (error) {
             if (error instanceof InvalidCredentialsError) {
                 res.status(400).json(error.message);
+            } else {
+                res.status(500).json({
+                    message:
+                        "Hubo un problema interno. Intente nuevamente más tarde.",
+                });
             }
-
-            res.status(500).json({
-                message:
-                    "Hubo un problema interno. Intente nuevamente más tarde.",
-            });
         }
     };
 
@@ -69,14 +77,17 @@ class Controlador {
         } catch (error) {
             if (error instanceof InvalidCredentialsError) {
                 res.status(400).json(error.message);
+                return;
+            } else {
+                res.status(500).json({
+                    message:
+                        "Hubo un problema interno. Intente nuevamente más tarde.",
+                });
             }
-            res.status(500).json({
-                message:
-                    "Hubo un problema interno. Intente nuevamente más tarde.",
-            });
         }
     };
 
+    // Rehacer
     eliminarUsuario = async (req, res) => {
         try {
             const { id } = req.params;
@@ -84,10 +95,14 @@ class Controlador {
 
             res.json(usuarioBorrado);
         } catch (error) {
-            console.log(
-                "Error al eliminar usuario en el controlador: ",
-                error.message
-            );
+            /*if (error instanceof InvalidCredentialsError) {
+                res.status(400).json(error.message);
+            } else{
+                res.status(500).json({
+                message:
+                    "Hubo un problema interno. Intente nuevamente más tarde.",
+            });
+            }*/
         }
     };
 }
