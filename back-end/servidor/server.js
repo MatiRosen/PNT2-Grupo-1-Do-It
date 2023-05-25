@@ -1,5 +1,6 @@
 import express from "express";
 import RouterUsuarios from "./router/usuarios.js";
+import RouterIdeas from "./router/ideas.js";
 import config from "./config.js";
 import cors from "cors";
 
@@ -9,7 +10,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-app.use("/api/", new RouterUsuarios().start());
+app.use("/api/usuarios", new RouterUsuarios().start());
+app.use("/api/ideas", new RouterIdeas().start())
 
 const PORT = config.PORT;
 const server = app.listen(PORT, () =>

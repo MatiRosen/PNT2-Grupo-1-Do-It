@@ -36,5 +36,17 @@
 		"contraseña": "Fran",
 		"tipo": "Inversor",
 		"dinero": 99999999
+	},
+	{
+		"nombre": "Julia",
+		"apellido": "Valdovinos",
+		"email": "valdo@gmail.com",
+		"dni": 11223344,
+		"nacimiento": "1998-01-21",
+		"genero": "mujer",
+		"telefono": 44444444,
+		"direccion": "Avenida Siempreviva 742",
+		"contraseña": "666",
+		"tipo": "Creador"
 	}
 ]
