@@ -3,7 +3,7 @@ const apiClient = axiosClient.getApiClient();
 
 export default {
     login(usuario) {
-        return apiClient.post('/api/login', usuario);
+        return apiClient.post('/api/usuarios/login', usuario);
     },
     register(usuario){
         return apiClient.post('/api/usuarios', usuario);
