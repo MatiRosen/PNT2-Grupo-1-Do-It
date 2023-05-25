@@ -30,12 +30,11 @@ class Controlador {
         } catch (error) {
             if (error instanceof InvalidCredentialsError) {
                 res.status(400).json(error.message);
-            } else if (error instanceof DatabaseError) {
-                res.status(500).json({
-                    message:
-                        "Hubo un problema interno. Intente nuevamente más tarde.",
-                });
             }
+            res.status(500).json({
+                message:
+                    "Hubo un problema interno. Intente nuevamente más tarde.",
+            });
         }
     };
 
@@ -48,12 +47,12 @@ class Controlador {
         } catch (error) {
             if (error instanceof InvalidCredentialsError) {
                 res.status(400).json(error.message);
-            } else if (error instanceof DatabaseError) {
-                res.status(500).json({
-                    message:
-                        "Hubo un problema interno. Intente nuevamente más tarde.",
-                });
             }
+
+            res.status(500).json({
+                message:
+                    "Hubo un problema interno. Intente nuevamente más tarde.",
+            });
         }
     };
 
@@ -70,12 +69,11 @@ class Controlador {
         } catch (error) {
             if (error instanceof InvalidCredentialsError) {
                 res.status(400).json(error.message);
-            } else if (error instanceof DatabaseError) {
-                res.status(500).json({
-                    message:
-                        "Hubo un problema interno. Intente nuevamente más tarde.",
-                });
             }
+            res.status(500).json({
+                message:
+                    "Hubo un problema interno. Intente nuevamente más tarde.",
+            });
         }
     };
 
