@@ -71,3 +71,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.row.top-separation {
+  margin-top: 2rem; /* Ajusta el valor según la separación deseada */
+}

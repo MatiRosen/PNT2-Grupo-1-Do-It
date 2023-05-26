@@ -5,7 +5,7 @@ const store = useIdeasStore()
 const { ideas } = storeToRefs(store)
 </script>
 
-<template>
+<template>    
     <table class="table table-striped">
         <tbody>
             <tr v-for="idea in ideas">

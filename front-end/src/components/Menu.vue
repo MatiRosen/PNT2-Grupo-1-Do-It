@@ -1,47 +1,28 @@
-<template>
-    <nav class="navbar navbar-default">
-        <!--https://fontawesome.com/v6/docs/web/use-with/vue/ ver para iconos-->
-        <RouterLink :to="rutaTipo"><button>Home</button></RouterLink>
-
-        <div v-if="estaLogueado">
-            <div>
-                <h3>{{ user.nombre }}</h3>
-            </div>
-            <div>
-                <RouterLink to="/perfil"><button>Perfil</button></RouterLink>
-            </div>
-
-            <div>
-                <RouterLink to="/chat"><button>Chat</button></RouterLink>
-            </div>
-
-            <div v-if="esInversor">
-                <p>${{ user.dinero }}</p>
-            </div>
-
-            <div>
-                <RouterLink to="/"
-                    ><button @click="logout()">
-                        Cerrar sesión
-                    </button></RouterLink
-                >
-            </div>
-        </div>
-
-        <div v-else>
-            <div>
-                <RouterLink to="/registrarse"
-                    ><button>Registrarse</button></RouterLink
-                >
-            </div>
-
-            <div>
-                <RouterLink to="/login"
-                    ><button>Iniciar sesión</button></RouterLink
-                >
-            </div>
-        </div>
+<template>  
+  <div class="container d-flex justify-content-center menu-component">
+    <nav class="navbar navbar-expand-lg">      
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">    
+            <div v-if="estaLogueado">        
+                <div class="navbar-nav mr-auto">
+                    <router-link to="/" class="nav-item nav-link">Home</router-link>        
+                    <router-link to="/perfil" class="nav-item nav-link">Perfil</router-link>
+                    <router-link to="/chat" class="nav-link">Chat</router-link>
+                    <router-link to="/Contact" class="nav-link">Contact</router-link>                
+                    <div class="nav-item">
+                        <RouterLink to="/"><button type="button" class="btn" @click="logout()">Cerrar sesión</button></RouterLink>
+                    </div>
+                </div>
+            </div>    
+            <div v-else>
+                <div class="navbar-nav mr-auto">
+                    <router-link to="/" class="nav-item nav-link">Home</router-link>        
+                    <router-link to="/registrarse" class="nav-item nav-link">Registrarse</router-link>
+                    <router-link to="/login" class="nav-link nav-link"> Iniciar sesion</router-link>
+                </div>                
+            </div>      
+        </div>  
     </nav>
+  </div>
 </template>
 
 <script setup>
@@ -56,25 +37,38 @@ let { estaLogueado, esInversor, esCreador } = storeToRefs(storeUser);
 const { eliminarUsuario } = storeUser;
 
 const rutaTipo = computed(() => {
-    if (esInversor.value) {
-        return "/inversor";
-    } else if (esCreador.value) {
-        return "/creador";
-    } else {
-        return "/";
-    }
+  if (esInversor.value) {
+    return "/inversor";
+  } else if (esCreador.value) {
+    return "/creador";
+  } else {
+    return "/";
+  }
 });
 
 const logout = () => {
-    eliminarUsuario();
+  eliminarUsuario();
 };
 </script>
 
 <style scoped>
-div {
-    display: inline-block;
+#nav {
+  padding: 30px;
+  text-align: center;
 }
-p {
-    color: green;
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: whitesmoke;
+  background: crimson;
+  border-radius: .5rem;
+}
+.menu-component {
+  position: relative;
+  z-index: 2; /* Valor mayor que el fondo */
 }
 </style>
