@@ -1,13 +1,15 @@
 <script>
 import { ref, onMounted } from 'vue';
+import { useUserStore } from '../../stores/user';
 import ideaService from "../../services/ideaService";
 
 export default {
   setup() {
     const ideas = ref([]);
+    const { user } = useUserStore();
 
     const getIdeas = async () => {
-      ideas.value = (await ideaService.obtenerIdeas("valdo@gmail.com")).data;
+      ideas.value = (await ideaService.obtenerIdeas(user.email)).data;
       console.log(ideas.value);
     };
 

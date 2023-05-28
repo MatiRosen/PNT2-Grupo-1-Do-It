@@ -1,9 +1,14 @@
 <script>    
 import ideaService from "../../services/ideaService";
+import { storeToRefs } from "pinia";
+import { useUserStore } from '../../stores/user';
 
 export default {
     setup() {
+        const storeUser = useUserStore();
+        const { user } = storeToRefs(storeUser);
         return {
+            user,
             ideaService,
         };
     },
@@ -15,24 +20,17 @@ export default {
                 imagen: "",
                 categoria: "",
                 precio: "",
-                creador: "valdo@gmail.com"
+                creador: "",
             },
             vue: this,
         };
     },
     methods: {
         agregarIdea(vue, idea) {
+            idea.creador = this.user.email;
             ideaService
                 .agregarIdea(idea)
                 .then(function (response) {
-                    vue.agregarIdea(
-                        response.data.titulo,
-                        response.data.descripcion,
-                        response.data.imagen,
-                        response.data.categoria,
-                        response.data.precio,
-                        response.data.creador
-                    );
                     vue.$router.push("/creador");
                     
                 })
@@ -136,7 +134,7 @@ h2 {
     border-color: #E20000;
 }
 #Registrar {
-  background: url("../assets/fondo-contacto.png");
+  background: url("../../assets/ideas.jpg");
   width: 100%;
   height: 100%;
   position: fixed;
