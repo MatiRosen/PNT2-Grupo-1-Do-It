@@ -1,20 +1,21 @@
 <script>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import ideaService from "../../services/ideaService";
 
 export default {
-    setup() {
-      const ideas = ref([]);
-    },
-    data() {
-      return {
-        ideas
-      }
-    },
-    methods: {
-      getIdeas: async () => {
-        ideas = await ideaService.obtenerIdeas("valdo@gmail.com");
-    }
+  setup() {
+    const ideas = ref([]);
+
+    const getIdeas = async () => {
+      ideas.value = (await ideaService.obtenerIdeas("valdo@gmail.com")).data;
+    };
+
+    onMounted(getIdeas);
+
+    return {
+      ideas,
+      getIdeas
+    };
   }
 }
 
@@ -23,7 +24,7 @@ export default {
 <template>    
     <table class="table table-striped">
         <tbody>
-            <tr v-for="idea in this.ideas">
+            <tr v-for="idea in ideas">
                 <td>{{ idea.titulo }}</td>
                 <td>{{ idea.descripcion }}</td>
                 <td>{{ idea.imagen }}</td>
