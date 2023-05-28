@@ -19,11 +19,7 @@ class ModelFile {
         }
 
         if (email) {
-            const ideasUsuario = ideas.filter((idea) => idea.email == email);
-            if (!ideasUsuario)
-                throw new InvalidCredentialsError(
-                    "No hay ninguna idea asociada a ese email."
-                );
+            const ideasUsuario = ideas.filter((idea) => idea.creador == email);
             return ideasUsuario;
         }
         return ideas;

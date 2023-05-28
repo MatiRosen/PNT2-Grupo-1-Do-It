@@ -4,7 +4,12 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">    
             <div v-if="estaLogueado">        
                 <div class="navbar-nav mr-auto">
+                  <div v-if="esCreador">
+                    <router-link to="/creador" class="nav-item nav-link">Home</router-link>        
+                  </div>
+                  <div v-else>
                     <router-link to="/" class="nav-item nav-link">Home</router-link>        
+                  </div>                    
                     <router-link to="/perfil" class="nav-item nav-link">Perfil</router-link>
                     <router-link to="/chat" class="nav-link">Chat</router-link>
                     <router-link to="/Contact" class="nav-link">Contact</router-link>                

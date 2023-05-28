@@ -5,15 +5,43 @@ export const useIdeasStore = defineStore("ideas", {
     state: () => {
         return {
             ideas: [
-                {id: 1, titulo: "Idea 1", imagen: "Imagen 1", categoria: "Categoria 1", descripcion: "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Reiciendis nihil ipsum perferendis impedit exercitationem, veritatis provident doloribus eos molestias, at placeat"},
-                {id: 2, titulo: "Idea 2", imagen: "Imagen 2", categoria: "Categoria 2", descripcion: "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Reiciendis nihil ipsum perferendis impedit exercitationem, veritatis provident doloribus eos molestias, at placeat"},
-                {id: 3, titulo: "Idea 3", imagen: "Imagen 3", categoria: "Categoria 3", descripcion: "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Reiciendis nihil ipsum perferendis impedit exercitationem, veritatis provident doloribus eos molestias, at placeat"},
+                {
+                    titulo: "Idea 1",
+                    descripcion: "Descripcion idea 1",
+                    imagen: "Imagen 1",
+                    categoria: "Categoria 1",
+                    precio: 1000,
+                    creador: "valdo@gmail.com"
+                },
+                {
+                    titulo: "Idea 2",
+                    descripcion: "Descripcion idea 2",
+                    imagen: "Imagen 2",
+                    categoria: "Categoria 2",
+                    precio: 500,
+                    creador: "valdo@gmail.com"
+                },
+                {
+                    titulo: "Idea 3",
+                    descripcion: "Descripcion idea 3",
+                    imagen: "Imagen 3",
+                    categoria: "Categoria 3",
+                    precio: 1700,
+                    creador: "matias.rosen@cliente.com"
+                },
             ],
         }
     },
     actions: {
-        agregarIdea(idea) {
-            
+        agregarIdea(titulo, descripcion, imagen, categoria, precio, creador) {
+            const idea = {}
+            idea.titulo = titulo
+            idea.descripcion = descripcion
+            idea.imagen = imagen
+            idea.categoria = categoria
+            idea.precio = precio
+            idea.creador = creador
+            this.ideas.push(idea)
         }
     },
     getters: {
