@@ -45,6 +45,7 @@
                       name="txtCorreo"
                       class="form-control shadow"
                       placeholder="Correo"
+                      required
                     />
                   </div>
                   <div class="mb-md-3 form-group">
@@ -73,6 +74,7 @@
                     <select
                       class="form-control shadow"
                       v-model="usuario.genero"
+                      required
                     >
                       <option value="" disabled>Género</option>
                       <option value="mujer">Mujer</option>
@@ -103,6 +105,16 @@
                     />
                   </div>
                   <div class="mb-md-3 form-group">
+                    <input
+                        v-model="usuario.contraseña"
+                        type="password"
+                        name="Contraseña"
+                        id="txtContra"
+                        class="form-control shadow"
+                        placeholder="Contraseña"
+                        required />
+                  </div>
+                  <div class="mb-md-3 form-group">
                     <p class="form-check-inline ml-2">Tipo de usuario:</p>
                     <div class="form-check form-check-inline">
                       <input
@@ -110,7 +122,8 @@
                         class="form-check-input mt-1"
                         type="radio"
                         name="Tipo"
-                        id="Tipo"
+                        id="creador"
+                        value="Creador"
                         checked
                         required
                       />
@@ -124,7 +137,8 @@
                         class="form-check-input mt-1"
                         type="radio"
                         name="Tipo"
-                        id="Tipo"
+                        id="inversor"
+                        value="Inversor"
                         required
                       />
                       <label class="form-check-label" for="flexRadioDefault2">

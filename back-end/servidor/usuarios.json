@@ -9,7 +9,7 @@
 		"telefono": 1122334455,
 		"direccion": "Hola 123",
 		"contraseña": "test",
-		"tipo": "Creador",
+		"tipo": "Inversor",
 		"dinero": 5000
 	},
 	{
@@ -48,5 +48,17 @@
 		"direccion": "Avenida Siempreviva 742",
 		"contraseña": "666",
 		"tipo": "Creador"
+	},
+	{
+		"nombre": "asdsd",
+		"apellido": "asdsad",
+		"email": "asd@asd",
+		"dni": "1212",
+		"nacimiento": "2023-05-05",
+		"genero": "hombre",
+		"telefono": "2323",
+		"direccion": "sad",
+		"contraseña": "",
+		"tipo": ""
 	}
 ]

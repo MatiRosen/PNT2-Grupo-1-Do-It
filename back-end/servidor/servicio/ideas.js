@@ -11,7 +11,7 @@ class ServicioIdeas {
             const ideas = await this.model.obtenerIdeas(email);
             return ideas;
         } catch (error) {
-            return error;
+            throw error;
         }
     };
 
@@ -20,7 +20,7 @@ class ServicioIdeas {
             const ideaAgregada = await this.model.agregarIdea(idea);
             return ideaAgregada;
         } catch (error) {
-            return error;
+            throw error;
         }
     }
 }

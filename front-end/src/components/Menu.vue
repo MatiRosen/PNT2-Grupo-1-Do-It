@@ -1,33 +1,42 @@
-<template>  
-  <div class="container d-flex justify-content-center menu-component">
-    <nav class="navbar navbar-expand-lg">      
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">    
-            <div v-if="estaLogueado">        
+<template>
+    <div class="container d-flex justify-content-center menu-component">
+        <nav class="navbar navbar-expand-lg">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <div class="navbar-nav mr-auto">
-                  <div v-if="esCreador">
-                    <router-link to="/creador" class="nav-item nav-link">Home</router-link>        
-                  </div>
-                  <div v-else>
-                    <router-link to="/" class="nav-item nav-link">Home</router-link>        
-                  </div>                    
-                    <router-link to="/perfil" class="nav-item nav-link">Perfil</router-link>
-                    <router-link to="/chat" class="nav-link">Chat</router-link>
-                    <router-link to="/Contact" class="nav-link">Contact</router-link>                
-                    <div class="nav-item">
-                        <RouterLink to="/"><button type="button" class="btn" @click="logout()">Cerrar sesión</button></RouterLink>
+                    <RouterLink :to="rutaTipo" class="nav-item nav-link"
+                        >Home</RouterLink>
+                </div>
+                <div v-if="estaLogueado">
+                    <div class="navbar-nav mr-auto">
+                        <RouterLink to="/perfil" class="nav-item nav-link"
+                            >Perfil</RouterLink>
+                        <RouterLink to="/chat" class="nav-link"
+                            >Chat</RouterLink>
+                        <div v-if="esInversor" class="nav-link money">
+                           ${{ user.dinero }}
+                        </div>
+                        <div class="nav-item">
+                            <RouterLink to="/">
+                                <button
+                                    type="button"
+                                    class="btn"
+                                    @click="logout()">
+                                    Cerrar sesión
+                                </button></RouterLink>
+                        </div>
                     </div>
                 </div>
-            </div>    
-            <div v-else>
-                <div class="navbar-nav mr-auto">
-                    <router-link to="/" class="nav-item nav-link">Home</router-link>        
-                    <router-link to="/registrarse" class="nav-item nav-link">Registrarse</router-link>
-                    <router-link to="/login" class="nav-link nav-link"> Iniciar sesion</router-link>
-                </div>                
-            </div>      
-        </div>  
-    </nav>
-  </div>
+                <div v-else>
+                    <div class="navbar-nav mr-auto">
+                        <RouterLink to="/registrarse" class="nav-item nav-link"
+                            >Registrarse</RouterLink>
+                        <RouterLink to="/login" class="nav-link nav-link">
+                            Iniciar sesion</RouterLink>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
 </template>
 
 <script setup>
@@ -42,38 +51,42 @@ let { estaLogueado, esInversor, esCreador } = storeToRefs(storeUser);
 const { eliminarUsuario } = storeUser;
 
 const rutaTipo = computed(() => {
-  if (esInversor.value) {
-    return "/inversor";
-  } else if (esCreador.value) {
-    return "/creador";
-  } else {
-    return "/";
-  }
+    if (esInversor.value) {
+        return "/inversor";
+    } else if (esCreador.value) {
+        return "/creador";
+    } else {
+        return "/";
+    }
 });
 
 const logout = () => {
-  eliminarUsuario();
+    eliminarUsuario();
 };
 </script>
 
 <style scoped>
 #nav {
-  padding: 30px;
-  text-align: center;
+    padding: 30px;
+    text-align: center;
 }
 
 #nav a {
-  font-weight: bold;
-  color: #2c3e50;
+    font-weight: bold;
+    color: #2c3e50;
 }
 
 #nav a.router-link-exact-active {
-  color: whitesmoke;
-  background: crimson;
-  border-radius: .5rem;
+    color: whitesmoke;
+    background: crimson;
+    border-radius: 0.5rem;
 }
 .menu-component {
-  position: relative;
-  z-index: 2; /* Valor mayor que el fondo */
+    position: relative;
+    z-index: 2; /* Valor mayor que el fondo */
+}
+
+.money {
+    color: #3eb805;
 }
 </style>
