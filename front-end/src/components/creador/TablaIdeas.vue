@@ -8,6 +8,7 @@ export default {
 
     const getIdeas = async () => {
       ideas.value = (await ideaService.obtenerIdeas("valdo@gmail.com")).data;
+      console.log(ideas.value);
     };
 
     onMounted(getIdeas);

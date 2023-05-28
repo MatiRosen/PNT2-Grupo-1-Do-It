@@ -1,17 +1,9 @@
 <script>    
-import { storeToRefs } from "pinia";
-import { useIdeasStore } from "../../stores/creador/ideas";
 import ideaService from "../../services/ideaService";
 
 export default {
     setup() {
-        const storeIdeas = useIdeasStore();
-        const { idea } = storeToRefs(storeIdeas);
-        const { agregarIdea } = storeIdeas;
-
         return {
-            idea,
-            agregarIdea,
             ideaService,
         };
     },
@@ -23,7 +15,7 @@ export default {
                 imagen: "",
                 categoria: "",
                 precio: "",
-                creador: "this.$store.state.user.email"
+                creador: "valdo@gmail.com"
             },
             vue: this,
         };
@@ -83,6 +75,17 @@ export default {
                                        class="form-control shadow"
                                        placeholder="Descripción"
                                        required 
+                                    >
+                                </div>
+                                <div class="mb-md-3 form-group">
+                                    <input
+                                        v-model="idea.imagen"
+                                        type="text"
+                                        id="txtImagen"
+                                        name="txtImagen"
+                                        class="form-control shadow"
+                                        placeholder="Imagen"
+                                        required
                                     >
                                 </div>
                                 <div class="mb-md-3 form-group">

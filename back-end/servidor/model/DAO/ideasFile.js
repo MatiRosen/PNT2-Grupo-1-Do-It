@@ -24,6 +24,28 @@ class ModelFile {
         }
         return ideas;
     };
+
+    agregarIdea = async (idea) => {
+        let ideas = [];
+        try {
+            ideas = JSON.parse(await this.leerArchivo());
+        } catch {
+            throw new DatabaseError("Error al leer el archivo de ideas.");
+        }
+        
+        ideas.push(idea);
+
+        try {
+            await fs.promises.writeFile(
+                this.nombreArchivo,
+                JSON.stringify(ideas, null, 2)
+            );
+        } catch {
+            throw new DatabaseError("Error al escribir el archivo de ideas.");
+        }
+
+        return idea;
+    }
 }
 
 export default ModelFile;

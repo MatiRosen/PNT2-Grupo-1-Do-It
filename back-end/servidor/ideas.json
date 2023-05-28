@@ -1,26 +1,34 @@
 [
-    {
-        "titulo": "Idea 1",
-        "descripcion": "Descripcion idea 1",
-        "imagen": "Imagen 1",
-        "cateoria": "Categoria 1",
-        "precio": 1000,
-        "creador": "valdo@gmail.com"
-    },
-    {
-        "titulo": "Idea 2",
-        "descripcion": "Descripcion idea 2",
-        "imagen": "Imagen 2",
-        "cateoria": "Categoria 2",
-        "precio": 500,
-        "creador": "valdo@gmail.com"
-    },
-    {
-        "titulo": "Idea 3",
-        "descripcion": "Descripcion idea 3",
-        "imagen": "Imagen 3",
-        "cateoria": "Categoria 3",
-        "precio": 1700,
-        "creador": "matias.rosen@cliente.com"
-    }
+  {
+    "titulo": "Idea 1",
+    "descripcion": "Desc 1",
+    "imagen": "Imagen 1",
+    "categoria": "Cat 1",
+    "precio": 1000,
+    "creador": "valdo@gmail.com"
+  },
+  {
+    "titulo": "Idea 2",
+    "descripcion": "Desc 2",
+    "imagen": "Imagen 2",
+    "categoria": "Cat 2",
+    "precio": 500,
+    "creador": "valdo@gmail.com"
+  },
+  {
+    "titulo": "Idea 3",
+    "descripcion": "Desc 3",
+    "imagen": "Imagen 3",
+    "categoria": "Cat 3",
+    "precio": 1700,
+    "creador": "matias.rosen@cliente.com"
+  },
+  {
+    "titulo": "TEST",
+    "descripcion": "Test",
+    "imagen": "Test",
+    "categoria": "Prueba",
+    "precio": 1200,
+    "creador": "valdo@gmail.com"
+  }
 ]

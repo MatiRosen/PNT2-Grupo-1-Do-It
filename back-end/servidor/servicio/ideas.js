@@ -14,6 +14,15 @@ class ServicioIdeas {
             return error;
         }
     };
+
+    agregarIdea = async (idea) => {
+        try {
+            const ideaAgregada = await this.model.agregarIdea(idea);
+            return ideaAgregada;
+        } catch (error) {
+            return error;
+        }
+    }
 }
 
 export default ServicioIdeas;
