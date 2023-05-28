@@ -201,6 +201,7 @@ export default {
         .register(usuario)
         .then(function (response) {
           vue.agregarUsuario(
+            response.data.id,
             response.data.nombre,
             response.data.email,
             response.data.tipo,

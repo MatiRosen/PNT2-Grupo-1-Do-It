@@ -8,12 +8,8 @@ class Router {
     }
 
     start() {
-        // API REST FULL
-        //this.router.get("/usuarios/:email?", this.controlador.obtenerUsuarios);
         this.router.post("/", this.controlador.guardarUsuario);
-        this.router.put("/:email", this.controlador.actualizarUsuario); // Podriamos hacer un put para sumar dinero
-        //this.router.delete("/usuarios/:email", this.controlador.eliminarUsuario);
-
+        this.router.put("/dinero/:id", this.controlador.actualizarDinero);
         this.router.post("/login", this.controlador.logUsuario);
 
         return this.router;

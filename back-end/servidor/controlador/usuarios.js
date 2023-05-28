@@ -64,12 +64,12 @@ class Controlador {
         }
     };
 
-    actualizarUsuario = async (req, res) => {
+    actualizarDinero = async (req, res) => {
         try {
-            const { email } = req.params;
+            const { id } = req.params;
             const usuario = req.body;
-            const usuarioActualizado = await this.servicio.actualizarUsuario(
-                email,
+            const usuarioActualizado = await this.servicio.actualizarDinero(
+                id,
                 usuario
             );
 

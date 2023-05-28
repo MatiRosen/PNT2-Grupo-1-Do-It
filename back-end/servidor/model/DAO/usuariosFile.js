@@ -59,6 +59,8 @@ class ModelFile {
             );
         }
 
+        const id = (usuarios[usuarios.length - 1]?.id || 0) + 1;
+        usuario = { id, ...usuario };
         usuarios.push(usuario);
 
         try {
@@ -72,7 +74,7 @@ class ModelFile {
         return usuario;
     };
 
-    actualizarUsuario = async (email, usuario) => {
+    actualizarUsuario = async (id, usuario) => {
         let usuarios = [];
         try {
             usuarios = JSON.parse(await this.leerArchivo());
@@ -80,10 +82,11 @@ class ModelFile {
             throw new DatabaseError("Error al leer el archivo de usuarios.");
         }
 
-        const indice = usuarios.findIndex((usuario) => usuario.email === email);
+        const indice = usuarios.findIndex((usr) => usr.id == id);
+        
         if (indice == -1)
             throw new InvalidCredentialsError(
-                "No hay ningún usuario asociado a ese email."
+                "No hay ningún usuario asociado a ese id."
             );
 
         const usuarioAnterior = usuarios[indice];

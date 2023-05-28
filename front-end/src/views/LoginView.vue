@@ -89,6 +89,7 @@ export default {
                 .then(function (response) {
                     vue.usuario.nombre = response.data.nombre;
                     vue.agregarUsuario(
+                        response.data.id,
                         response.data.nombre,
                         response.data.email,
                         response.data.tipo,

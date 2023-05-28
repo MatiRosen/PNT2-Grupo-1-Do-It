@@ -8,7 +8,7 @@ export default {
     register(usuario){
         return apiClient.post('/api/usuarios', usuario);
     },
-    sumarDinero(usuario, email){
-        return apiClient.put('/api/usuarios/' + email, usuario);
+    sumarDinero(usuario, id){
+        return apiClient.put('/api/usuarios/dinero/' + id, usuario);
     }
 }

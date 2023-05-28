@@ -20,6 +20,8 @@ class Servicio {
         try {
             const usuarioGuardado = await this.model.guardarUsuario(usuario);
             return {
+                id: usuarioGuardado.id,
+                dni: usuarioGuardado.dni,
                 nombre: usuarioGuardado.nombre,
                 email: usuarioGuardado.email,
                 tipo: usuarioGuardado.tipo,
@@ -43,6 +45,7 @@ class Servicio {
                 usuario.contraseña == usuarioAux.contraseña
             ) {
                 return {
+                    id: usuarioAux.id,
                     nombre: usuarioAux.nombre,
                     email: usuarioAux.email,
                     tipo: usuarioAux.tipo,
@@ -56,8 +59,8 @@ class Servicio {
         }
     };
 
-    actualizarUsuario = async (email, usuario) => {
-        /*if (!usuario.dinero)
+    actualizarDinero = async (id, usuario) => {
+        if (!usuario.dinero)
             throw new InvalidCredentialsError(
                 "Debe ingresar el dinero."
             );
@@ -70,12 +73,9 @@ class Servicio {
             }
         }
         
-        Esto es para que no se pueda modificar nada más que el dinero. Capaz haya que ponerlo en otro método que se llame sumarDinero o algo así.
-        */
-
         try {
             const usuarioActualizado = await this.model.actualizarUsuario(
-                email,
+                id,
                 usuario
             );
             return { dinero: usuarioActualizado.dinero };

@@ -49,7 +49,7 @@ export default {
         agregarDinero: (usuario, user, vue) => {
             usuario.dinero += user.dinero;
             userService
-                .sumarDinero(usuario, user.email)
+                .sumarDinero(usuario, user.id)
                 .then(function (response) {
                     vue.sumarDinero(response.data.dinero);
 

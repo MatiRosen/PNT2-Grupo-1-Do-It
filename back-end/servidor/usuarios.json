@@ -1,5 +1,6 @@
 [
 	{
+		"id": 1,
 		"nombre": "Matias",
 		"apellido": "Rosenstein",
 		"email": "matias.rosenstein00@gmail.com",
@@ -10,9 +11,10 @@
 		"direccion": "Hola 123",
 		"contraseña": "test",
 		"tipo": "Inversor",
-		"dinero": 5000
+		"dinero": 7000
 	},
 	{
+		"id": 2,
 		"nombre": "Matias",
 		"apellido": "Rosenstein",
 		"email": "matias.rosen@cliente.com",
@@ -25,6 +27,7 @@
 		"tipo": "Creador"
 	},
 	{
+		"id": 3,
 		"nombre": "Fran",
 		"apellido": "Lagares",
 		"email": "fran@lagares",
@@ -35,9 +38,10 @@
 		"direccion": "123123",
 		"contraseña": "Fran",
 		"tipo": "Inversor",
-		"dinero": 99999999
+		"dinero": 5000
 	},
 	{
+		"id": 4,
 		"nombre": "Julia",
 		"apellido": "Valdovinos",
 		"email": "valdo@gmail.com",
@@ -48,17 +52,5 @@
 		"direccion": "Avenida Siempreviva 742",
 		"contraseña": "666",
 		"tipo": "Creador"
-	},
-	{
-		"nombre": "asdsd",
-		"apellido": "asdsad",
-		"email": "asd@asd",
-		"dni": "1212",
-		"nacimiento": "2023-05-05",
-		"genero": "hombre",
-		"telefono": "2323",
-		"direccion": "sad",
-		"contraseña": "",
-		"tipo": ""
 	}
 ]

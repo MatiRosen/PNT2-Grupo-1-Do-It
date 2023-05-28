@@ -4,6 +4,7 @@ export const useUserStore = defineStore("user", {
     state: () => {
         return {
             user: {
+                id: -1,
                 nombre: "",
                 email: "",
                 tipo: "",
@@ -12,7 +13,8 @@ export const useUserStore = defineStore("user", {
         };
     },
     actions: {
-        agregarUsuario(nombre, email, tipo, dinero = 0) {
+        agregarUsuario(id = -1, nombre, email, tipo, dinero = 0) {
+            this.user.id = id;
             this.user.nombre = nombre;
             this.user.email = email;
             this.user.tipo = tipo;
