@@ -7,10 +7,11 @@
     "categoria": "Cat 1",
     "precio": 1000,
     "creador": "valdo@gmail.com",
-    "idInversores": []
+    "idInversores": [],
+    "vecesVisto": 0
   },
   {
-    "id": 4,
+    "id": 2,
     "titulo": "Idea con Inversores",
     "descripcion": "Test idInversores",
     "imagen": "Test",
@@ -20,16 +21,18 @@
     "idInversores": [
       1,
       2
-    ]
+    ],
+    "vecesVisto": 10
   },
   {
-    "id": 5,
+    "id": 3,
     "titulo": "TEST",
     "descripcion": "Test",
     "imagen": "Test",
     "categoria": "Test",
     "precio": 1300,
     "creador": "valdo@gmail.com",
-    "idInversores": []
+    "idInversores": [],
+    "vecesVisto": 5
   }
 ]
