@@ -31,12 +31,12 @@
   },
   {
     "id": 4,
-    "titulo": "TEST",
+    "titulo": "Idea con Inversores",
     "descripcion": "Test idInversores",
     "imagen": "Test",
     "categoria": "Test",
     "precio": 1450,
     "creador": "valdo@gmail.com",
-    "idInversores": []
+    "idInversores": [1, 2]
   }
 ]

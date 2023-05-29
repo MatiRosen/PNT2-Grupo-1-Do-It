@@ -4,8 +4,11 @@ import { useIdeasStore } from '../../stores/creador/ideas';
 export default {
   setup() {
     const { idea } = useIdeasStore();
+    let { tieneInversores } = useIdeasStore();
+
     return {
-      idea
+      idea,
+      tieneInversores
     };
   }
 }
@@ -25,6 +28,6 @@ export default {
     <div>
         Precio: ${{ this.idea.precio }}
     </div>
-    <button class="btn btn-secondary">Editar</button>
+    <button v-if="!tieneInversores" class="btn btn-secondary">Editar</button>
     <button class="btn btn-warning">Eliminar</button>
 </template>

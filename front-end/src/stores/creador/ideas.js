@@ -21,5 +21,8 @@ export const useIdeasStore = defineStore("idea", {
         }
     },
     getters: {
+        tieneInversores() {
+            return this.idea.idInversores.length > 0
+        }
     }
 })
