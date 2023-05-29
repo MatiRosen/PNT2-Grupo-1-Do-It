@@ -15,6 +15,7 @@ export default {
     data() {        
         return {
             idea: {
+                id: 0,
                 titulo: "",
                 descripcion: "",
                 imagen: "",

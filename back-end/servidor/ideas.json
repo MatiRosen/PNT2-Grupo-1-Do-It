@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "titulo": "Idea 1",
     "descripcion": "Desc 1",
     "imagen": "Imagen 1",
@@ -8,6 +9,7 @@
     "creador": "valdo@gmail.com"
   },
   {
+    "id": 2,
     "titulo": "Idea 2",
     "descripcion": "Desc 2",
     "imagen": "Imagen 2",
@@ -16,6 +18,7 @@
     "creador": "valdo@gmail.com"
   },
   {
+    "id": 3,
     "titulo": "Idea 3",
     "descripcion": "Desc 3",
     "imagen": "Imagen 3",
@@ -24,11 +27,12 @@
     "creador": "matias.rosen@cliente.com"
   },
   {
+    "id": 4,
     "titulo": "TEST",
     "descripcion": "Test",
     "imagen": "Test",
-    "categoria": "Prueba",
-    "precio": 600,
+    "categoria": "Test",
+    "precio": 500,
     "creador": "valdo@gmail.com"
   }
 ]

@@ -32,7 +32,7 @@ class ModelFile {
         } catch {
             throw new DatabaseError("Error al leer el archivo de ideas.");
         }
-        
+        idea.id = (ideas[ideas.length - 1]?.id || 0) + 1        
         ideas.push(idea);
 
         try {
