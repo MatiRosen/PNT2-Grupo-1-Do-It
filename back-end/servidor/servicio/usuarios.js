@@ -84,10 +84,20 @@ class Servicio {
         }
     };
 
-    // Modificar
-    eliminarUsuario = async (email) => {
-        const usuarioEliminado = await this.model.eliminarUsuario(email);
-        return usuarioEliminado;
+    eliminarUsuario = async (id) => {
+        try {
+            const usuarioEliminado = await this.model.eliminarUsuario(id);
+            return {
+                id: usuarioEliminado.id,
+                dni: usuarioEliminado.dni,
+                nombre: usuarioEliminado.nombre,
+                email: usuarioEliminado.email,
+                tipo: usuarioEliminado.tipo,
+                dinero: usuarioEliminado.dinero,
+            };
+        } catch (error) {
+            throw error;
+        }
     };
 }
 

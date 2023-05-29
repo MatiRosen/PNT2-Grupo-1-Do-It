@@ -83,7 +83,7 @@ class ModelFile {
         }
 
         const indice = usuarios.findIndex((usr) => usr.id == id);
-        
+
         if (indice == -1)
             throw new InvalidCredentialsError(
                 "No hay ningún usuario asociado a ese id."
@@ -104,8 +104,7 @@ class ModelFile {
         return usuarioNuevo;
     };
 
-    // rehacer
-    eliminarUsuario = async (email) => {
+    eliminarUsuario = async (id) => {
         let usuarios = [];
         try {
             usuarios = JSON.parse(await this.leerArchivo());
@@ -113,14 +112,22 @@ class ModelFile {
             throw new DatabaseError("Error al leer el archivo de usuarios.");
         }
 
-        const indice = usuarios.findIndex((usuario) => usuario.email == email);
-        let usuario;
+        const indice = usuarios.findIndex((usr) => usr.id == id);
 
-        if (indice != -1) {
-            usuario = usuarios.splice(indice, 1)[0];
+        if (indice == -1)
+            throw new InvalidCredentialsError(
+                "No hay ningún usuario asociado a ese id."
+            );
+
+        const usuario = usuarios.splice(indice, 1)[0];
+
+        try {
+            await this.escribirArchivo(usuarios);
+        } catch (error) {
+            throw new DatabaseError(
+                "Error al escribir el archivo de usuarios."
+            );
         }
-
-        await this.escribirArchivo(usuarios);
         return usuario;
     };
 }

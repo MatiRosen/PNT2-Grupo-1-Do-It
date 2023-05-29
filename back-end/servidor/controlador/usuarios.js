@@ -87,22 +87,21 @@ class Controlador {
         }
     };
 
-    // Rehacer
     eliminarUsuario = async (req, res) => {
         try {
             const { id } = req.params;
             const usuarioBorrado = await this.servicio.eliminarUsuario(id);
 
-            res.json(usuarioBorrado);
+            res.status(200).json(usuarioBorrado);
         } catch (error) {
-            /*if (error instanceof InvalidCredentialsError) {
+            if (error instanceof InvalidCredentialsError) {
                 res.status(400).json(error.message);
-            } else{
+            } else {
                 res.status(500).json({
-                message:
-                    "Hubo un problema interno. Intente nuevamente más tarde.",
-            });
-            }*/
+                    message:
+                        "Hubo un problema interno. Intente nuevamente más tarde.",
+                });
+            }
         }
     };
 }

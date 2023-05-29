@@ -10,5 +10,8 @@ export default {
     },
     sumarDinero(usuario, id){
         return apiClient.put('/api/usuarios/dinero/' + id, usuario);
+    },
+    eliminar(id){
+        return apiClient.delete('/api/usuarios/' + id);
     }
 }

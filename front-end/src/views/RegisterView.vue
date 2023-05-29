@@ -51,7 +51,7 @@
                   <div class="mb-md-3 form-group">
                     <input
                       v-model="usuario.dni"
-                      type="text"
+                      type="number"
                       id="txtDni"
                       name="txtDni"
                       class="form-control shadow"
@@ -68,7 +68,7 @@
                       class="form-control shadow"
                       placeholder="Fecha de Nacimiento"
                       required
-                    />                                     
+                    />                       
                   </div>
                   <div class="mb-md-3 form-group">
                     <select
@@ -85,7 +85,7 @@
                   <div class="mb-md-3 form-group">
                     <input
                       v-model="usuario.telefono"
-                      type="text"
+                      type="number"
                       id="txtTelefono"
                       name="txtTelefono"
                       class="form-control shadow"

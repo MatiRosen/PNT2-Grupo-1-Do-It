@@ -34,5 +34,14 @@
     "categoria": "Test",
     "precio": 500,
     "creador": "valdo@gmail.com"
+  },
+  {
+    "id": 5,
+    "titulo": "Test 4",
+    "descripcion": "Probado test",
+    "imagen": "Imagen del test",
+    "categoria": "Pruebas ",
+    "precio": 1500,
+    "creador": "matias.rosen@cliente.com"
   }
 ]
