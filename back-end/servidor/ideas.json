@@ -6,7 +6,8 @@
     "imagen": "Imagen 1",
     "categoria": "Cat 1",
     "precio": 1000,
-    "creador": "valdo@gmail.com"
+    "creador": "valdo@gmail.com",
+    "idInversores": []
   },
   {
     "id": 2,
@@ -15,7 +16,8 @@
     "imagen": "Imagen 2",
     "categoria": "Cat 2",
     "precio": 500,
-    "creador": "valdo@gmail.com"
+    "creador": "valdo@gmail.com",
+    "idInversores": []
   },
   {
     "id": 3,
@@ -24,24 +26,17 @@
     "imagen": "Imagen 3",
     "categoria": "Cat 3",
     "precio": 1700,
-    "creador": "matias.rosen@cliente.com"
+    "creador": "matias.rosen@cliente.com",
+    "idInversores": []
   },
   {
     "id": 4,
     "titulo": "TEST",
-    "descripcion": "Test",
+    "descripcion": "Test idInversores",
     "imagen": "Test",
     "categoria": "Test",
-    "precio": 500,
-    "creador": "valdo@gmail.com"
-  },
-  {
-    "id": 5,
-    "titulo": "Test 4",
-    "descripcion": "Probado test",
-    "imagen": "Imagen del test",
-    "categoria": "Pruebas ",
-    "precio": 1500,
-    "creador": "matias.rosen@cliente.com"
+    "precio": 1450,
+    "creador": "valdo@gmail.com",
+    "idInversores": []
   }
 ]
