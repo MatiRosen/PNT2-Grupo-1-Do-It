@@ -22,6 +22,7 @@ export default {
                 categoria: "",
                 precio: "",
                 creador: "",
+                idInversores: []
             },
             vue: this,
         };
