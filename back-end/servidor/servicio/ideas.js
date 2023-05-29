@@ -23,6 +23,14 @@ class ServicioIdeas {
             throw error;
         }
     }
+
+    eliminarIdea = async (id) => {
+        try {
+            await this.model.eliminarIdea(id);
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 export default ServicioIdeas;

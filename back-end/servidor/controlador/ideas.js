@@ -41,6 +41,24 @@ class ControladorIdeas {
             }
         }
     }
+
+    eliminarIdea = async (req, res) => {
+        try {
+            const { id } = req.params;
+            await this.ServicioIdeas.eliminarIdea(id);
+
+            res.status(200).json({ message: "Idea eliminada exitosamente." });
+        } catch (error) {
+            if (error instanceof InvalidCredentialsError) {
+                res.status(400).json(error.message);
+            } else {
+                res.status(500).json({
+                    message:
+                        "Hubo un problema interno. Intente nuevamente más tarde.",
+                });
+            }
+        }
+    }
 }
 
 export default ControladorIdeas;

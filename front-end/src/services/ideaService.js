@@ -8,5 +8,8 @@ export default {
     },
     agregarIdea(idea) {
         return apiClient.post('/api/ideas', idea)
+    },
+    eliminarIdea(id) {
+        return apiClient.delete(`/api/ideas/${id}`)
     }
 }

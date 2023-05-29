@@ -10,16 +10,6 @@
     "idInversores": []
   },
   {
-    "id": 2,
-    "titulo": "Idea 2",
-    "descripcion": "Desc 2",
-    "imagen": "Imagen 2",
-    "categoria": "Cat 2",
-    "precio": 500,
-    "creador": "valdo@gmail.com",
-    "idInversores": []
-  },
-  {
     "id": 3,
     "titulo": "Idea 3",
     "descripcion": "Desc 3",
@@ -37,6 +27,9 @@
     "categoria": "Test",
     "precio": 1450,
     "creador": "valdo@gmail.com",
-    "idInversores": [1, 2]
+    "idInversores": [
+      1,
+      2
+    ]
   }
 ]

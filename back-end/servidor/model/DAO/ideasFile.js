@@ -46,6 +46,31 @@ class ModelFile {
 
         return idea;
     }
+
+    eliminarIdea = async (id) => {
+        let ideas = [];
+        try {
+            ideas = JSON.parse(await this.leerArchivo());
+        } catch {
+            throw new DatabaseError("Error al leer el archivo de ideas.");
+        }
+
+        const ideaAEliminar = ideas.find((idea) => idea.id == id);
+        if (!ideaAEliminar) {
+            throw new InvalidCredentialsError("No existe una idea con el id indicado.");
+        }
+
+        ideas = ideas.filter((idea) => idea.id != id);
+
+        try {
+            await fs.promises.writeFile(
+                this.nombreArchivo,
+                JSON.stringify(ideas, null, 2)
+            );
+        } catch {
+            throw new DatabaseError("Error al escribir el archivo de ideas.");
+        }
+    }
 }
 
 export default ModelFile;

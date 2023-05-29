@@ -10,6 +10,7 @@ class RouterIdeas {
     start() {
         this.router.get("/:email?", this.controlador.obtenerIdeas)
         this.router.post("/", this.controlador.agregarIdea)
+        this.router.delete("/:id", this.controlador.eliminarIdea)
         return this.router
     }
 }
