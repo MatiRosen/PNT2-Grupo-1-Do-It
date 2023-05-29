@@ -24,6 +24,44 @@ class ControladorIdeas {
         }
     };
 
+    obtenerIdeasPorCategoria = async (req, res) => {
+        try {
+            const { categoria } = req.params;
+            const ideas = await this.ServicioIdeas.obtenerIdeasPorCategoria(
+                categoria
+            );
+
+            res.status(200).json(ideas);
+        } catch (error) {
+            if (error instanceof InvalidCredentialsError) {
+                res.status(400).json(error.message);
+            } else {
+                res.status(500).json({
+                    message:
+                        "Hubo un problema interno. Intente nuevamente más tarde.",
+                });
+            }
+        }
+    };
+
+    obtenerIdeasPorTitulo = async (req, res) => {
+        try {
+            const { titulo } = req.params;
+            const ideas = await this.ServicioIdeas.obtenerIdeasPorTitulo(titulo);
+
+            res.status(200).json(ideas);
+        } catch (error) {
+            if (error instanceof InvalidCredentialsError) {
+                res.status(400).json(error.message);
+            } else {
+                res.status(500).json({
+                    message:
+                        "Hubo un problema interno. Intente nuevamente más tarde.",
+                });
+            }
+        }
+    }
+
     agregarIdea = async (req, res) => {
         try {
             const idea = req.body;
@@ -40,7 +78,7 @@ class ControladorIdeas {
                 });
             }
         }
-    }
+    };
 
     eliminarIdea = async (req, res) => {
         try {
@@ -58,7 +96,7 @@ class ControladorIdeas {
                 });
             }
         }
-    }
+    };
 }
 
 export default ControladorIdeas;

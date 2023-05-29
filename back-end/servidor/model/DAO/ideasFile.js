@@ -25,6 +25,46 @@ class ModelFile {
         return ideas;
     };
 
+    obtenerIdeasPorCategoria = async (categoria) => {
+        let ideas = [];
+        try {
+            ideas = JSON.parse(await this.leerArchivo());
+        } catch {
+            throw new DatabaseError("Error al leer el archivo de ideas.");
+        }
+
+        const ideasPorCategoria = ideas.filter(
+            (idea) => idea.categoria.toLowerCase() == categoria.toLowerCase()
+        );
+
+        if (ideasPorCategoria.length == 0)
+            throw new InvalidCredentialsError(
+                "No existen ideas con la categoría indicada."
+            );
+
+        return ideasPorCategoria;
+    };
+
+    obtenerIdeasPorTitulo = async (titulo) => {
+        let ideas = [];
+        try {
+            ideas = JSON.parse(await this.leerArchivo());
+        } catch {
+            throw new DatabaseError("Error al leer el archivo de ideas.");
+        }
+
+        const ideasPorTitulo = ideas.filter((idea) => {
+            return idea.titulo.toLowerCase().includes(titulo.toLowerCase());
+        });
+
+        if (ideasPorTitulo.length == 0)
+            throw new InvalidCredentialsError(
+                "No existen ideas con el título indicado."
+            );
+
+        return ideasPorTitulo;
+    };
+
     agregarIdea = async (idea) => {
         let ideas = [];
         try {
@@ -32,7 +72,7 @@ class ModelFile {
         } catch {
             throw new DatabaseError("Error al leer el archivo de ideas.");
         }
-        idea.id = (ideas[ideas.length - 1]?.id || 0) + 1        
+        idea.id = (ideas[ideas.length - 1]?.id || 0) + 1;
         ideas.push(idea);
 
         try {
@@ -45,7 +85,7 @@ class ModelFile {
         }
 
         return idea;
-    }
+    };
 
     eliminarIdea = async (id) => {
         let ideas = [];
@@ -57,7 +97,9 @@ class ModelFile {
 
         const ideaAEliminar = ideas.find((idea) => idea.id == id);
         if (!ideaAEliminar) {
-            throw new InvalidCredentialsError("No existe una idea con el id indicado.");
+            throw new InvalidCredentialsError(
+                "No existe una idea con el id indicado."
+            );
         }
 
         ideas = ideas.filter((idea) => idea.id != id);
@@ -70,7 +112,7 @@ class ModelFile {
         } catch {
             throw new DatabaseError("Error al escribir el archivo de ideas.");
         }
-    }
+    };
 }
 
 export default ModelFile;

@@ -15,6 +15,24 @@ class ServicioIdeas {
         }
     };
 
+    obtenerIdeasPorCategoria = async (categoria) => {
+        try {
+            const ideas = await this.model.obtenerIdeasPorCategoria(categoria);
+            return ideas;
+        } catch (error) {
+            throw error;
+        }
+    };
+
+    obtenerIdeasPorTitulo = async (titulo) => {
+        try {
+            const ideas = await this.model.obtenerIdeasPorTitulo(titulo);
+            return ideas;
+        } catch (error) {
+            throw error;
+        }
+    }
+
     agregarIdea = async (idea) => {
         try {
             const ideaAgregada = await this.model.agregarIdea(idea);
@@ -22,7 +40,7 @@ class ServicioIdeas {
         } catch (error) {
             throw error;
         }
-    }
+    };
 
     eliminarIdea = async (id) => {
         try {
@@ -30,7 +48,7 @@ class ServicioIdeas {
         } catch (error) {
             throw error;
         }
-    }
+    };
 }
 
 export default ServicioIdeas;
