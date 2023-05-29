@@ -10,16 +10,6 @@
     "idInversores": []
   },
   {
-    "id": 3,
-    "titulo": "Idea 3",
-    "descripcion": "Desc 3",
-    "imagen": "Imagen 3",
-    "categoria": "Cat 3",
-    "precio": 1700,
-    "creador": "matias.rosen@cliente.com",
-    "idInversores": []
-  },
-  {
     "id": 4,
     "titulo": "Idea con Inversores",
     "descripcion": "Test idInversores",
@@ -31,5 +21,15 @@
       1,
       2
     ]
+  },
+  {
+    "id": 5,
+    "titulo": "TEST",
+    "descripcion": "Test",
+    "imagen": "Test",
+    "categoria": "Test",
+    "precio": 1300,
+    "creador": "valdo@gmail.com",
+    "idInversores": []
   }
 ]

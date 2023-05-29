@@ -5,33 +5,31 @@ El objetivo del proyecto es conectar gente que tenga ideas con personas o equipo
 Además, en caso de no encontrar desarrolladores, Do It contará con sus propios equipos para poner a disposición de quien lo necesite.
 
 ## Funcionalidades
-
+### HACERLO RESPONSIVE!
 ### Menu
 1. **Menu**
-   - Redireccionamiento al perfil del usuario
-   - Logout
-   - Mensajería
-   - Home
-   - Dinero disponible (en caso de ser inversor)
+   - ~~Redireccionamiento al perfil del usuario~~
+   - ~~Logout~~
+   - ~~Mensajería~~
+   - ~~Home~~
+   - ~~Dinero disponible (en caso de ser inversor)~~
 
 ### Registro
 1. **Registro**
-   - Nombre completo
-   - DNI
-   - Fecha nacimiento
-   - Email
-   - Contraseña
-   - Sexo
-   - País
-   - Aceptar terminos y condiciones
-   - Elegir tipo de usuario: Inversor o creador
+   - ~~Nombre completo~~
+   - ~~DNI~~
+   - ~~Fecha nacimiento~~
+   - ~~Email~~
+   - ~~Contraseña~~
+   - ~~Sexo~~
+   - ~~País~~
+   - ~~Elegir tipo de usuario: Inversor o creador~~
+   - Agregar validaciones
 
 ### Iniciar sesión
 1. **Login**
-   - Escribir email y contraseña
-   - Verificamos el tipo de usuario y llevamos a un home u otro dependiendo el mismo
-# Hasta acá Mati
-
+   - ~~Escribir email y contraseña~~
+   - ~~Verificamos el tipo de usuario y llevamos a un home u otro dependiendo el mismo~~
 ### Inversor
 1. **Home**
    - Ideas ordenadas por popularidad
@@ -43,33 +41,27 @@ Además, en caso de no encontrar desarrolladores, Do It contará con sus propios
    - Botón de chat
 3. **Lista de inversiones**
    - Lista de inversiones ordenadas por orden de acuerdo
-
-# Hasta acá Arnold
-### Creador
+### Creador (Ponerlo bonito uwu {*o.o*})
 1. **Home**
-   - Lista de ideas propias + botón crear
+   - ~~Lista de ideas propias + botón crear~~
 2. **Crear idea**
-   - Titulo
-   - Descripción
-   - Categoría
-   - Inversión esperada (en $)
-3. **Idea seleccionada**
-   - Toda la info + info del inversor
+   - ~~Titulo~~
+   - ~~Descripción~~
+   - ~~Categoría~~
+   - ~~Inversión esperada (en $)~~
+3. **Idea seleccionada** 
+   - Detalle de la idea + info del inversor
    - Botón editar (si no tiene inversor)
    - Botón borrar (te lleva a la home)
 4. **Editar idea**
    - La misma info editable (A menos que tenga inversor)
-# Hasta aca Julia
 
 ### Común entre ambos perfiles
 1. **Perfil**
-   - Nombre
-   - Idioma
-   - Botón editar
-2. **Chat**
-   - Lista de mensajes
-   - Botón de filtrado (por leidos, no leidos)
-# Hasta aca Fran
+   - ~~Nombre~~
+   - Botón agregar plata (Validaciones)
+2. **Chat** 
+   - Lista de mensajes (Faltan detallitos y detallotes)
 
 ### Concretar el trato
-El inversor podrá confirmar que desea invertir en la idea, y entonces podrá usar créditos
+El inversor podrá confirmar que desea invertir en la idea, y entonces podrá usar créditos. Si la idea llegó a la metaponerla de un color.

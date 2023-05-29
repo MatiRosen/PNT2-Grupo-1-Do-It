@@ -5,10 +5,7 @@
         <div class="row">
           <div class="col-md-12 d-flex justify-content-center">
             <p class="efecto rounded-pill">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit
-              voluptatem praesentium ad eaque perferendis, perspiciatis nostrum
-              ut eum placeat nam libero, corrupti inventore rerum consequuntur
-              iure commodi reprehenderit id repellat.
+              ¡Bienvenido!
             </p>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
+import {useUserStore} from "../stores/user.js";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,7 +13,14 @@ const router = createRouter({
         {
             path: "/creador",
             name: "creador",
-            component: () => import("../views/creador/HomeViewCreador.vue"),
+            component: () => import("../views/creador/HomeViewCreador.vue"),           
+            beforeEnter: (to, from, next) => {
+                if (useUserStore().esCreador) {
+                    next();
+                } else {
+                    next({ name: "home" });
+                }
+            },
         },
         {
             path: "/nuevaIdea",
