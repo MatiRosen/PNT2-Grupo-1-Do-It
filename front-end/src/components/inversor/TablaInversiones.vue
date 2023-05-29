@@ -7,7 +7,7 @@
         </div>
       </div>
       <div class="row top-separation">
-        <div class="col-md-4 columnas" v-for="idea in ideas" :key="idea.id">
+        <div class="col-md-4" v-for="idea in ideas" :key="idea.id">
           <div class="card shadow-lg">
             <div class="card-block position-relative">
               <div class="row">
@@ -26,21 +26,183 @@
           </div>
         </div>
       </div>
+      <div class="row top-separation">
+        <div class="col-md-4">
+          <div class="row m-2">
+            <div class="card shadow-lg">
+              <div class="card-block position-relative">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h2>Filtros</h2>
+                    <div>
+                      <ul class="dropdown-menu">
+                        <li>
+                          <span
+                            class="dropdown-item-text"
+                            @click="toggleSubmenu('categorias')"
+                            >Categorias</span
+                          >
+                          <ul
+                            v-if="showSubmenu === 'categorias'"
+                            class="sub-dropdown"
+                          >
+                            <li
+                              v-for="categoria in categorias"
+                              :key="categoria"
+                            >
+                              <span
+                                class="dropdown-item-text"
+                                @click="selectItem(categoria)"
+                                >{{ categoria }}</span
+                              >
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <span
+                            class="dropdown-item-text"
+                            @click="toggleSubmenu('autor')"
+                            >Autor</span
+                          >
+                          <ul
+                            v-if="showSubmenu === 'autor'"
+                            class="sub-dropdown"
+                          >
+                            <li v-for="autor in autores" :key="autor">
+                              <span
+                                class="dropdown-item-text"
+                                @click="selectItem(autor)"
+                                >{{ autor }}</span
+                              >
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                    <!-- <div>
+                      <ul class="dropdown-menu">
+                        <li>
+                          <span
+                            class="dropdown-item-text"
+                            @click="toggleSubmenu('categorias')"
+                            >Categorias</span
+                          >
+                          <ul
+                            v-if="showSubmenu === 'categorias'"
+                            class="sub-dropdown"
+                          >
+                            <li
+                              v-for="idea in ideas"
+                              :key="idea.categoria"
+                            >
+                              <span
+                                class="dropdown-item-text"
+                                @click="selectItem(idea.categoria)"
+                                >{{ idea.categoria }}</span
+                              >
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <span
+                            class="dropdown-item-text"
+                            @click="toggleSubmenu('autor')"
+                            >Autor</span
+                          >
+                          <ul
+                            v-if="showSubmenu === 'autor'"
+                            class="sub-dropdown"
+                          >
+                            <li v-for="idea in ideas" :key="idea.autor">
+                              <span
+                                class="dropdown-item-text"
+                                @click="selectItem(idea.autor)"
+                                >{{ idea.autor }}</span
+                              >
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="row my-2" v-for="idea in ideas" :key="idea.id">
+            <div class="card shadow-lg">
+              <div class="card-block position-relative">
+                <div class="row">
+                  <div class="col-md-3">
+                    <!-- <img class="img-fluid" :src="idea.imagen" /> -->
+                    <img class="img-fluid" src="../../assets/ideas.jpg" />
+                  </div>
+                  <div class="col-md-7 offset-md-1">
+                    <h2 class="titulosgrises">{{ idea.titulo }}</h2>
+                    <h3 class="subtituloRojo">{{ idea.categoria }}</h3>
+                    <h4 class="descripcion">Descripcion</h4>
+                    <p>{{ idea.descripcion }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </template>
 <script setup>
+import { ref, computed } from "vue";
 import { storeToRefs } from "pinia";
 import { useIdeasStore } from "../../stores/creador/ideas.js";
+
 const store = useIdeasStore();
 const { ideas } = storeToRefs(store);
+
+const showSubmenu = ref(null);
+
+const categorias = computed(() => {
+  const uniqueCategorias = new Set();
+  ideas.forEach((idea) => {
+    uniqueCategorias.add(idea.categoria);
+  });
+  return Array.from(uniqueCategorias);
+});
+
+const autores = computed(() => {
+  const uniqueAutores = new Set();
+  ideas.forEach((idea) => {
+    uniqueAutores.add(idea.autor);
+  });
+  return Array.from(uniqueAutores);
+});
+
+function toggleSubmenu(submenu) {
+  if (showSubmenu.value === submenu) {
+    showSubmenu.value = null;
+  } else {
+    showSubmenu.value = submenu;
+  }
+}
+
+function selectItem(item) {
+  // Aquí puedes realizar alguna acción cuando se selecciona un elemento del dropdown
+  console.log('Seleccionaste:', item);
+}
 </script>
 
 <style>
+.sub-dropdown {
+  margin-left: 15px;
+}
 .titulosgrises {
   font-weight: bold;
   color: #6a6a6a;
   font-size: 20px;
+  margin-top: 20px;
 }
 .subtitulovioleta {
   font-weight: bold;
@@ -57,11 +219,12 @@ const { ideas } = storeToRefs(store);
   color: #6a6a6a;
   font-size: 15px;
 }
+.top-separation {
+  margin-top: 30px;
+}
 .p {
   font-size: 12px;
 }
-
-
 .card {
   border-radius: 20px;
   border-color: white;
