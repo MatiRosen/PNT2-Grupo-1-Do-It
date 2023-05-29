@@ -1,5 +1,17 @@
 <template>
-  <section id="ideas">
+   <table class="table table-striped">
+        <tbody>
+            <tr v-for="idea in ideas">
+                <td>{{ idea.titulo }}</td>
+                <td>{{ idea.descripcion }}</td>
+                <td>{{ idea.imagen }}</td>
+                <td>{{ idea.categoria }}</td>
+                <td>{{ idea.precio }}</td>
+                <td><RouterLink to="/idea/${idea.id}" @click="guardarIdea(idea)"><img src="../../assets/busqueda.png"></RouterLink></td>
+            </tr>
+        </tbody>
+    </table>
+  <!-- <section id="ideas">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -12,7 +24,7 @@
             <div class="card-block position-relative">
               <div class="row">
                 <div class="col-md-3">
-                  <!-- <img class="img-fluid" :src="idea.imagen" /> -->
+                  <img class="img-fluid" :src="idea.imagen" />
                   <img class="img-fluid" src="../../assets/ideas.jpg" />
                 </div>
                 <div class="col-md-7 offset-md-1">
@@ -78,52 +90,7 @@
                           </ul>
                         </li>
                       </ul>
-                    </div>
-                    <!-- <div>
-                      <ul class="dropdown-menu">
-                        <li>
-                          <span
-                            class="dropdown-item-text"
-                            @click="toggleSubmenu('categorias')"
-                            >Categorias</span
-                          >
-                          <ul
-                            v-if="showSubmenu === 'categorias'"
-                            class="sub-dropdown"
-                          >
-                            <li
-                              v-for="idea in ideas"
-                              :key="idea.categoria"
-                            >
-                              <span
-                                class="dropdown-item-text"
-                                @click="selectItem(idea.categoria)"
-                                >{{ idea.categoria }}</span
-                              >
-                            </li>
-                          </ul>
-                        </li>
-                        <li>
-                          <span
-                            class="dropdown-item-text"
-                            @click="toggleSubmenu('autor')"
-                            >Autor</span
-                          >
-                          <ul
-                            v-if="showSubmenu === 'autor'"
-                            class="sub-dropdown"
-                          >
-                            <li v-for="idea in ideas" :key="idea.autor">
-                              <span
-                                class="dropdown-item-text"
-                                @click="selectItem(idea.autor)"
-                                >{{ idea.autor }}</span
-                              >
-                            </li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </div> -->
+                    </div>                   
                   </div>
                 </div>
               </div>
@@ -136,7 +103,7 @@
               <div class="card-block position-relative">
                 <div class="row">
                   <div class="col-md-3">
-                    <!-- <img class="img-fluid" :src="idea.imagen" /> -->
+                    <img class="img-fluid" :src="idea.imagen" />
                     <img class="img-fluid" src="../../assets/ideas.jpg" />
                   </div>
                   <div class="col-md-7 offset-md-1">
@@ -152,46 +119,39 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 </template>
-<script setup>
-import { ref, computed } from "vue";
-import { storeToRefs } from "pinia";
-import { useIdeasStore } from "../../stores/creador/ideas.js";
+<script>import { ref, onMounted } from 'vue';
+import { useUserStore } from '../../stores/user';
+import { useIdeasStore } from '../../stores/creador/ideas';
+import ideaService from "../../services/ideaService";
+import { RouterLink } from 'vue-router';
 
-const store = useIdeasStore();
-const { ideas } = storeToRefs(store);
+export default {
+  setup() {
+    const ideas = ref([]);
+    const { user } = useUserStore();
+    const { setIdea } = useIdeasStore();
 
-const showSubmenu = ref(null);
+    const getIdeas = async () => {
+      ideas.value = (await ideaService.obtenerIdeas(user.email)).data;
+    };
 
-const categorias = computed(() => {
-  const uniqueCategorias = new Set();
-  ideas.forEach((idea) => {
-    uniqueCategorias.add(idea.categoria);
-  });
-  return Array.from(uniqueCategorias);
-});
+    const guardarIdea = (idea) => {
+      setIdea(idea);
+    };
 
-const autores = computed(() => {
-  const uniqueAutores = new Set();
-  ideas.forEach((idea) => {
-    uniqueAutores.add(idea.autor);
-  });
-  return Array.from(uniqueAutores);
-});
+    onMounted(getIdeas);
 
-function toggleSubmenu(submenu) {
-  if (showSubmenu.value === submenu) {
-    showSubmenu.value = null;
-  } else {
-    showSubmenu.value = submenu;
+    return {
+      ideas,
+      getIdeas,
+      guardarIdea
+    };
   }
 }
 
-function selectItem(item) {
-  // Aquí puedes realizar alguna acción cuando se selecciona un elemento del dropdown
-  console.log('Seleccionaste:', item);
-}
+
 </script>
 
 <style>
