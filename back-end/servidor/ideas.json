@@ -2,8 +2,8 @@
   {
     "id": 1,
     "titulo": "Idea 1",
-    "descripcion": "Desc 1",
-    "imagen": "Imagen 1",
+    "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel doloremque nam excepturi ducimus nobis, velit itaque quos. Quis ipsum sapiente reiciendis fuga, ratione sequi odio, deserunt dolorum suscipit excepturi repellat!",
+    "imagen": "AA.png",
     "categoria": "Cat 1",
     "precio": 1000,
     "idCreador": 4,
@@ -43,6 +43,16 @@
     "categoria": "Genialidades",
     "precio": 5000,
     "idCreador": 2,
+    "idInversores": []
+  },
+  {
+    "id": 5,
+    "titulo": "TEST",
+    "descripcion": "Probando edicion :)",
+    "imagen": "Test",
+    "categoria": "Prueba",
+    "precio": 1,
+    "idCreador": 4,
     "idInversores": []
   }
 ]

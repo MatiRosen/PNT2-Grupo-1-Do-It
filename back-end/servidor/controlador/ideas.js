@@ -31,7 +31,7 @@ class ControladorIdeas {
                 campo,
                 valor
             );
-
+            
             res.status(200).json(ideas);
         } catch (error) {
             if (error instanceof InvalidCredentialsError) {

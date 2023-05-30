@@ -64,4 +64,4 @@ Además, en caso de no encontrar desarrolladores, Do It contará con sus propios
    - Lista de mensajes (Faltan detallitos y detallotes)
 
 ### Concretar el trato
-El inversor podrá confirmar que desea invertir en la idea, y entonces podrá usar créditos. Si la idea llegó a la metaponerla de un color.
+El inversor podrá confirmar que desea invertir en la idea, y entonces podrá usar créditos. Si la idea llegó a la meta, ponerla de un color distinto.

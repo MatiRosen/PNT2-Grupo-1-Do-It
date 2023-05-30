@@ -4,10 +4,22 @@
       <div class="row">
         <div class="col-md-12">
           <h2>Ideas</h2>
+          <ul>
+            <li v-for="cat in categorias" :key="cat.id">
+              <label>
+                <input
+                  type="radio"
+                  v-model="filtros.categoría"
+                  :value="cat.categoria"
+                />
+                {{ cat.categoria }}
+              </label>
+            </li>
+          </ul>          
         </div>
       </div>
       <div class="row top-separation">
-        <div class="col-md-4 columnas" v-for="idea in ideas" :key="idea.id">
+        <div class="col-md-4" v-for="idea in ideas" :key="idea.id">
           <div class="card shadow-lg">
             <div class="card-block position-relative">
               <div class="row">
@@ -26,21 +38,82 @@
           </div>
         </div>
       </div>
+      <div class="row top-separation">
+        <div class="col-md-4">
+          <div class="row m-2">
+            <div class="card shadow-lg">
+              <div class="card-block position-relative">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h2>Filtros</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="row my-2" v-for="idea in ideas" :key="idea.id">
+            <div class="card shadow-lg">
+              <div class="card-block position-relative">
+                <div class="row">
+                  <div class="col-md-3">
+                    <!-- <img class="img-fluid" :src="idea.imagen" /> -->
+                    <img class="img-fluid" src="../../assets/ideas.jpg" />
+                  </div>
+                  <div class="col-md-7 offset-md-1">
+                    <h2 class="titulosgrises">{{ idea.titulo }}</h2>
+                    <h3 class="subtituloRojo">{{ idea.categoria }}</h3>
+                    <h4 class="descripcion">Descripcion</h4>
+                    <p>{{ idea.descripcion }}</p>
+                    <button class="btn btn-success">Invertir</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </template>
-<script setup>
-import { storeToRefs } from "pinia";
-import { useIdeasStore } from "../../stores/creador/ideas.js";
-const store = useIdeasStore();
-const { ideas } = storeToRefs(store);
+<script>
+import { ref, onMounted } from "vue";
+import { useUserStore } from "../../stores/user";
+import { useIdeasStore } from "../../stores/creador/ideas";
+import ideaService from "../../services/ideaService";
+
+export default {
+  setup() {
+    const ideas = ref([]);
+    const categorias = ref([]);
+    const { user } = useUserStore();
+    const { setIdea } = useIdeasStore();
+
+    const getIdeas = async () => {
+      ideas.value = (await ideaService.obtenerIdeas("")).data;
+      categorias.value(await ideaService.obtenerPorCampo().data);
+    };
+
+    onMounted(getIdeas);
+
+    return {
+      ideas,
+      getIdeas,
+    };
+  },
+};
 </script>
 
 <style>
+.sub-dropdown {
+  margin-left: 15px;
+}
 .titulosgrises {
   font-weight: bold;
   color: #6a6a6a;
   font-size: 20px;
+  margin-top: 20px;
 }
 .subtitulovioleta {
   font-weight: bold;
@@ -57,11 +130,12 @@ const { ideas } = storeToRefs(store);
   color: #6a6a6a;
   font-size: 15px;
 }
+.top-separation {
+  margin-top: 30px;
+}
 .p {
   font-size: 12px;
 }
-
-
 .card {
   border-radius: 20px;
   border-color: white;

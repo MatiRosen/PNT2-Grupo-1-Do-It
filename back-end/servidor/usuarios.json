@@ -52,5 +52,19 @@
 		"direccion": "Avenida Siempreviva 742",
 		"contraseña": "666",
 		"tipo": "Creador"
+	},
+	{
+		"id": 5,
+		"nombre": "arnold",
+		"apellido": "amorin",
+		"email": "aa@aa.com",
+		"dni": 95160301,
+		"nacimiento": "1995-03-23",
+		"genero": "hombre",
+		"telefono": 123456,
+		"direccion": "aaa",
+		"contraseña": "1234",
+		"tipo": "Inversor",
+		"dinero": 10
 	}
 ]

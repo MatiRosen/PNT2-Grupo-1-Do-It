@@ -9,7 +9,6 @@ class ModelFile {
     async leerArchivo() {
         return await fs.promises.readFile(this.nombreArchivo, "utf-8");
     }
-
     obtenerIdeas = async (idCreador) => {
         let ideas = [];
         try {
@@ -52,7 +51,7 @@ class ModelFile {
         } catch {
             throw new DatabaseError("Error al leer el archivo de ideas.");
         }
-        idea.id = (ideas[ideas.length - 1]?.id || 0) + 1;
+        idea.id = (ideas[ideas.length - 1]?.id || 0) + 1        
         ideas.push(idea);
 
         try {
@@ -65,7 +64,7 @@ class ModelFile {
         }
 
         return idea;
-    };
+    }
 
     eliminarIdea = async (id) => {
         let ideas = [];
@@ -77,9 +76,7 @@ class ModelFile {
 
         const ideaAEliminar = ideas.find((idea) => idea.id == id);
         if (!ideaAEliminar) {
-            throw new InvalidCredentialsError(
-                "No existe una idea con el id indicado."
-            );
+            throw new InvalidCredentialsError("No existe una idea con el id indicado.");
         }
 
         ideas = ideas.filter((idea) => idea.id != id);
@@ -92,7 +89,7 @@ class ModelFile {
         } catch {
             throw new DatabaseError("Error al escribir el archivo de ideas.");
         }
-    };
+    }
 }
 
 export default ModelFile;
