@@ -1,17 +1,6 @@
 <template>
-   <table class="table table-striped">
-        <tbody>
-            <tr v-for="idea in ideas">
-                <td>{{ idea.titulo }}</td>
-                <td>{{ idea.descripcion }}</td>
-                <td>{{ idea.imagen }}</td>
-                <td>{{ idea.categoria }}</td>
-                <td>{{ idea.precio }}</td>
-                <td><RouterLink to="/idea/${idea.id}" @click="guardarIdea(idea)"><img src="../../assets/busqueda.png"></RouterLink></td>
-            </tr>
-        </tbody>
-    </table>
-  <!-- <section id="ideas">
+
+  <section id="ideas">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -24,7 +13,7 @@
             <div class="card-block position-relative">
               <div class="row">
                 <div class="col-md-3">
-                  <img class="img-fluid" :src="idea.imagen" />
+                  <!-- <img class="img-fluid" :src="idea.imagen" /> -->
                   <img class="img-fluid" src="../../assets/ideas.jpg" />
                 </div>
                 <div class="col-md-7 offset-md-1">
@@ -46,51 +35,7 @@
                 <div class="row">
                   <div class="col-md-12">
                     <h2>Filtros</h2>
-                    <div>
-                      <ul class="dropdown-menu">
-                        <li>
-                          <span
-                            class="dropdown-item-text"
-                            @click="toggleSubmenu('categorias')"
-                            >Categorias</span
-                          >
-                          <ul
-                            v-if="showSubmenu === 'categorias'"
-                            class="sub-dropdown"
-                          >
-                            <li
-                              v-for="categoria in categorias"
-                              :key="categoria"
-                            >
-                              <span
-                                class="dropdown-item-text"
-                                @click="selectItem(categoria)"
-                                >{{ categoria }}</span
-                              >
-                            </li>
-                          </ul>
-                        </li>
-                        <li>
-                          <span
-                            class="dropdown-item-text"
-                            @click="toggleSubmenu('autor')"
-                            >Autor</span
-                          >
-                          <ul
-                            v-if="showSubmenu === 'autor'"
-                            class="sub-dropdown"
-                          >
-                            <li v-for="autor in autores" :key="autor">
-                              <span
-                                class="dropdown-item-text"
-                                @click="selectItem(autor)"
-                                >{{ autor }}</span
-                              >
-                            </li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </div>                   
+                                      
                   </div>
                 </div>
               </div>
@@ -103,7 +48,7 @@
               <div class="card-block position-relative">
                 <div class="row">
                   <div class="col-md-3">
-                    <img class="img-fluid" :src="idea.imagen" />
+                    <!-- <img class="img-fluid" :src="idea.imagen" /> -->
                     <img class="img-fluid" src="../../assets/ideas.jpg" />
                   </div>
                   <div class="col-md-7 offset-md-1">
@@ -111,6 +56,7 @@
                     <h3 class="subtituloRojo">{{ idea.categoria }}</h3>
                     <h4 class="descripcion">Descripcion</h4>
                     <p>{{ idea.descripcion }}</p>
+                    <button class="btn btn-success">Invertir</button>
                   </div>
                 </div>
               </div>
@@ -119,9 +65,10 @@
         </div>
       </div>
     </div>
-  </section> -->
+  </section>
 </template>
-<script>import { ref, onMounted } from 'vue';
+<script>
+import { ref, onMounted } from 'vue';
 import { useUserStore } from '../../stores/user';
 import { useIdeasStore } from '../../stores/creador/ideas';
 import ideaService from "../../services/ideaService";
@@ -134,7 +81,7 @@ export default {
     const { setIdea } = useIdeasStore();
 
     const getIdeas = async () => {
-      ideas.value = (await ideaService.obtenerIdeas(user.email)).data;
+      ideas.value = (await ideaService.obtenerIdeas("")).data;
     };
 
     const guardarIdea = (idea) => {
