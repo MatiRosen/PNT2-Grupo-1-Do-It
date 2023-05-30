@@ -24,30 +24,14 @@ class ControladorIdeas {
         }
     };
 
-    obtenerIdeasPorCategoria = async (req, res) => {
+    // Como el método obtenerIdeasPorTitulo es muy similar al método obtenerIdeasPorCategoria, podemos refactorizarlo para que ambos métodos utilicen el mismo código:
+    obtenerIdeasPorCampo = async (req, res) => {
         try {
-            const { categoria } = req.params;
-            const ideas = await this.ServicioIdeas.obtenerIdeasPorCategoria(
-                categoria
+            const { campo, valor } = req.params;
+            const ideas = await this.ServicioIdeas.obtenerIdeasPorCampo(
+                campo,
+                valor
             );
-
-            res.status(200).json(ideas);
-        } catch (error) {
-            if (error instanceof InvalidCredentialsError) {
-                res.status(400).json(error.message);
-            } else {
-                res.status(500).json({
-                    message:
-                        "Hubo un problema interno. Intente nuevamente más tarde.",
-                });
-            }
-        }
-    };
-
-    obtenerIdeasPorTitulo = async (req, res) => {
-        try {
-            const { titulo } = req.params;
-            const ideas = await this.ServicioIdeas.obtenerIdeasPorTitulo(titulo);
 
             res.status(200).json(ideas);
         } catch (error) {

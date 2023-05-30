@@ -15,23 +15,14 @@ class ServicioIdeas {
         }
     };
 
-    obtenerIdeasPorCategoria = async (categoria) => {
+    obtenerIdeasPorCampo = async (campo, valor) => {
         try {
-            const ideas = await this.model.obtenerIdeasPorCategoria(categoria);
+            const ideas = await this.model.obtenerIdeasPorCampo(campo, valor);
             return ideas;
         } catch (error) {
             throw error;
         }
     };
-
-    obtenerIdeasPorTitulo = async (titulo) => {
-        try {
-            const ideas = await this.model.obtenerIdeasPorTitulo(titulo);
-            return ideas;
-        } catch (error) {
-            throw error;
-        }
-    }
 
     agregarIdea = async (idea) => {
         try {

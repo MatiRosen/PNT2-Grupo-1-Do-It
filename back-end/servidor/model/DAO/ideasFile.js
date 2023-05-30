@@ -25,7 +25,7 @@ class ModelFile {
         return ideas;
     };
 
-    obtenerIdeasPorCategoria = async (categoria) => {
+    obtenerIdeasPorCampo = async (campo, valor) => {
         let ideas = [];
         try {
             ideas = JSON.parse(await this.leerArchivo());
@@ -33,37 +33,17 @@ class ModelFile {
             throw new DatabaseError("Error al leer el archivo de ideas.");
         }
 
-        const ideasPorCategoria = ideas.filter(
-            (idea) => idea.categoria.toLowerCase() == categoria.toLowerCase()
-        );
-
-        if (ideasPorCategoria.length == 0)
-            throw new InvalidCredentialsError(
-                "No existen ideas con la categoría indicada."
-            );
-
-        return ideasPorCategoria;
-    };
-
-    obtenerIdeasPorTitulo = async (titulo) => {
-        let ideas = [];
-        try {
-            ideas = JSON.parse(await this.leerArchivo());
-        } catch {
-            throw new DatabaseError("Error al leer el archivo de ideas.");
-        }
-
-        const ideasPorTitulo = ideas.filter((idea) => {
-            return idea.titulo.toLowerCase().includes(titulo.toLowerCase());
+        const ideasPorCampo = ideas.filter((idea) => {
+            return idea[campo].toString().toLowerCase().trim().includes(valor.toString().toLowerCase().trim());
         });
 
-        if (ideasPorTitulo.length == 0)
+        if (ideasPorCampo.length == 0)
             throw new InvalidCredentialsError(
-                "No existen ideas con el título indicado."
+                `No existen ideas con el ${campo} indicado.`
             );
 
-        return ideasPorTitulo;
-    };
+        return ideasPorCampo;
+    }
 
     agregarIdea = async (idea) => {
         let ideas = [];
