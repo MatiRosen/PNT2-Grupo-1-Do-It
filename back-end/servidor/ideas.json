@@ -44,5 +44,16 @@
     "precio": 5000,
     "idCreador": 2,
     "idInversores": []
+  },
+  {
+    "id": 5,
+    "titulo": "TEST",
+    "descripcion": "Test",
+    "imagen": "Test",
+    "categoria": "Test",
+    "precio": 1300,
+    "idCreador": 4,
+    "idInversores": [],
+    "vecesVisto": 5
   }
 ]
