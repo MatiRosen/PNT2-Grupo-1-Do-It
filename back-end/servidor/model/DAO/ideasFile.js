@@ -10,7 +10,7 @@ class ModelFile {
         return await fs.promises.readFile(this.nombreArchivo, "utf-8");
     }
 
-    obtenerIdeas = async (email) => {
+    obtenerIdeas = async (idCreador) => {
         let ideas = [];
         try {
             ideas = JSON.parse(await this.leerArchivo());
@@ -18,8 +18,8 @@ class ModelFile {
             throw new DatabaseError("Error al leer el archivo de ideas.");
         }
 
-        if (email) {
-            const ideasUsuario = ideas.filter((idea) => idea.creador == email);
+        if (idCreador) {
+            const ideasUsuario = ideas.filter((idea) => idea.idCreador == idCreador);
             return ideasUsuario;
         }
         return ideas;

@@ -8,7 +8,7 @@ class RouterIdeas {
     }
 
     start() {
-        this.router.get("/:email?", this.controlador.obtenerIdeas);
+        this.router.get("/:idCreador?", this.controlador.obtenerIdeas);
         this.router.get("/:campo/:valor", this.controlador.obtenerIdeasPorCampo);
         this.router.post("/", this.controlador.agregarIdea);
         this.router.delete("/:id", this.controlador.eliminarIdea);

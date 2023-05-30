@@ -8,8 +8,8 @@ class ControladorIdeas {
 
     obtenerIdeas = async (req, res) => {
         try {
-            const { email } = req.params;
-            const ideas = await this.ServicioIdeas.obtenerIdeas(email);
+            const { idCreador } = req.params;
+            const ideas = await this.ServicioIdeas.obtenerIdeas(idCreador);
 
             res.status(200).json(ideas);
         } catch (error) {

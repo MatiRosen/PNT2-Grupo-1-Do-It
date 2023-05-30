@@ -6,7 +6,7 @@
     "imagen": "Imagen 1",
     "categoria": "Cat 1",
     "precio": 1000,
-    "creador": "valdo@gmail.com",
+    "idCreador": 4,
     "idInversores": [],
     "vecesVisto": 0
   },
@@ -17,7 +17,7 @@
     "imagen": "Test",
     "categoria": "Test",
     "precio": 1450,
-    "creador": "valdo@gmail.com",
+    "idCreador": 4,
     "idInversores": [
       1,
       2
@@ -31,8 +31,18 @@
     "imagen": "Test",
     "categoria": "Test",
     "precio": 1300,
-    "creador": "valdo@gmail.com",
+    "idCreador": 4,
     "idInversores": [],
     "vecesVisto": 5
+  },
+  {
+    "id": 4,
+    "titulo": "Mi idea genial",
+    "descripcion": "Es una idea genial eh",
+    "imagen": "Imagen genial",
+    "categoria": "Genialidades",
+    "precio": 5000,
+    "idCreador": 1,
+    "idInversores": []
   }
 ]

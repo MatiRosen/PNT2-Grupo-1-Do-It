@@ -6,9 +6,9 @@ class ServicioIdeas {
         this.model = ModelFactory.get(config.MODO_PERSISTENCIA);
     }
 
-    obtenerIdeas = async (email) => {
+    obtenerIdeas = async (idCreador) => {
         try {
-            const ideas = await this.model.obtenerIdeas(email);
+            const ideas = await this.model.obtenerIdeas(idCreador);
             return ideas;
         } catch (error) {
             throw error;
