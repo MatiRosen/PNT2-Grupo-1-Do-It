@@ -77,17 +77,19 @@ import { RouterLink } from 'vue-router';
 export default {
   setup() {
     const ideas = ref([]);
+    const categorias = ref([]);
     const { user } = useUserStore();
     const { setIdea } = useIdeasStore();
 
     const getIdeas = async () => {
       ideas.value = (await ideaService.obtenerIdeas("")).data;
+      categorias.value (await ideaService.obtenerPorCampo("categorias","").data)
     };
 
     const guardarIdea = (idea) => {
       setIdea(idea);
     };
-
+   
     onMounted(getIdeas);
 
     return {

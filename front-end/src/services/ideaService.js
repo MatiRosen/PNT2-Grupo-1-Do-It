@@ -12,4 +12,7 @@ export default {
     eliminarIdea(id) {
         return apiClient.delete(`/api/ideas/${id}`);
     },
+    obtenerPorCampo(campo,valor){
+        return apiClient.obtenerPorCampoValor(`/api/ideas/${campo}/${valor}`);
+    },
 };
