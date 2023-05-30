@@ -12,7 +12,7 @@ export default {
     const { setIdea } = useIdeasStore();
 
     const getIdeas = async () => {
-      ideas.value = (await ideaService.obtenerIdeas(user.email)).data;
+      ideas.value = (await ideaService.obtenerIdeas(user.id)).data;
     };
 
     const guardarIdea = (idea) => {
