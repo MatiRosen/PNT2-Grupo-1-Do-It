@@ -24,7 +24,6 @@ class ControladorIdeas {
         }
     };
 
-    // Como el método obtenerIdeasPorTitulo es muy similar al método obtenerIdeasPorCategoria, podemos refactorizarlo para que ambos métodos utilicen el mismo código:
     obtenerIdeasPorCampo = async (req, res) => {
         try {
             const { campo, valor } = req.params;

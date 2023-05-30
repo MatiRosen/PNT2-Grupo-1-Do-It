@@ -26,7 +26,7 @@ const router = createRouter({
             path: "/nuevaIdea",
             name: "nuevaIdea",
             component: () => import("../views/creador/NewIdeaView.vue"),
-        },        
+        },
         {
             path: "/idea/:id",
             name: "idea",
@@ -56,7 +56,8 @@ const router = createRouter({
             path:"/chat",
             name:"chat",
             component: () => import("../views/ChatView.vue"),
-        }, {
+        },
+        {
             path:"/perfil",
             name:"perfil",
             component: () => import("../views/ProfileView.vue"),
