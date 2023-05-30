@@ -1,10 +1,21 @@
 <template>
-
   <section id="ideas">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
           <h2>Ideas</h2>
+          <ul>
+            <li v-for="cat in categorias" :key="cat.id">
+              <label>
+                <input
+                  type="radio"
+                  v-model="filtros.categoría"
+                  :value="cat.categoria"
+                />
+                {{ cat.categoria }}
+              </label>
+            </li>
+          </ul>          
         </div>
       </div>
       <div class="row top-separation">
@@ -35,7 +46,6 @@
                 <div class="row">
                   <div class="col-md-12">
                     <h2>Filtros</h2>
-                                      
                   </div>
                 </div>
               </div>
@@ -68,11 +78,10 @@
   </section>
 </template>
 <script>
-import { ref, onMounted } from 'vue';
-import { useUserStore } from '../../stores/user';
-import { useIdeasStore } from '../../stores/creador/ideas';
+import { ref, onMounted } from "vue";
+import { useUserStore } from "../../stores/user";
+import { useIdeasStore } from "../../stores/creador/ideas";
 import ideaService from "../../services/ideaService";
-import { RouterLink } from 'vue-router';
 
 export default {
   setup() {
@@ -83,24 +92,17 @@ export default {
 
     const getIdeas = async () => {
       ideas.value = (await ideaService.obtenerIdeas("")).data;
-      categorias.value (await ideaService.obtenerPorCampo("categorias","").data)
+      categorias.value(await ideaService.obtenerPorCampo().data);
     };
 
-    const guardarIdea = (idea) => {
-      setIdea(idea);
-    };
-   
     onMounted(getIdeas);
 
     return {
       ideas,
       getIdeas,
-      guardarIdea
     };
-  }
-}
-
-
+  },
+};
 </script>
 
 <style>
