@@ -21,7 +21,7 @@ export default {
                 imagen: "",
                 categoria: "",
                 precio: "",
-                creador: "",
+                idCreador: "",
                 idInversores: []
             },
             vue: this,
@@ -29,7 +29,7 @@ export default {
     },
     methods: {
         agregarIdea(vue, idea) {
-            idea.creador = this.user.email;
+            idea.idCreador = this.user.id;
             ideaService
                 .agregarIdea(idea)
                 .then(function (response) {
