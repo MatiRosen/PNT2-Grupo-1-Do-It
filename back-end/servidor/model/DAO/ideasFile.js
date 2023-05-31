@@ -10,6 +10,13 @@ class ModelFile {
         return await fs.promises.readFile(this.nombreArchivo, "utf-8");
     }
 
+    async escribirArchivo(ideas) {
+        await fs.promises.writeFile(
+            this.nombreArchivo,
+            JSON.stringify(ideas, null, "\t")
+        )
+    }
+
     obtenerIdeas = async (idCreador) => {
         let ideas = [];
         try {
@@ -93,6 +100,28 @@ class ModelFile {
             throw new DatabaseError("Error al escribir el archivo de ideas.");
         }
     };
+
+    actualizarIdea = async (id, idea) => {
+        let ideas = [];
+        try {
+            ideas = JSON.parse(await this.leerArchivo());
+        } catch {
+            throw new DatabaseError("Error al leer el archivo de ideas.");
+        }
+
+        const indice = ideas.findIndex((idea) => idea.id == id);
+        if (indice == -1) {
+            throw new InvalidCredentialsError("No existe una idea con el id indicado.");
+        }
+
+        const ideaActualizada = { ...ideas[indice], ...idea };
+        ideas.splice(indice, 1, ideaActualizada);
+        try {
+            await this.escribirArchivo(ideas);
+        } catch (error) {
+            throw new DatabaseError("Error al escribir el archivo de ideas.");
+        }
+    }
 }
 
 export default ModelFile;

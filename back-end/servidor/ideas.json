@@ -1,58 +1,58 @@
 [
-  {
-    "id": 1,
-    "titulo": "Idea 1",
-    "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel doloremque nam excepturi ducimus nobis, velit itaque quos. Quis ipsum sapiente reiciendis fuga, ratione sequi odio, deserunt dolorum suscipit excepturi repellat!",
-    "imagen": "AA.png",
-    "categoria": "Cat 1",
-    "precio": 1000,
-    "idCreador": 4,
-    "idInversores": [],
-    "vecesVisto": 0
-  },
-  {
-    "id": 2,
-    "titulo": "Idea con Inversores",
-    "descripcion": "Test idInversores",
-    "imagen": "Test",
-    "categoria": "Test",
-    "precio": 1450,
-    "idCreador": 4,
-    "idInversores": [
-      1,
-      2
-    ],
-    "vecesVisto": 10
-  },
-  {
-    "id": 3,
-    "titulo": "TEST",
-    "descripcion": "Test",
-    "imagen": "Test",
-    "categoria": "Test",
-    "precio": 1300,
-    "idCreador": 4,
-    "idInversores": [],
-    "vecesVisto": 5
-  },
-  {
-    "id": 4,
-    "titulo": "Mi idea genial",
-    "descripcion": "Es una idea genial eh",
-    "imagen": "Imagen genial",
-    "categoria": "Genialidades",
-    "precio": 5000,
-    "idCreador": 2,
-    "idInversores": []
-  },
-  {
-    "id": 5,
-    "titulo": "TEST",
-    "descripcion": "Probando edicion :)",
-    "imagen": "Test",
-    "categoria": "Prueba",
-    "precio": 1,
-    "idCreador": 4,
-    "idInversores": []
-  }
+	{
+		"id": 1,
+		"titulo": "PRUEBA EDIT",
+		"descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel doloremque nam excepturi ducimus nobis, velit itaque quos. Quis ipsum sapiente reiciendis fuga, ratione sequi odio, deserunt dolorum suscipit excepturi repellat!",
+		"imagen": "Campeones.jpg",
+		"categoria": "Cat 1",
+		"precio": 1000,
+		"idCreador": 4,
+		"idInversores": [],
+		"vecesVisto": 0
+	},
+	{
+		"id": 2,
+		"titulo": "Idea con Inversores",
+		"descripcion": "Test idInversores",
+		"imagen": "Test",
+		"categoria": "Test",
+		"precio": 1450,
+		"idCreador": 4,
+		"idInversores": [
+			1,
+			2
+		],
+		"vecesVisto": 10
+	},
+	{
+		"id": 3,
+		"titulo": "TEST",
+		"descripcion": "Test",
+		"imagen": "Test",
+		"categoria": "Test",
+		"precio": 1300,
+		"idCreador": 4,
+		"idInversores": [],
+		"vecesVisto": 5
+	},
+	{
+		"id": 4,
+		"titulo": "Mi idea genial",
+		"descripcion": "Es una idea genial eh",
+		"imagen": "Imagen genial",
+		"categoria": "Genialidades",
+		"precio": 5000,
+		"idCreador": 2,
+		"idInversores": []
+	},
+	{
+		"id": 5,
+		"titulo": "TEST",
+		"descripcion": "Probando edicion :)",
+		"imagen": "Test",
+		"categoria": "Prueba",
+		"precio": 1,
+		"idCreador": 4,
+		"idInversores": []
+	}
 ]

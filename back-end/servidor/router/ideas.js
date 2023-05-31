@@ -12,6 +12,7 @@ class RouterIdeas {
         this.router.get("/:campo/:valor", this.controlador.obtenerIdeasPorCampo);
         this.router.post("/", this.controlador.agregarIdea);
         this.router.delete("/:id", this.controlador.eliminarIdea);
+        this.router.put("/idea/:id", this.controlador.actualizaridea);
 
         return this.router;
     }

@@ -80,6 +80,24 @@ class ControladorIdeas {
             }
         }
     };
+
+    actualizaridea = async (req, res) => {
+        try {
+            const { id } = req.params;
+            const idea = req.body;
+            console.log(idea);
+            console.log(id);
+            const ideaActualizada = await this.ServicioIdeas.actualizarIdea(
+                id,
+                idea
+            )
+            res.status(200).json(ideaActualizada);
+        } catch (error) {
+            res.status(500).json({
+                message: "Hubo un problema interno. Intente nuevamente más tarde.",
+            })
+        }
+    }
 }
 
 export default ControladorIdeas;

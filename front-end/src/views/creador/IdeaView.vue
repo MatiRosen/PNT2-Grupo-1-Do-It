@@ -37,22 +37,25 @@ export default {
 </script>
 
 <template>
-  <div class="card">
-    <h2 class="titulosgrises">{{ idea.titulo }}</h2>
-    <div>
-      <img :src="imagen">
-    </div>
-    <h3 class="subtituloRojo">{{ idea.categoria }}</h3>
-    <p class="texto">{{ idea.descripcion }}</p>    
-    <div class="descripcion-container">
-      <h4 class="descripcion">Precio</h4>
-    </div>
-    <p class="precio">${{ idea.precio }}</p>
-    <div>
-      <button v-if="!tieneInversores" @click="editarIdea" class="btn btn-secondary">Editar</button>
-      <button v-if="!tieneInversores" @click="eliminarIdea" class="btn btn-warning">Eliminar</button>
-    </div> 
-  </div>       
+  <div class="container">
+    <div class="card shadow-lg">    
+      <div>
+        <img :src="imagen">
+      </div>
+      <h2 class="titulosgrises">{{ idea.titulo }}</h2>
+      <h3 class="subtituloRojo">{{ idea.categoria }}</h3>
+      <p class="texto">{{ idea.descripcion }}</p>    
+      <div class="descripcion-container">
+        <h4 class="descripcion">Precio</h4>
+      </div>
+      <p class="precio">${{ idea.precio }}</p>
+      <div>
+        <button v-if="!tieneInversores" @click="editarIdea" class="btn btn-secondary">Editar</button>
+        <button v-if="!tieneInversores" @click="eliminarIdea" class="btn btn-warning">Eliminar</button>
+      </div> 
+    </div>  
+  </div>
+       
 </template>
 
 <style scoped>
@@ -74,6 +77,8 @@ export default {
   margin-top: 40px;
   border-color: white;
   border: 0;
+  border-radius: 20px;
+  
 }
 .texto{
   font-weight: normal;
@@ -98,8 +103,9 @@ img{
   max-width: 400px;
   max-height: 400px;
   object-fit:contain;
+  margin-top: 5px;
 }
 button{
-  margin: 5px;
+  margin: 10px;
 }
 </style>
