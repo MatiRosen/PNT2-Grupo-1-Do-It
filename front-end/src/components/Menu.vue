@@ -10,7 +10,7 @@
                     <div class="navbar-nav mr-auto">
                         <RouterLink to="/perfil" class="nav-item nav-link"
                             >Perfil</RouterLink>
-                        <RouterLink to="/chat" class="nav-link"
+                        <RouterLink to="/chats" class="nav-link"
                             >Chat</RouterLink>
                         <div v-if="esInversor" class="nav-link money">
                            ${{ user.dinero }}
