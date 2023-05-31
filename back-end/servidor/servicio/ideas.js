@@ -40,6 +40,15 @@ class ServicioIdeas {
             throw error;
         }
     };
+
+    actualizarIdea = async (id, idea) => {
+        try {
+            const ideaActualizada = await this.model.actualizarIdea(id, idea);
+            return ideaActualizada;
+        } catch (error) {
+            throw error;
+        }
+    }    
 }
 
 export default ServicioIdeas;

@@ -15,4 +15,7 @@ export default {
     obtenerPorCampo(campo,valor){
         return apiClient.obtenerPorCampoValor(`/api/ideas/${campo}/${valor}`);
     },
+    actualizarIdea(idea, id) {
+        return apiClient.put(`/api/ideas/idea/` + id, idea);
+    }
 };
