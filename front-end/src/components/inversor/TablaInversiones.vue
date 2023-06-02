@@ -4,18 +4,6 @@
       <div class="row">
         <div class="col-md-12">
           <h2>Ideas</h2>
-          <ul>
-            <li v-for="cat in categorias" :key="cat.id">
-              <label>
-                <input
-                  type="radio"
-                  v-model="filtros.categoría"
-                  :value="cat.categoria"
-                />
-                {{ cat.categoria }}
-              </label>
-            </li>
-          </ul>          
         </div>
       </div>
       <div class="row top-separation">
@@ -46,6 +34,35 @@
                 <div class="row">
                   <div class="col-md-12">
                     <h2>Filtros</h2>
+                    <ul class="menu">
+                      <li
+                        class="has-submenu"
+                        v-for="campo in campos"
+                        :key="campo.campo"
+                        @click="toggleSubmenu(campo)"
+                      >
+                        {{ campo.campo }}
+                        <ul class="submenu" v-show="campo.showSubmenu">
+                          <li
+                            v-for="valor in campo.valores"
+                            :key="valor"
+                            @click="filtrarIdeas(campo, valor)"
+                          >
+                            <span
+                              v-if="categoriaSeleccionada === valor"
+                              class="filtro-seleccionado"
+                              >{{ valor }}
+                              <span
+                                class="quitar-filtro"
+                                @click="filtrarIdeas(campo, valor)"
+                                >x</span
+                              ></span
+                            >
+                            <span v-else>{{ valor }}</span>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -79,35 +96,114 @@
 </template>
 <script>
 import { ref, onMounted } from "vue";
-import { useUserStore } from "../../stores/user";
-import { useIdeasStore } from "../../stores/creador/ideas";
 import ideaService from "../../services/ideaService";
 
 export default {
   setup() {
     const ideas = ref([]);
-    const categorias = ref([]);
-    const { user } = useUserStore();
-    const { setIdea } = useIdeasStore();
-
+    const categoriaSeleccionada = ref("");
     const getIdeas = async () => {
-      ideas.value = (await ideaService.obtenerIdeas("")).data;
-      categorias.value(await ideaService.obtenerPorCampo().data);
+      ideas.value = (await ideaService.obtenerIdeasPorCampo("", "")).data;
+      processIdeas();
     };
 
     onMounted(getIdeas);
 
+    const filtrarIdeas = async (campo, categoria) => {
+      if (categoriaSeleccionada.value === categoria) {
+        // Si la opción seleccionada es la misma, deseleccionarla
+        categoriaSeleccionada.value = "";
+        ideas.value = (await ideaService.obtenerIdeasPorCampo("", "")).data; // Obtener todas las ideas nuevamente
+      } else {
+        categoriaSeleccionada.value = categoria;
+        ideas.value = (
+          await ideaService.obtenerIdeasPorCampo(campo.campo, categoria)
+        ).data;
+      }
+    };
+
+    const campos = ref([
+      {
+        campo: "categoria",
+        categoria: "Categorías",
+        showSubmenu: false,
+        valores: [],
+      },
+      {
+        campo: "titulo",
+        categoria: "Precio",
+        showSubmenu: false,
+        valores: [],
+      },
+      // ...otros campos
+    ]);
+
+    // const toggleSubmenu = (campo) => {
+    //   if (campo.showSubmenu) {
+    //     // Si el submenu está abierto, lo cerramos solo si no hay filtro seleccionado
+    //     if (!categoriaSeleccionada.value) {
+    //       campo.showSubmenu = false;
+    //     }
+    //   } else {
+    //     // Si el submenu está cerrado, lo abrimos
+    //     campo.showSubmenu = true;
+    //   }
+    // };
+    const toggleSubmenu = (campo) => {
+      campo.showSubmenu = !campo.showSubmenu;
+    };
+    const processIdeas = () => {
+      const categorias = [
+        ...new Set(ideas.value.map((item) => item.categoria)),
+      ];
+      const titulos = [...new Set(ideas.value.map((item) => item.titulo))];
+
+      campos.value[0].valores = categorias;
+      campos.value[1].valores = titulos;
+      // Actualiza los valores de otros campos
+    };
     return {
       ideas,
-      getIdeas,
+      campos,
+      categoriaSeleccionada,
+      filtrarIdeas,
+      toggleSubmenu,
+      processIdeas,
     };
   },
 };
 </script>
 
 <style>
-.sub-dropdown {
-  margin-left: 15px;
+.filtro-seleccionado {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.quitar-filtro {
+  cursor: pointer;
+}
+.menu {
+  list-style: none;
+  padding: 0;
+}
+
+.has-submenu {
+  cursor: pointer;
+}
+
+.submenu {
+  display: none;
+  list-style: none;
+  padding: 0;
+}
+
+.submenu li {
+  margin-left: 10px;
+}
+
+.has-submenu ul.submenu {
+  display: block;
 }
 .titulosgrises {
   font-weight: bold;

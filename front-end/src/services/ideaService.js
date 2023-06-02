@@ -12,8 +12,8 @@ export default {
     eliminarIdea(id) {
         return apiClient.delete(`/api/ideas/${id}`);
     },
-    obtenerPorCampo(campo,valor){
-        return apiClient.obtenerPorCampoValor(`/api/ideas/${campo}/${valor}`);
+    obtenerIdeasPorCampo(campo,valor){
+        return apiClient.get(`/api/ideas/${campo}/${valor}`);
     },
     actualizarIdea(idea, id) {
         return apiClient.put(`/api/ideas/idea/` + id, idea);
