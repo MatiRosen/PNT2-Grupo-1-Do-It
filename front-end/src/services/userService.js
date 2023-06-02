@@ -13,5 +13,8 @@ export default {
     },
     eliminar(id){
         return apiClient.delete('/api/usuarios/' + id);
+    },
+    obtenerCreadores(idCreador) {
+        return apiClient.get(`/api/usuarios/${idCreador}`);
     }
 }

@@ -71,7 +71,12 @@ const router = createRouter({
             path: "/billetera",
             name: "billetera",
             component: () => import("../views/inversor/BilleteraView.vue"),
-        }
+        },
+        {
+            path: "/invertirIdea/:id",
+            name: "invertirIdea",
+            component: () => import("../views/creador/IdeaView.vue"),
+        },
     ],
 });
 

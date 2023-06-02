@@ -99,6 +99,16 @@ class Servicio {
             throw error;
         }
     };
+
+    obtenerCreadores = async (idCreador) => {
+        try {
+           
+            const usuarios = await this.model.obtenerCreadores(idCreador);
+            return usuarios;
+        } catch (error) {
+            throw error;
+        }
+    };
 }
 
 export default Servicio;

@@ -12,7 +12,8 @@ class Router {
         this.router.put("/dinero/:id", this.controlador.actualizarDinero);
         this.router.post("/login", this.controlador.logUsuario);
         this.router.delete("/:id", this.controlador.eliminarUsuario);
-
+        this.router.get("/:idCreador?", this.controlador.obtenerCreadores);
+        
         return this.router;
     }
 }

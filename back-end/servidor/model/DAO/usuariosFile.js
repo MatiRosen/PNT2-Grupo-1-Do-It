@@ -130,6 +130,24 @@ class ModelFile {
         }
         return usuario;
     };
+
+    obtenerCreadores = async (idCreador) => {
+        let usuarios = [];
+        try {
+            usuarios = JSON.parse(await this.leerArchivo());            
+        } catch {
+            throw new DatabaseError("Error al leer el archivo de ideas.");
+        }
+        
+        if (idCreador) {
+            const obtenerUsuarios = usuarios.filter((idCreador) => usuarios.idCreador === idCreador && usuarios.tipo === 'Creador');
+            return obtenerUsuarios;
+        }else{
+            const obtenerUsuarios = usuarios.filter(usuario => usuario.tipo === 'Creador');
+            return obtenerUsuarios;
+        }
+       
+    };
 }
 
 export default ModelFile;
