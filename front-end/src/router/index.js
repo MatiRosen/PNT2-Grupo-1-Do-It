@@ -141,6 +141,11 @@ const router = createRouter({
             path: "/:pathMatch(.*)*",
             redirect: { name: "home" },
         },
+        {
+            path: "/misInversiones/",
+            name: "misInversiones",
+            component: () => import("../views/inversor/misInversionesView.vue"),
+        },
     ],
 });
 

@@ -10,6 +10,7 @@ export const useIdeasStore = defineStore("idea", {
                 imagen: "",
                 categoria: "",
                 precio: 0,
+                invertido: 0,
                 creador: "",
                 idInversores: [],
                 vecesVisto: 0

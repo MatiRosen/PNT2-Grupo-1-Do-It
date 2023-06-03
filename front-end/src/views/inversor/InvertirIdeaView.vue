@@ -13,25 +13,38 @@
               <h2 class="titulosgrises">{{ idea.titulo }}</h2>
               <h3 class="subtituloRojo">{{ idea.categoria }}</h3>
               <p class="texto">{{ idea.descripcion }}</p>
+
+              <p class="precio">${{ idea.invertido }}</p>
               <div class="descripcion-container">
-                <h4 class="descripcion">Precio</h4>
+                <h4 class="descripcion">Contribuido de ${{ idea.precio }}</h4>
               </div>
-              <p class="precio">${{ idea.precio }}</p>
-              <div>
-                <button
-                  v-if="!tieneInversores"
-                  @click="editarIdea"
-                  class="btn btn-secondary"
-                >
-                  Contactar Creador
-                </button>
-                <button
-                  v-if="!tieneInversores"
-                  @click="eliminarIdea"
-                  class="btn btn-warning"
-                >
-                  Invertir
-                </button>
+              <div class="row">
+                <div class="col-md-4">
+                  <button
+                    v-if="!tieneInversores"
+                    @click="editarIdea"
+                    class="btn btn-secondary"
+                  >
+                    Contactar Creador
+                  </button>
+                </div>
+                <div class="col-md-2 offset-md-2">
+                  <input
+                    v-model="idea.invertido"
+                    type="string"
+                    id="txtInvertido"
+                    name="txtInvertido"
+                    class="form-control shadow"
+                    required
+                  />
+                </div>
+                <div class="col-md-4">
+                  <RouterLink to="/misInversiones/" @click="invertirIdea(idea)"
+                    ><button class="btn btn-success">
+                      Invertir
+                    </button></RouterLink
+                  >
+                </div>
               </div>
             </div>
           </div>

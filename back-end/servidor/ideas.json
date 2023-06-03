@@ -6,6 +6,7 @@
 		"imagen": "Campeones.jpg",
 		"categoria": "Cat 1",
 		"precio": 1000,
+		"invertido": 500,
 		"idCreador": 4,
 		"idInversores": [],
 		"vecesVisto": 0
@@ -17,6 +18,7 @@
 		"imagen": "Test",
 		"categoria": "Test",
 		"precio": 1450,
+		"invertido": 500,
 		"idCreador": 4,
 		"idInversores": [
 			1,
@@ -31,6 +33,7 @@
 		"imagen": "Test",
 		"categoria": "Test",
 		"precio": 1300,
+		"invertido": 500,
 		"idCreador": 4,
 		"idInversores": [],
 		"vecesVisto": 5
@@ -41,7 +44,8 @@
 		"descripcion": "Es una idea genial eh",
 		"imagen": "Imagen genial",
 		"categoria": "Genialidades",
-		"precio": "5000",
+		"precio": 5000,
+		"invertido": 500,
 		"idCreador": 2,
 		"idInversores": [],
 		"vecesVisto": 5
@@ -53,6 +57,7 @@
 		"imagen": "Test",
 		"categoria": "Prueba",
 		"precio": 1,
+		"invertido": 500,
 		"idCreador": 4,
 		"idInversores": [],
 		"vecesVisto": 5
