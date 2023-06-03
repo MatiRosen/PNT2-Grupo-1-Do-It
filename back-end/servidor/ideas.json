@@ -41,7 +41,7 @@
 		"descripcion": "Es una idea genial eh",
 		"imagen": "Imagen genial",
 		"categoria": "Genialidades",
-		"precio": 5000,
+		"precio": "5000",
 		"idCreador": 2,
 		"idInversores": [],
 		"vecesVisto": 5

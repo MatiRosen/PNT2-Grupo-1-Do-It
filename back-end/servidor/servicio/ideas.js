@@ -8,7 +8,6 @@ class ServicioIdeas {
     obtenerTop = async () => {
         try {
             const topIdeas = await this.model.obtenerTop();
-            console.log(topIdeas);
             return topIdeas;
         } catch (error) {
             throw error;
