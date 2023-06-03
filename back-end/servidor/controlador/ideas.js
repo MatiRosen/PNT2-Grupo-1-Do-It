@@ -7,23 +7,44 @@ class ControladorIdeas {
     }
 
     obtenerTop = async (req, res) => {
-        try {         
-          const topIdeas = await this.ServicioIdeas.obtenerTop();       
-          res.status(200).json(topIdeas);
+        try {
+            const topIdeas = await this.ServicioIdeas.obtenerTop();
+
+            res.status(200).json(topIdeas);
         } catch (error) {
-          if (error instanceof InvalidCredentialsError) {
-            res.status(400).json(error.message);
-          } else {
-            res.status(500).json({
-              message: "Hubo un problema interno. Intente nuevamente más tarde.",
-            });
-          }
+            if (error instanceof InvalidCredentialsError) {
+                res.status(400).json(error.message);
+            } else {
+                res.status(500).json({
+                    message:
+                        "Hubo un problema interno. Intente nuevamente más tarde.",
+                });
+            }
         }
-      };
+    };
+
     obtenerIdeas = async (req, res) => {
         try {
             const { idCreador } = req.params;
             const ideas = await this.ServicioIdeas.obtenerIdeas(idCreador);
+
+            res.status(200).json(ideas);
+        } catch (error) {
+            if (error instanceof InvalidCredentialsError) {
+                res.status(400).json(error.message);
+            } else {
+                res.status(500).json({
+                    message:
+                        "Hubo un problema interno. Intente nuevamente más tarde.",
+                });
+            }
+        }
+    };
+
+    obtenerIdeasInversor = async (req, res) => {
+        try {
+            const { idInversor } = req.params;
+            const ideas = await this.ServicioIdeas.obtenerIdeasInversor(idInversor);
 
             res.status(200).json(ideas);
         } catch (error) {
@@ -45,7 +66,7 @@ class ControladorIdeas {
                 campo,
                 valor
             );
-            
+
             res.status(200).json(ideas);
         } catch (error) {
             if (error instanceof InvalidCredentialsError) {
@@ -57,7 +78,7 @@ class ControladorIdeas {
                 });
             }
         }
-    }
+    };
 
     agregarIdea = async (req, res) => {
         try {
@@ -104,14 +125,15 @@ class ControladorIdeas {
             const ideaActualizada = await this.ServicioIdeas.actualizarIdea(
                 id,
                 idea
-            )
+            );
             res.status(200).json(ideaActualizada);
         } catch (error) {
             res.status(500).json({
-                message: "Hubo un problema interno. Intente nuevamente más tarde.",
-            })
+                message:
+                    "Hubo un problema interno. Intente nuevamente más tarde.",
+            });
         }
-    }
+    };
 }
 
 export default ControladorIdeas;

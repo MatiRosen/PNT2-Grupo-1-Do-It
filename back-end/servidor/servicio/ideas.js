@@ -5,18 +5,30 @@ class ServicioIdeas {
     constructor() {
         this.model = ModelFactory.get(config.MODO_PERSISTENCIA);
     }
-    obtenerTop = async () => {
-        try {
-            const topIdeas = await this.model.obtenerTop();
-            return topIdeas;
-        } catch (error) {
-            throw error;
-        }
-    };
+
     obtenerIdeas = async (idCreador) => {
         try {
             const ideas = await this.model.obtenerIdeas(idCreador);
             return ideas;
+        } catch (error) {
+            throw error;
+        }
+    };
+
+    obtenerIdeasInversor = async (idInvesor) => {
+        try {
+            const ideas = await this.model.obtenerIdeasInversor(idInvesor);
+            return ideas;
+        } catch (error) {
+            throw error;
+        }
+    };
+
+    obtenerTop = async () => {
+        try {
+            const topIdeas = await this.model.obtenerTop();
+
+            return topIdeas;
         } catch (error) {
             throw error;
         }
@@ -55,7 +67,7 @@ class ServicioIdeas {
         } catch (error) {
             throw error;
         }
-    }    
+    };
 }
 
 export default ServicioIdeas;

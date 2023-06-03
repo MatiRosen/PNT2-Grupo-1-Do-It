@@ -14,24 +14,26 @@ class ModelFile {
         await fs.promises.writeFile(
             this.nombreArchivo,
             JSON.stringify(ideas, null, "\t")
-        )
+        );
     }
+
     obtenerTop = async () => {
         let ideas = [];
         try {
-          ideas = JSON.parse(await this.leerArchivo());
+            ideas = JSON.parse(await this.leerArchivo());
         } catch {
-          throw new DatabaseError("Error al leer el archivo de ideas.");
+            throw new DatabaseError("Error al leer el archivo de ideas.");
         }
-      
+
         // Ordenar todas las ideas según el campo deseado
         ideas.sort((a, b) => b.vecesVisto - a.vecesVisto);
-      
+
         // Obtener el top 3 de ideas
         const top3Ideas = ideas.slice(0, 3);
-      
+
         return top3Ideas;
-      };
+    };
+
     obtenerIdeas = async (idCreador) => {
         let ideas = [];
         try {
@@ -41,11 +43,30 @@ class ModelFile {
         }
 
         if (idCreador) {
-            const ideasUsuario = ideas.filter((idea) => idea.idCreador == idCreador);
+            const ideasUsuario = ideas.filter(
+                (idea) => idea.idCreador == idCreador
+            );
             return ideasUsuario;
         }
         return ideas;
     };
+
+    obtenerIdeasInversor = async (idInversor) => {
+        let ideas = [];
+        try {
+            ideas = JSON.parse(await this.leerArchivo());
+        } catch {
+            throw new DatabaseError("Error al leer el archivo de ideas.");
+        }
+
+        if (!idInversor) throw new InvalidCredentialsError("No hay ideas con ese inversor.");
+
+        const ideasInversor = ideas.filter((idea) =>
+            idea.idInversores.includes(idInversor)
+        );
+
+        return ideasInversor;
+    }
 
     obtenerIdeasPorCampo = async (campo, valor) => {
         let ideas = [];
@@ -56,7 +77,11 @@ class ModelFile {
         }
 
         const ideasPorCampo = ideas.filter((idea) => {
-            return idea[campo].toString().toLowerCase().trim().includes(valor.toString().toLowerCase().trim());
+            return idea[campo]
+                .toString()
+                .toLowerCase()
+                .trim()
+                .includes(valor.toString().toLowerCase().trim());
         });
 
         if (ideasPorCampo.length == 0)
@@ -65,7 +90,7 @@ class ModelFile {
             );
 
         return ideasPorCampo;
-    }
+    };
 
     agregarIdea = async (idea) => {
         let ideas = [];
@@ -126,7 +151,9 @@ class ModelFile {
 
         const indice = ideas.findIndex((idea) => idea.id == id);
         if (indice == -1) {
-            throw new InvalidCredentialsError("No existe una idea con el id indicado.");
+            throw new InvalidCredentialsError(
+                "No existe una idea con el id indicado."
+            );
         }
 
         const ideaActualizada = { ...ideas[indice], ...idea };
@@ -136,7 +163,7 @@ class ModelFile {
         } catch (error) {
             throw new DatabaseError("Error al escribir el archivo de ideas.");
         }
-    }
+    };
 }
 
 export default ModelFile;

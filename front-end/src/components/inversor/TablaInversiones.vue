@@ -132,7 +132,7 @@ export default {
     const { setIdea } = useIdeasStore();
     const categoriaSeleccionada = ref("");
     const getIdeas = async () => {
-      ideas.value = (await ideaService.obtenerIdeasPorCampo("", "")).data;
+      ideas.value = (await ideaService.obtenerIdeas("")).data;
       usuarios.value = (await usuarioService.obtenerCreadores("")).data;
       ideasTop.value = (await ideaService.obtenerTop()).data;
       processIdeas();
@@ -148,7 +148,7 @@ export default {
       if (categoriaSeleccionada.value === opcionSeleccionada.valores) {
         // Si la opción seleccionada es la misma, deseleccionarla
         categoriaSeleccionada.value = "";
-        ideas.value = (await ideaService.obtenerIdeasPorCampo("", "")).data; // Obtener todas las ideas nuevamente
+        ideas.value = (await ideaService.obtenerIdeas("")).data; // Obtener todas las ideas nuevamente
       } else {
         categoriaSeleccionada.value = opcionSeleccionada.valores;
         
