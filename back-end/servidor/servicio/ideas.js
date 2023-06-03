@@ -5,7 +5,15 @@ class ServicioIdeas {
     constructor() {
         this.model = ModelFactory.get(config.MODO_PERSISTENCIA);
     }
-
+    obtenerTop = async () => {
+        try {
+            const topIdeas = await this.model.obtenerTop();
+            console.log(topIdeas);
+            return topIdeas;
+        } catch (error) {
+            throw error;
+        }
+    };
     obtenerIdeas = async (idCreador) => {
         try {
             const ideas = await this.model.obtenerIdeas(idCreador);

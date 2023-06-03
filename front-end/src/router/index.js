@@ -75,7 +75,7 @@ const router = createRouter({
         {
             path: "/invertirIdea/:id",
             name: "invertirIdea",
-            component: () => import("../views/creador/IdeaView.vue"),
+            component: () => import("../views/inversor/InvertirIdeaView.vue"),
         },
     ],
 });

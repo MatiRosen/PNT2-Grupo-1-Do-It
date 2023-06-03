@@ -6,6 +6,9 @@ export default {
     obtenerIdeas(idCreador) {
         return apiClient.get(`/api/ideas/${idCreador}`);
     },
+    obtenerTop() {
+        return apiClient.get(`/api/ideas/obtenerTop`);
+    },
     agregarIdea(idea) {
         return apiClient.post("/api/ideas", idea);
     },

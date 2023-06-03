@@ -6,6 +6,20 @@ class ControladorIdeas {
         this.ServicioIdeas = new ServicioIdeas();
     }
 
+    obtenerTop = async (req, res) => {
+        try {         
+          const topIdeas = await this.ServicioIdeas.obtenerTop();       
+          res.status(200).json(topIdeas);
+        } catch (error) {
+          if (error instanceof InvalidCredentialsError) {
+            res.status(400).json(error.message);
+          } else {
+            res.status(500).json({
+              message: "Hubo un problema interno. Intente nuevamente más tarde.",
+            });
+          }
+        }
+      };
     obtenerIdeas = async (req, res) => {
         try {
             const { idCreador } = req.params;

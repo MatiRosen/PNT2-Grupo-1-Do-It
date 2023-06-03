@@ -1,14 +1,14 @@
 <template>
   <section id="ideas">
     <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <h2>Ideas</h2>
+      <div class="row top-separation">
+        <div class="col-md-12 text-center">
+          <h4>Ideas mas vistas</h4>
         </div>
       </div>
-      <div class="row top-separation">
-        <div class="col-md-4" v-for="idea in ideas" :key="idea.id">
-          <div class="card shadow-lg">
+      <div class="row">
+        <div class="col-md-4" v-for="idea in ideasTop" :key="idea.id">
+          <div class="card shadow-lg topIdeas">
             <div class="card-block position-relative">
               <div class="row">
                 <div class="col-md-3">
@@ -19,7 +19,7 @@
                   <h2 class="titulosgrises">{{ idea.titulo }}</h2>
                   <h3 class="subtituloRojo">{{ idea.categoria }}</h3>
                   <h4 class="descripcion">Descripcion</h4>
-                  <p>{{ idea.descripcion }}</p>
+                  <p>{{ limitarTexto(idea.descripcion, 110) }}</p>           
                 </div>
               </div>
             </div>
@@ -27,12 +27,11 @@
         </div>
       </div>
       <div class="row top-separation">
-        <div class="col-md-4">
-          <div class="row m-2">
-            <div class="card shadow-lg">
+        <div class="col-md-4 my-2">         
+            <div class="card shadow-lg w-100 h-50" >
               <div class="card-block position-relative">
                 <div class="row">
-                  <div class="col-md-12">
+                  <div class="col-md-8 text-center mt-4">
                     <h2>Filtros</h2>
                     <ul class="menu">
                       <li
@@ -67,13 +66,13 @@
                 </div>
               </div>
             </div>
-          </div>
+        
         </div>
-        <div class="col-md-8">
-          <div class="row my-2" v-for="idea in ideas" :key="idea.id">
+        <div class="col-md-8 lista-col">
+          <div class="row mt-2 mb-4 " v-for="idea in ideas" :key="idea.id">
             <div class="card shadow-lg">
               <div class="card-block position-relative">
-                <div class="row">
+                <div class="row my-2">
                   <div class="col-md-3">
                     <!-- <img class="img-fluid" :src="idea.imagen" /> -->
                     <img class="img-fluid" src="../../assets/ideas.jpg" />
@@ -82,13 +81,13 @@
                     <h2 class="titulosgrises">{{ idea.titulo }}</h2>
                     <h3 class="subtituloRojo">{{ idea.categoria }}</h3>
                     <h4 class="descripcion">Descripcion</h4>
-                    <p>{{ idea.descripcion }}</p>
-                    <button
-                      @click="invertirIdea(idea.id)"
+                    <p>{{ limitarTexto(idea.descripcion, 250) }}</p> 
+                    <RouterLink to="/invertirIdea/${idea.id}" @click="invertirIdea(idea)"><button                    
                       class="btn btn-success"
                     >
                       Invertir
-                    </button>
+                    </button></RouterLink>
+                  
                   </div>
                 </div>
               </div>
@@ -105,24 +104,44 @@ import ideaService from "../../services/ideaService";
 import usuarioService from "../../services/userService";
 import { useRouter } from "vue-router";
 import { useUserStore } from "../../stores/user";
+import { useIdeasStore } from '../../stores/creador/ideas';
 
 export default {
+  computed: {
+    limitarTexto() {
+      return (value, limite) => {
+        if (typeof value !== 'string') {
+          value = String(value);
+          console.log(value,limite)
+        }
+        
+        if (value.length <= limite) {
+          return value;
+        } else {
+          return value.slice(0, limite) + ' ...';
+        }
+      };
+    }
+  },
   setup() {
     const router = useRouter();
     const ideas = ref([]);
+    const ideasTop = ref([]);
     const usuarios = ref([]);
     const { user } = useUserStore();
+    const { setIdea } = useIdeasStore();
     const categoriaSeleccionada = ref("");
     const getIdeas = async () => {
       ideas.value = (await ideaService.obtenerIdeasPorCampo("", "")).data;
       usuarios.value = (await usuarioService.obtenerCreadores("")).data;
+      ideasTop.value = (await ideaService.obtenerTop()).data;
       processIdeas();
     };
 
     onMounted(getIdeas);
 
-    const invertirIdea = (id) => {
-      router.push({ name: "invertirIdea", params: { id } });
+    const invertirIdea = (idea) => {
+      setIdea(idea);
     };
 
     const filtrarIdeas = async (campo, opcionSeleccionada) => {
@@ -198,12 +217,23 @@ export default {
       toggleSubmenu,
       processIdeas,
       invertirIdea,
+      ideasTop,
     };
   },
 };
 </script>
 
 <style>
+#filtro {
+  width: 26rem;
+}
+.lista-col{
+  padding-left: 24px;
+  padding-right: 24px;
+}
+.topIdeas{  
+  height: 300px;
+}
 .filtro-seleccionado {
   font-weight: bold;
   font-style: italic;
@@ -263,7 +293,7 @@ export default {
 }
 .card {
   border-radius: 20px;
-  border-color: white;
+  border-color: white; 
   width: fit-content;
   border: 0;
 }

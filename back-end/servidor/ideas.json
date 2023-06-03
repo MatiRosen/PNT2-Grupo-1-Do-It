@@ -43,7 +43,8 @@
 		"categoria": "Genialidades",
 		"precio": 5000,
 		"idCreador": 2,
-		"idInversores": []
+		"idInversores": [],
+		"vecesVisto": 5
 	},
 	{
 		"id": 5,
@@ -53,6 +54,7 @@
 		"categoria": "Prueba",
 		"precio": 1,
 		"idCreador": 4,
-		"idInversores": []
+		"idInversores": [],
+		"vecesVisto": 5
 	}
 ]

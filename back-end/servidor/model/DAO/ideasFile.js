@@ -16,7 +16,22 @@ class ModelFile {
             JSON.stringify(ideas, null, "\t")
         )
     }
-
+    obtenerTop = async () => {
+        let ideas = [];
+        try {
+          ideas = JSON.parse(await this.leerArchivo());
+        } catch {
+          throw new DatabaseError("Error al leer el archivo de ideas.");
+        }
+      
+        // Ordenar todas las ideas según el campo deseado
+        ideas.sort((a, b) => b.vecesVisto - a.vecesVisto);
+      
+        // Obtener el top 3 de ideas
+        const top3Ideas = ideas.slice(0, 3);
+      
+        return top3Ideas;
+      };
     obtenerIdeas = async (idCreador) => {
         let ideas = [];
         try {
