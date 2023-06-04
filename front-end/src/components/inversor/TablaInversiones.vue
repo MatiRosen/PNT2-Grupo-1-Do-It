@@ -140,7 +140,6 @@ export default {
     onMounted(getIdeas);
 
     const invertirIdea = (idea) => {
-      // REHACER
       setIdea(idea);
     };
 

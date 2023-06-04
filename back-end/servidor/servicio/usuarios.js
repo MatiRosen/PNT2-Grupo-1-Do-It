@@ -102,8 +102,8 @@ class Servicio {
 
     obtenerCreadores = async (idCreador) => {
         try {
-           
             const usuarios = await this.model.obtenerCreadores(idCreador);
+            
             return usuarios;
         } catch (error) {
             throw error;

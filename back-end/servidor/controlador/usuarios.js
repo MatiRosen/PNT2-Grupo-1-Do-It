@@ -107,11 +107,10 @@ class Controlador {
         
     obtenerCreadores = async (req, res) => {
         try {
-            
             const { idCreador } = req.params;
-            const ideas = await this.servicio.obtenerCreadores(idCreador);
+            const creadores = await this.servicio.obtenerCreadores(idCreador);
 
-            res.status(200).json(ideas);
+            res.status(200).json(creadores);
         } catch (error) {
             if (error instanceof InvalidCredentialsError) {
                 res.status(400).json(error.message);

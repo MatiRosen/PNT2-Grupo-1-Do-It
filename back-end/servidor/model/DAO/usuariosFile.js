@@ -134,19 +134,29 @@ class ModelFile {
     obtenerCreadores = async (idCreador) => {
         let usuarios = [];
         try {
-            usuarios = JSON.parse(await this.leerArchivo());            
+            usuarios = JSON.parse(await this.leerArchivo());
         } catch {
             throw new DatabaseError("Error al leer el archivo de ideas.");
         }
-        
+
         if (idCreador) {
-            const obtenerUsuarios = usuarios.filter((idCreador) => usuarios.idCreador === idCreador && usuarios.tipo === 'Creador');
-            return obtenerUsuarios;
-        }else{
-            const obtenerUsuarios = usuarios.filter(usuario => usuario.tipo === 'Creador');
+            const creador = usuarios.find(
+                (usuario) =>
+                    usuario.id == idCreador && usuario.tipo == "Creador"
+            );
+
+            if (!creador)
+                throw new InvalidCredentialsError(
+                    "No hay ningún creador asociado a ese id."
+                );
+
+            return creador;
+        } else {
+            const obtenerUsuarios = usuarios.filter(
+                (usuario) => usuario.tipo === "Creador"
+            );
             return obtenerUsuarios;
         }
-       
     };
 }
 

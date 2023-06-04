@@ -41,6 +41,11 @@ const router = createRouter({
             component: () => import("../views/creador/IdeaView.vue"),
         },
         {
+            path: "/inversion/:id",
+            name: "inversion",
+            component: () => import("../views/inversor/InversionView.vue"),
+        },
+        {
             path: "/editarIdea/:id",
             name: "editarIdea",
             component: () => import("../views/creador/EditIdeaView.vue"),
