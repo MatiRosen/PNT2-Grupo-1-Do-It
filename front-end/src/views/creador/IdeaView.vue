@@ -7,7 +7,7 @@ export default {
   setup() {
     const router = useRouter();
     const { idea } = useIdeasStore();
-    const imagen = `../src/assets/${idea.imagen}`;
+    const imagen = `http://localhost:8080/images/${idea.imagen}`
     let { tieneInversores } = useIdeasStore();
 
     const editarIdea = () => {

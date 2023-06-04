@@ -9,8 +9,12 @@ export default {
     obtenerTop() {
         return apiClient.get(`/api/ideas/obtenerTop`);
     },
-    agregarIdea(idea) {
-        return apiClient.post("/api/ideas", idea);
+    agregarIdea(formData) {
+        return apiClient.post("/api/ideas", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
     },
     eliminarIdea(id) {
         return apiClient.delete(`/api/ideas/${id}`);

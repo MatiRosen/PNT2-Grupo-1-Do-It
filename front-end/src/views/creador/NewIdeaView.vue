@@ -5,11 +5,13 @@ import { useUserStore } from '../../stores/user';
 
 export default {
     setup() {
+        const formData = new FormData();
         const storeUser = useUserStore();
         const { user } = storeToRefs(storeUser);
         return {
             user,
             ideaService,
+            formData
         };
     },
     data() {        
@@ -25,14 +27,21 @@ export default {
                 vecesVisto: 0,
                 cantidadInversiones: 0
             },
-            vue: this,
+            vue: this,            
         };
     },
     methods: {
-        agregarIdea(vue, idea) {
+        agregarIdea(vue, idea) {            
             idea.idCreador = this.user.id;
+            idea.imagen = document.getElementById("imagen").files[0];
+            this.formData.append("imagen", idea.imagen);
+            Object.keys(idea).forEach((key) => {
+                if (key !== "imagen") {
+                    this.formData.append(key, idea[key]);
+                }
+            })  
             ideaService
-                .agregarIdea(idea)
+                .agregarIdea(this.formData)
                 .then(function (response) {
                     vue.$router.push("/creador");
                     
@@ -55,7 +64,7 @@ export default {
                     </div>
                     <div class="row">
                         <div class="col-md-12 mt-3">
-                            <form @submit.prevent="agregarIdea(vue, idea)">
+                            <form @submit.prevent="agregarIdea(vue, idea)" enctype="multipart/form-data">
                                 <div class="mb-md-3 mt-3 form-group">
                                     <input
                                         v-model="idea.titulo"
@@ -80,11 +89,11 @@ export default {
                                 </div>
                                 <div class="mb-md-3 form-group">
                                     <input
-                                        v-model="idea.imagen"
-                                        type="text"
-                                        id="txtImagen"
-                                        name="txtImagen"
+                                        type="file"
+                                        id="imagen"
+                                        name="imagen"
                                         class="form-control shadow"
+                                        accept="image/*"
                                         placeholder="Imagen"
                                         required
                                     >
@@ -137,7 +146,6 @@ h2 {
     border-color: #E20000;
 }
 #Registrar {
-  background: url("../../assets/ideas.jpg");
   width: 100%;
   height: 100%;
   position: fixed;

@@ -5,7 +5,7 @@ import ideaService from '../../services/ideaService';
 export default {
   setup() {
     const { idea } = useIdeasStore();
-    const imagen = `../src/assets/${idea.imagen}`;
+    const imagen = `http://localhost:8080/images/${idea.imagen}`
 
     return {
       idea,
@@ -19,8 +19,8 @@ export default {
     actualizarIdea(idea, vue) {
       ideaService
         .actualizarIdea(idea, idea.id)
-        .then(function (response) {
-          vue.$router.push("/creador");
+        .then((response) => {
+          this.$router.push("/creador");
         })
         .catch(function (error) {
           console.log(error);
