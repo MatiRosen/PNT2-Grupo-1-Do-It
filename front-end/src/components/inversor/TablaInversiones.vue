@@ -1,102 +1,98 @@
 <template>
-  <section id="ideas">
-    <div class="container">
-      <div class="row top-separation">
-        <div class="col-md-12 text-center">
-          <h4>Ideas mas vistas</h4>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4" v-for="idea in ideasTop" :key="idea.id">
-          <div class="card shadow-lg topIdeas">
-            <div class="card-block position-relative">
-              <div class="row">
-                <div class="col-md-3">
-                  <!-- <img class="img-fluid" :src="idea.imagen" /> -->
-                  <img class="img-fluid" src="../../assets/ideas.jpg" />
-                </div>
-                <div class="col-md-7 offset-md-1">
-                  <h2 class="titulosgrises">{{ idea.titulo }}</h2>
-                  <h3 class="subtituloRojo">{{ idea.categoria }}</h3>
-                  <h4 class="descripcion">Descripcion</h4>
-                  <p>{{ limitarTexto(idea.descripcion, 110) }}</p>           
-                </div>
-              </div>
+  <div class="container">
+  <div class="row top-separation">
+    <div class="col-md-12 text-center">
+      <h4>Ideas mas vistas</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4" v-for="idea in ideasTop" :key="idea.id">
+      <div class="card shadow-lg topIdeas">
+        <div class="card-block position-relative">
+          <div class="row">
+            <div class="col-md-3">
+              <!-- <img class="img-fluid" :src="idea.imagen" /> -->
+              <img class="img-fluid" src="../../assets/ideas.jpg" />
+            </div>
+            <div class="col-md-7 offset-md-1">
+              <h2 class="titulosgrises">{{ idea.titulo }}</h2>
+              <h3 class="subtituloRojo">{{ idea.categoria }}</h3>
+              <h4 class="descripcion">Descripcion</h4>
+              <p>{{ limitarTexto(idea.descripcion, 110) }}</p>
             </div>
           </div>
         </div>
       </div>
-      <div class="row top-separation">
-        <div class="col-md-4 my-2">         
-            <div class="card shadow-lg w-100 h-50" >
-              <div class="card-block position-relative">
-                <div class="row">
-                  <div class="col-md-8 text-center mt-4">
-                    <h2>Filtros</h2>
-                    <ul class="menu">
-                      <li
-                        class="has-submenu"
-                        v-for="campo in campos"
-                        :key="campo.campo"
-                        @click="toggleSubmenu(campo)"
-                      >
-                        {{ campo.campo }}
-                        <ul class="submenu" v-show="campo.showSubmenu">
-                          <li
-                            v-for="valor in campo.opciones"
-                            :key="valor.id"
-                            @click="filtrarIdeas(campo, valor)"
-                          >
-                            <span
-                              v-if="categoriaSeleccionada === valor.valores"
-                              class="filtro-seleccionado"
-                              >{{ valor.valores }}
-                              <span
-                                class="quitar-filtro"
-                                @click="filtrarIdeas(campo, valor)"
-                                >x</span
-                              ></span
-                            >
-                            <span v-else>{{ valor.valores }}</span>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-        
-        </div>
-        <div class="col-md-8 lista-col">
-          <div class="row mt-2 mb-4 " v-for="idea in ideas" :key="idea.id">
-            <div class="card shadow-lg">
-              <div class="card-block position-relative">
-                <div class="row my-2">
-                  <div class="col-md-3">
-                    <!-- <img class="img-fluid" :src="idea.imagen" /> -->
-                    <img class="img-fluid" src="../../assets/ideas.jpg" />
-                  </div>
-                  <div class="col-md-7 offset-md-1">
-                    <h2 class="titulosgrises">{{ idea.titulo }}</h2>
-                    <h3 class="subtituloRojo">{{ idea.categoria }}</h3>
-                    <h4 class="descripcion">Descripcion</h4>
-                    <p>{{ limitarTexto(idea.descripcion, 250) }}</p> 
-                    <RouterLink to="/invertirIdea/${idea.id}" @click="invertirIdea(idea)"><button                    
-                      class="btn btn-success"
+    </div>
+  </div>
+  <div class="row top-separation">
+    <div class="col-md-4 my-2">
+      <div class="card shadow-lg w-100 h-50">
+        <div class="card-block position-relative">
+          <div class="row">
+            <div class="col-md-8 text-center mt-4">
+              <h2>Filtros</h2>
+              <ul class="menu">
+                <li
+                  class="has-submenu"
+                  v-for="campo in campos"
+                  :key="campo.campo"
+                  @click="toggleSubmenu(campo)"
+                >
+                  {{ campo.campo }}
+                  <ul class="submenu" v-show="campo.showSubmenu">
+                    <li
+                      v-for="valor in campo.opciones"
+                      :key="valor.id"
+                      @click="filtrarIdeas(campo, valor)"
                     >
-                      Invertir
-                    </button></RouterLink>
-                  
-                  </div>
-                </div>
+                      <span
+                        v-if="categoriaSeleccionada === valor.valores"
+                        class="filtro-seleccionado"
+                        >{{ valor.valores }}
+                        <span
+                          class="quitar-filtro"
+                          @click="filtrarIdeas(campo, valor)"
+                          >x</span
+                        ></span
+                      >
+                      <span v-else>{{ valor.valores }}</span>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8 lista-col">
+      <div class="row mt-2 mb-4" v-for="idea in ideas" :key="idea.id">
+        <div class="card shadow-lg">
+          <div class="card-block position-relative">
+            <div class="row my-2">
+              <div class="col-md-3">
+                <!-- <img class="img-fluid" :src="idea.imagen" /> -->
+                <img class="img-fluid" src="../../assets/ideas.jpg" />
+              </div>
+              <div class="col-md-7 offset-md-1">
+                <h2 class="titulosgrises">{{ idea.titulo }}</h2>
+                <h3 class="subtituloRojo">{{ idea.categoria }}</h3>
+                <h4 class="descripcion">Descripcion</h4>
+                <p>{{ limitarTexto(idea.descripcion, 250) }}</p>
+                <RouterLink
+                  to="/invertirIdea/${idea.id}"
+                  @click="invertirIdea(idea)"
+                  ><button class="btn btn-success">Invertir</button></RouterLink
+                >
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</div>
 </template>
 <script>
 import { ref, onMounted } from "vue";
@@ -104,23 +100,24 @@ import ideaService from "../../services/ideaService";
 import usuarioService from "../../services/userService";
 import { useRouter } from "vue-router";
 import { useUserStore } from "../../stores/user";
-import { useIdeasStore } from '../../stores/creador/ideas';
+import { useIdeasStore } from "../../stores/creador/ideas";
 
 export default {
   computed: {
     limitarTexto() {
       return (value, limite) => {
-        if (typeof value !== 'string') {
+        if (typeof value !== "string") {
           value = String(value);
+          console.log(value, limite);
         }
-        
+
         if (value.length <= limite) {
           return value;
         } else {
-          return value.slice(0, limite) + ' ...';
+          return value.slice(0, limite) + " ...";
         }
       };
-    }
+    },
   },
   setup() {
     const router = useRouter();
@@ -150,15 +147,15 @@ export default {
         ideas.value = (await ideaService.obtenerIdeas("")).data; // Obtener todas las ideas nuevamente
       } else {
         categoriaSeleccionada.value = opcionSeleccionada.valores;
-        
-        if (campo.categoria === "autor") {          
+
+        if (campo.categoria === "autor") {
           ideas.value = (
             await ideaService.obtenerIdeasPorCampo(
               "idCreador",
               opcionSeleccionada.id.toString()
             )
-          ).data;          
-        } else {         
+          ).data;
+        } else {
           ideas.value = (
             await ideaService.obtenerIdeasPorCampo(
               campo.categoria,
@@ -226,11 +223,11 @@ export default {
 #filtro {
   width: 26rem;
 }
-.lista-col{
+.lista-col {
   padding-left: 24px;
   padding-right: 24px;
 }
-.topIdeas{  
+.topIdeas {
   height: 300px;
 }
 .filtro-seleccionado {
@@ -292,7 +289,7 @@ export default {
 }
 .card {
   border-radius: 20px;
-  border-color: white; 
+  border-color: white;
   width: fit-content;
   border: 0;
 }
