@@ -11,6 +11,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
+app.use(express.static('public'));
+
 app.use("/api/usuarios", new RouterUsuarios().start());
 app.use("/api/ideas", new RouterIdeas().start());
 app.use("/api/inversiones", new RouterInversiones().start());

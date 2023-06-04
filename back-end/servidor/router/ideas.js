@@ -1,5 +1,17 @@
 import express from "express";
 import ControladorIdeas from "../controlador/ideas.js";
+import multer from "multer";
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, '../back-end/public/images');
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.originalname);
+    },
+});
+
+const upload = multer({ storage: storage });
 
 class RouterIdeas {
     constructor() {
@@ -11,7 +23,7 @@ class RouterIdeas {
         this.router.get("/creador/:idCreador?", this.controlador.obtenerIdeas);
         this.router.get("/filtro/:campo/:valor", this.controlador.obtenerIdeasPorCampo);
         this.router.get("/obtenerTop", this.controlador.obtenerTop);
-        this.router.post("/", this.controlador.agregarIdea);
+        this.router.post("/", upload.single('imagen'), this.controlador.agregarIdea);        
         this.router.delete("/:id", this.controlador.eliminarIdea);
         this.router.put("/idea/:id", this.controlador.actualizaridea);
 

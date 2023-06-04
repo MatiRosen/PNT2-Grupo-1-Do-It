@@ -64,5 +64,16 @@
 		"idCreador": 2,
 		"vecesVisto": 0,
 		"cantidadInversiones": 1
+	},
+	{
+		"id": 7,
+		"titulo": "Idea con Imagenes",
+		"descripcion": "Probando suida de archivos",
+		"categoria": "Test",
+		"precio": "666",
+		"idCreador": "4",
+		"vecesVisto": "0",
+		"cantidadInversiones": "0",
+		"imagen": "J.jpg"
 	}
 ]

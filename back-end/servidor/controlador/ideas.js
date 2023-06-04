@@ -65,6 +65,7 @@ class ControladorIdeas {
     agregarIdea = async (req, res) => {
         try {
             const idea = req.body;
+            idea.imagen = req.file.filename;
             const ideaAgregada = await this.ServicioIdeas.agregarIdea(idea);
 
             res.status(201).json(ideaAgregada);
