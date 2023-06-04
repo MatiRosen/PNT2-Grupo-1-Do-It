@@ -9,7 +9,6 @@ class RouterIdeas {
 
     start() {
         this.router.get("/creador/:idCreador?", this.controlador.obtenerIdeas);
-        this.router.get("/inversor/:idInversor", this.controlador.obtenerIdeasInversor);
         this.router.get("/filtro/:campo/:valor", this.controlador.obtenerIdeasPorCampo);
         this.router.get("/obtenerTop", this.controlador.obtenerTop);
         this.router.post("/", this.controlador.agregarIdea);

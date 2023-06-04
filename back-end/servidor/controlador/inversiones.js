@@ -1,16 +1,77 @@
-import ServicioIdeas from "../servicio/ideas.js";
+import ServicioInversiones from "../servicio/inversiones.js";
 import { InvalidCredentialsError } from "../../errores.js";
 
-class ControladorIdeas {
+class ControladorInversiones {
     constructor() {
-        this.ServicioIdeas = new ServicioIdeas();
+        this.ServicioInversiones = new ServicioInversiones();
     }
 
-    obtenerTop = async (req, res) => {
+    obtenerInversiones = async (req, res) => {
         try {
-            const topIdeas = await this.ServicioIdeas.obtenerTop();
+            const inversiones = await this.ServicioInversiones.obtenerInversiones();
 
-            res.status(200).json(topIdeas);
+            res.status(200).json(inversiones);
+        } catch (error) {
+            if (error instanceof InvalidCredentialsError) {
+                res.status(400).json(error.message);
+            } else {
+                res.status(500).json({
+                    message:
+                        "Hubo un problema interno. Intente nuevamente más tarde.",
+                });
+            }
+        }
+
+    }
+
+    obtenerInversion = async (req, res) => {
+        try {
+            const { idIdea, idInversor } = req.params;
+            const inversion = await this.ServicioInversiones.obtenerInversion(idIdea, idInversor);
+
+            res.status(200).json(inversion);
+        } catch (error) {
+            if (error instanceof InvalidCredentialsError) {
+                res.status(400).json(error.message);
+            } else {
+                res.status(500).json({
+                    message:
+                        "Hubo un problema interno. Intente nuevamente más tarde.",
+                });
+            }
+        }
+    }
+
+    obtenerInversionesPorCampo = async (req, res) => {
+        try {
+            const { campo, id } = req.params;
+
+            if (campo !== "idIdea" && campo !== "idInversor") {
+                res.status(400).json("El campo debe ser idIdea o idInversor.");
+                return;
+            }
+            const inversiones = await this.ServicioInversiones.obtenerInversionesPorCampo(campo, id);
+
+            res.status(200).json(inversiones);
+        } catch (error) {
+            if (error instanceof InvalidCredentialsError) {
+                res.status(400).json(error.message);
+            } else {
+                res.status(500).json({
+                    message:
+                        "Hubo un problema interno. Intente nuevamente más tarde.",
+                });
+            }
+        }
+    }
+
+
+    agregarInversion = async (req, res) => {
+        try {
+            const inversion = req.body;
+            const inversionAgregada = await this.ServicioInversiones.agregarInversion(inversion);
+
+            res.status(201).json(inversionAgregada);
         } catch (error) {
             if (error instanceof InvalidCredentialsError) {
                 res.status(400).json(error.message);
@@ -23,12 +84,12 @@ class ControladorIdeas {
         }
     };
 
-    obtenerIdeas = async (req, res) => {
+    eliminarInversion = async (req, res) => {
         try {
-            const { idCreador } = req.params;
-            const ideas = await this.ServicioIdeas.obtenerIdeas(idCreador);
+            const { idIdea, idInversor } = req.params;
+            await this.ServicioInversiones.eliminarInversion(idIdea, idInversor);
 
-            res.status(200).json(ideas);
+            res.status(200).json({ message: "Inversión eliminada exitosamente." });
         } catch (error) {
             if (error instanceof InvalidCredentialsError) {
                 res.status(400).json(error.message);
@@ -41,74 +102,18 @@ class ControladorIdeas {
         }
     };
 
-    obtenerIdeasPorCampo = async (req, res) => {
+    actualizarInversion = async (req, res) => {
         try {
-            const { campo, valor } = req.params;
-            const ideas = await this.ServicioIdeas.obtenerIdeasPorCampo(
-                campo,
-                valor
+            const { idIdea, idInversor } = req.params;
+            const inversion = req.body;
+
+            const inversionActualizada = await this.ServicioInversiones.actualizarInversion(
+                idIdea,
+                idInversor,
+                inversion
             );
 
-            res.status(200).json(ideas);
-        } catch (error) {
-            if (error instanceof InvalidCredentialsError) {
-                res.status(400).json(error.message);
-            } else {
-                res.status(500).json({
-                    message:
-                        "Hubo un problema interno. Intente nuevamente más tarde.",
-                });
-            }
-        }
-    };
-
-    agregarIdea = async (req, res) => {
-        try {
-            const idea = req.body;
-            const ideaAgregada = await this.ServicioIdeas.agregarIdea(idea);
-
-            res.status(201).json(ideaAgregada);
-        } catch (error) {
-            if (error instanceof InvalidCredentialsError) {
-                res.status(400).json(error.message);
-            } else {
-                res.status(500).json({
-                    message:
-                        "Hubo un problema interno. Intente nuevamente más tarde.",
-                });
-            }
-        }
-    };
-
-    eliminarIdea = async (req, res) => {
-        try {
-            const { id } = req.params;
-            await this.ServicioIdeas.eliminarIdea(id);
-
-            res.status(200).json({ message: "Idea eliminada exitosamente." });
-        } catch (error) {
-            if (error instanceof InvalidCredentialsError) {
-                res.status(400).json(error.message);
-            } else {
-                res.status(500).json({
-                    message:
-                        "Hubo un problema interno. Intente nuevamente más tarde.",
-                });
-            }
-        }
-    };
-
-    actualizaridea = async (req, res) => {
-        try {
-            const { id } = req.params;
-            const idea = req.body;
-            console.log(idea);
-            console.log(id);
-            const ideaActualizada = await this.ServicioIdeas.actualizarIdea(
-                id,
-                idea
-            );
-            res.status(200).json(ideaActualizada);
+            res.status(200).json(inversionActualizada);
         } catch (error) {
             res.status(500).json({
                 message:
@@ -118,4 +123,4 @@ class ControladorIdeas {
     };
 }
 
-export default ControladorIdeas;
+export default ControladorInversiones;

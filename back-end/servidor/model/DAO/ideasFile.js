@@ -51,23 +51,6 @@ class ModelFile {
         return ideas;
     };
 
-    obtenerIdeasInversor = async (idInversor) => {
-        let ideas = [];
-        try {
-            ideas = JSON.parse(await this.leerArchivo());
-        } catch {
-            throw new DatabaseError("Error al leer el archivo de ideas.");
-        }
-
-        if (!idInversor) throw new InvalidCredentialsError("No hay ideas con ese inversor.");
-
-        const ideasInversor = ideas.filter((idea) =>
-            idea.idInversores.includes(idInversor)
-        );
-
-        return ideasInversor;
-    }
-
     obtenerIdeasPorCampo = async (campo, valor) => {
         let ideas = [];
         try {
@@ -103,6 +86,35 @@ class ModelFile {
         ideas.push(idea);
 
         try {
+            await this.escribirArchivo(ideas);
+        } catch {
+            throw new DatabaseError("Error al escribir el archivo de ideas.");
+        }
+
+        return idea;
+    };
+
+    eliminarIdeas = async (idCreador) => {
+        let ideas = [];
+        try {
+            ideas = JSON.parse(await this.leerArchivo());
+        } catch {
+            throw new DatabaseError("Error al leer el archivo de ideas.");
+        }
+
+        const ideasAEliminar = ideas.filter(
+            (idea) => idea.idCreador == idCreador
+        );
+
+        if (ideasAEliminar.length == 0) {
+            throw new InvalidCredentialsError(
+                "No existen ideas con el id del creador indicado."
+            );
+        }
+
+        ideas = ideas.filter((idea) => idea.idCreador != idCreador);
+
+        try {
             await fs.promises.writeFile(
                 this.nombreArchivo,
                 JSON.stringify(ideas, null, 2)
@@ -110,9 +122,7 @@ class ModelFile {
         } catch {
             throw new DatabaseError("Error al escribir el archivo de ideas.");
         }
-
-        return idea;
-    };
+    }
 
     eliminarIdea = async (id) => {
         let ideas = [];

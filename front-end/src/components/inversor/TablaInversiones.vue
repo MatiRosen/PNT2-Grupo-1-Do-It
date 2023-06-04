@@ -112,7 +112,6 @@ export default {
       return (value, limite) => {
         if (typeof value !== 'string') {
           value = String(value);
-          console.log(value,limite)
         }
         
         if (value.length <= limite) {
@@ -141,6 +140,7 @@ export default {
     onMounted(getIdeas);
 
     const invertirIdea = (idea) => {
+      // REHACER
       setIdea(idea);
     };
 

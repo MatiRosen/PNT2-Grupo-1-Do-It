@@ -1,0 +1,27 @@
+[
+	{
+		"idIdea": 1,
+		"idInversor": 1,
+		"dineroInvertido": 1000
+	},
+	{
+		"idIdea": 1,
+		"idInversor": 3,
+		"dineroInvertido": 500
+	},
+	{
+		"idIdea": 2,
+		"idInversor": 3,
+		"dineroInvertido": 700
+	},
+	{
+		"idIdea": 3,
+		"idInversor": 1,
+		"dineroInvertido": 600
+	},
+	{
+		"idIdea": 6,
+		"idInversor": 1,
+		"dineroInvertido": 4000
+	}
+]

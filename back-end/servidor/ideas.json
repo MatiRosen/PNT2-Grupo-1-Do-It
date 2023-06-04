@@ -6,10 +6,9 @@
 		"imagen": "Campeones.jpg",
 		"categoria": "Cat 1",
 		"precio": 1000,
-		"invertido": 500,
 		"idCreador": 4,
-		"idInversores": [],
-		"vecesVisto": 0
+		"vecesVisto": 0,
+		"cantidadInversiones": 2
 	},
 	{
 		"id": 2,
@@ -17,14 +16,10 @@
 		"descripcion": "Test idInversores",
 		"imagen": "Test",
 		"categoria": "Test",
-		"precio": 1450,
-		"invertido": 500,
+		"precio": 2500,
 		"idCreador": 4,
-		"idInversores": [
-			1,
-			2
-		],
-		"vecesVisto": 10
+		"vecesVisto": 10,
+		"cantidadInversiones": 1
 	},
 	{
 		"id": 3,
@@ -33,10 +28,9 @@
 		"imagen": "Test",
 		"categoria": "Test",
 		"precio": 1300,
-		"invertido": 500,
 		"idCreador": 4,
-		"idInversores": [],
-		"vecesVisto": 5
+		"vecesVisto": 5,
+		"cantidadInversiones": 1
 	},
 	{
 		"id": 4,
@@ -45,10 +39,9 @@
 		"imagen": "Imagen genial",
 		"categoria": "Genialidades",
 		"precio": 5000,
-		"invertido": 500,
 		"idCreador": 2,
-		"idInversores": [],
-		"vecesVisto": 5
+		"vecesVisto": 5,
+		"cantidadInversiones": 0
 	},
 	{
 		"id": 5,
@@ -57,9 +50,19 @@
 		"imagen": "Test",
 		"categoria": "Prueba",
 		"precio": 1,
-		"invertido": 500,
 		"idCreador": 4,
-		"idInversores": [],
-		"vecesVisto": 5
+		"vecesVisto": 5,
+		"cantidadInversiones": 0
+	},
+	{
+		"id": 6,
+		"titulo": "Otra idea buena",
+		"descripcion": "Es buena eh",
+		"imagen": "Imagen buena",
+		"categoria": "Genialidades",
+		"precio": 5000,
+		"idCreador": 2,
+		"vecesVisto": 0,
+		"cantidadInversiones": 1
 	}
 ]

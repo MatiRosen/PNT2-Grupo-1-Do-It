@@ -22,7 +22,8 @@ export default {
                 categoria: "",
                 precio: "",
                 idCreador: "",
-                idInversores: []
+                vecesVisto: 0,
+                cantidadInversiones: 0
             },
             vue: this,
         };

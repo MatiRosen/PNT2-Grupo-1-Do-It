@@ -15,15 +15,6 @@ class ServicioIdeas {
         }
     };
 
-    obtenerIdeasInversor = async (idInvesor) => {
-        try {
-            const ideas = await this.model.obtenerIdeasInversor(idInvesor);
-            return ideas;
-        } catch (error) {
-            throw error;
-        }
-    };
-
     obtenerTop = async () => {
         try {
             const topIdeas = await this.model.obtenerTop();

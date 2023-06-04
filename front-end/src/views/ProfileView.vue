@@ -4,8 +4,8 @@
 
         <div v-if="esInversor">
             <RouterLink to="/billetera"
-                ><button>Agregar dinero</button></RouterLink
-            >
+                ><button>Agregar dinero</button></RouterLink>
+            <RouterLink to="/inversor/inversiones">Inversiones</RouterLink>
         </div>
     </div>
 </template>
