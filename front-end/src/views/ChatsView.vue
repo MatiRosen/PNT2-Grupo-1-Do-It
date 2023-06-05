@@ -18,11 +18,7 @@
                     <img class="img-fluid" src="../assets/ideas.jpg" />
                   </div>
                   <div class="col-md-7 offset-md-1">
-                      <h2 class="titulosgrises">chat con <span v-for="p in c.participantes">
-                        <span v-if=" p != user.id">
-                          {{ p }}
-                        </span>  
-                      </span></h2>
+                      <h2 class="titulosgrises">chat con {{ c.otherUser.nombre }}</h2>
 
                       <h2>
                         <div v-if="c.ultimoMensaje.emisor == user.email" class="subtituloRojo">
@@ -48,16 +44,20 @@
 import { storeToRefs } from "pinia";
 import { useUserStore } from "../stores/user";
 import { useChatStore } from "../stores/chat";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import service from "../services/userService";
 
 const storeUser = useUserStore();
-const { user,  } = storeToRefs(storeUser);
-let {  } = storeToRefs(storeUser);
+const { user } = storeToRefs(storeUser);
 
 const chatStore = useChatStore()
 
-const chatsDelUsuario = chatStore.getChats(user.value.id)
+const chatsDelUsuario = ref(chatStore.getChats(user.value.id))
 
+const buscarUsuario = async c =>{
+  c.otherUser = (await service.obtenerUsuario(c.participantes.find(p => p != user.value.id))).data
+}
+chatsDelUsuario.value.forEach(buscarUsuario)
 </script>
 
 <style scoped>
