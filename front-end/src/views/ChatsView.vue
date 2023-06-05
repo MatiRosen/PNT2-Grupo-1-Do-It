@@ -14,8 +14,7 @@
             <div class="card shadow-lg">
               <div class="card-block position-relative">
                 <div class="row">
-                  <div class="col-md-3">
-                    <!-- <img class="img-fluid" :src="idea.imagen" /> -->
+                  <div class="col-md-2">
                     <img class="img-fluid" src="../assets/ideas.jpg" />
                   </div>
                   <div class="col-md-7 offset-md-1">

@@ -16,5 +16,8 @@ export default {
     },
     obtenerCreadores(idCreador) {
         return apiClient.get(`/api/usuarios/${idCreador}`);
+    },
+    obtenerUsuario(id){
+        return apiClient.get(`/api/usuarios/id/${id}`)
     }
 }

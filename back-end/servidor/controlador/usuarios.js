@@ -6,13 +6,12 @@ class Controlador {
         this.servicio = new Servicio();
     }
 
-    // Eliminar
-    /*obtenerUsuarios = async (req, res) => {
+    obtenerUsuario = async (req, res) => {
         try {
-            const { email } = req.params;
-            const usuarios = await this.servicio.obtenerUsuarios(email);
-
-            res.json(usuarios);
+            const { id } = req.params;
+            const usuario = await this.servicio.obtenerUsuario(id);
+            
+            res.json(usuario);
         } catch (error) {
            if (error instanceof InvalidCredentialsError) {
                 res.status(400).json(error.message);
@@ -22,11 +21,9 @@ class Controlador {
                 message:
                     "Hubo un problema interno. Intente nuevamente más tarde.",
             });
-            );
             }
-           
         }
-    };*/
+    };
 
     guardarUsuario = async (req, res) => {
         try {

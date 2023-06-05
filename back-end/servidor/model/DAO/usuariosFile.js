@@ -39,6 +39,24 @@ class ModelFile {
         return usuarios;
     };
 
+    obtenerUsuario = async (id) => {
+        let usuarios = [];
+        try {
+            usuarios = JSON.parse(await this.leerArchivo());
+        } catch {
+            throw new DatabaseError("Error al leer el archivo de usuarios.");
+        }
+
+        const usuario = usuarios.find((usuario) => usuario.id == id);
+
+        if (!usuario)
+            throw new InvalidCredentialsError(
+                "No hay ningún usuario asociado a ese id."
+            );
+        return usuario;
+        
+    };
+
     guardarUsuario = async (usuario) => {
         let usuarios = [];
         try {

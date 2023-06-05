@@ -7,14 +7,14 @@ class Servicio {
         this.model = ModelFactory.get(config.MODO_PERSISTENCIA);
     }
 
-    /*obtenerUsuarios = async (email) => {
+    obtenerUsuario = async (id) => {
         try {
-            const usuarios = await this.model.obtenerUsuarios(email);
+            const usuarios = await this.model.obtenerUsuario(id);
             return usuarios;
         } catch (error) {
             return error;
         }
-    };*/
+    };
 
     guardarUsuario = async (usuario) => {
         try {

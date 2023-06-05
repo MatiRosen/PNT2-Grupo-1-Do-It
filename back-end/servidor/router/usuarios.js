@@ -13,6 +13,7 @@ class Router {
         this.router.post("/login", this.controlador.logUsuario);
         this.router.delete("/:id", this.controlador.eliminarUsuario);
         this.router.get("/:idCreador?", this.controlador.obtenerCreadores);
+        this.router.get("/id/:id", this.controlador.obtenerUsuario);
         
         return this.router;
     }
