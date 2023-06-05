@@ -23,5 +23,25 @@
 		"idIdea": 2,
 		"idInversor": 5,
 		"dineroInvertido": 4
+	},
+	{
+		"idIdea": 2,
+		"idInversor": 1,
+		"dineroInvertido": 5000
+	},
+	{
+		"idIdea": 3,
+		"idInversor": 1,
+		"dineroInvertido": 2000
+	},
+	{
+		"idIdea": 4,
+		"idInversor": 1,
+		"dineroInvertido": 5000
+	},
+	{
+		"idIdea": 5,
+		"idInversor": 1,
+		"dineroInvertido": 3000
 	}
 ]

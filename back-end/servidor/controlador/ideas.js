@@ -103,8 +103,6 @@ class ControladorIdeas {
         try {
             const { id } = req.params;
             const idea = req.body;
-            console.log(idea);
-            console.log(id);
             const ideaActualizada = await this.ServicioIdeas.actualizarIdea(
                 id,
                 idea

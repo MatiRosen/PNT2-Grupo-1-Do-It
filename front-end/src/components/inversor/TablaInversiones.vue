@@ -80,11 +80,7 @@
                 <h3 class="subtituloRojo">{{ idea.categoria }}</h3>
                 <h4 class="descripcion">Descripcion</h4>
                 <p>{{ limitarTexto(idea.descripcion, 250) }}</p>
-                <RouterLink
-                  to="/invertirIdea/${idea.id}"
-                  @click="invertirIdea(idea)"
-                  ><button class="btn btn-success">Invertir</button></RouterLink
-                >
+                <button class="btn btn-success" @click="invertirIdea(idea)">Invertir</button>
               </div>
             </div>
           </div>
@@ -94,6 +90,7 @@
   </div>
 </div>
 </template>
+
 <script>
 import { ref, onMounted } from "vue";
 import ideaService from "../../services/ideaService";
@@ -101,6 +98,8 @@ import usuarioService from "../../services/userService";
 import { useRouter } from "vue-router";
 import { useUserStore } from "../../stores/user";
 import { useIdeasStore } from "../../stores/creador/ideas";
+import inversionService from "../../services/inversionService";
+import { useInversionesStore } from "../../stores/inversor/inversiones";
 
 export default {
   computed: {
@@ -126,6 +125,7 @@ export default {
     const usuarios = ref([]);
     const { user } = useUserStore();
     const { setIdea } = useIdeasStore();
+    const { setInversion } = useInversionesStore();
     const categoriaSeleccionada = ref("");
     const getIdeas = async () => {
       ideas.value = (await ideaService.obtenerIdeas("")).data;
@@ -136,8 +136,13 @@ export default {
 
     onMounted(getIdeas);
 
-    const invertirIdea = (idea) => {
+    const invertirIdea = async (idea) => {
       setIdea(idea);
+      let inversion = (await inversionService.obtenerInversion(idea.id, user.id)).data;
+      if (inversion){
+        setInversion(inversion);
+      } 
+      router.push(`/invertirIdea/${idea.id}`);
     };
 
     const filtrarIdeas = async (campo, opcionSeleccionada) => {
@@ -191,7 +196,9 @@ export default {
           valores: item.categoria,
           id: item.id.toString(),
         };
-        campos.value[0].opciones.push(val);
+        if (!campos.value[0].opciones.some((e) => e.valores === val.valores)) {
+          campos.value[0].opciones.push(val);
+        }
       });
 
       usuarios.value.forEach((usuario) => {
