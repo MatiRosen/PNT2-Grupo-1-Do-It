@@ -70,14 +70,14 @@
 		"cantidadInversiones": 0
 	},
 	{
-		"id": 7,
+		"id": "7",
 		"titulo": "Idea con Imagenes",
 		"descripcion": "Probando suida de archivos",
 		"categoria": "Test",
-		"precio": "667",
+		"precio": "666",
 		"idCreador": "4",
 		"vecesVisto": "0",
-		"cantidadInversiones": 0,
-		"imagen": "J.jpg"
+		"cantidadInversiones": "0",
+		"imagen": "supreme_cat-wallpaper-1600x900.jpg"
 	}
 ]

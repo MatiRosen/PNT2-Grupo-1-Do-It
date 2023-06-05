@@ -22,7 +22,11 @@ export default {
     obtenerIdeasPorCampo(campo,valor){
         return apiClient.get(`/api/ideas/filtro/${campo}/${valor}`);
     },
-    actualizarIdea(idea, id) {
-        return apiClient.put(`/api/ideas/idea/` + id, idea);
+    actualizarIdea(formData, id) {
+        return apiClient.put(`/api/ideas/idea/` + id, formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            }
+        })
     }
 };
