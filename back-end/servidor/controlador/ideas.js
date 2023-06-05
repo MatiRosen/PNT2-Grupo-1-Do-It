@@ -99,12 +99,13 @@ class ControladorIdeas {
         }
     };
 
-    actualizaridea = async (req, res) => {
+    actualizarIdea = async (req, res) => {
         try {
             const { id } = req.params;
             const idea = req.body;
-            console.log(idea);
-            console.log(id);
+            if (req.file !== null) {
+                idea.imagen = req.file.filename;
+            }
             const ideaActualizada = await this.ServicioIdeas.actualizarIdea(
                 id,
                 idea

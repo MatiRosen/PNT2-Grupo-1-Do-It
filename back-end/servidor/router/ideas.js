@@ -25,9 +25,16 @@ class RouterIdeas {
         this.router.get("/obtenerTop", this.controlador.obtenerTop);
         this.router.post("/", upload.single('imagen'), this.controlador.agregarIdea);        
         this.router.delete("/:id", this.controlador.eliminarIdea);
-        this.router.put("/idea/:id", this.controlador.actualizaridea);
+        this.router.put("/idea/:id", upload.single('imagen'), this.actualizarIdeaMiddleware, this.controlador.actualizarIdea);
 
         return this.router;
+    }
+
+    actualizarIdeaMiddleware(req, res, next) {
+      if (!req.file) {
+        req.file = null;
+      }
+      next();
     }
 }
 

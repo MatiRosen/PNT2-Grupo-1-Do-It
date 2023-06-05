@@ -1,41 +1,60 @@
 <script>
 import { useIdeasStore } from '../../stores/creador/ideas';
 import ideaService from '../../services/ideaService';
+import { useRouter } from 'vue-router';
 
 export default {
   setup() {
+    const router = useRouter();
+    const formData = new FormData();
     const { idea } = useIdeasStore();
-    const imagen = `http://localhost:8080/images/${idea.imagen}`
+    const imagen = `http://localhost:8080/images/${idea.imagen}`;
 
-    return {
-      idea,
-      imagen,
+    const actualizarIdea = (vue) => {
+      formData.append("imagen", idea.imagen);
+      if (document.getElementById("imagen").files[0] !== undefined) {
+        idea.imagen = document.getElementById("imagen").files[0];
+        formData.append("imagen", idea.imagen);
+      }
+      Object.keys(idea).forEach((key) => {
+        if (key !== "imagen") {
+          formData.append(key, idea[key]);
+        }
+      });
+
       ideaService
-    };
-  },
-  data() {
-  },
-  methods: {
-    actualizarIdea(idea, vue) {
-      ideaService
-        .actualizarIdea(idea, idea.id)
+        .actualizarIdea(formData, idea.id)
         .then((response) => {
-          this.$router.push("/creador");
+          router.push("/creador");
         })
         .catch(function (error) {
           console.log(error);
         });
-    },
-  }
-}
+    };
+
+    return {
+      idea,
+      imagen,
+      actualizarIdea,
+    };
+  },
+};
 </script>
 
 <template>
   <div class="container">
-    <form @submit.prevent="actualizarIdea(idea)">
+    <form @submit.prevent="actualizarIdea(idea)" enctype="multipart/form-data">
       <div class="card shadow-lg">
         <div>
           <img :src="imagen">
+          <input
+            type="file"
+            id="imagen"
+            name="imagen"
+            class="form-control shadow"
+            accept="image/*"
+            placeholder="Imagen"
+          >
         </div>
         <input 
           v-model="idea.titulo"

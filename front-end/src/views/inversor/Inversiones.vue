@@ -17,8 +17,8 @@
                                     <h3 class="subtituloRojo">
                                         {{ inversion.categoria }}
                                     </h3>
-                                    <h4 class="descripcion">Precio:</h4>
-                                    <p class="precio">${{ inversion.precio }}</p>
+                                    <h4 class="descripcion">Dinero invertido:</h4>
+                                    <p class="precio">${{ inversion.dineroInvertido }}</p>
                                 </div>
                             </div>
                         </div>

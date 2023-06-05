@@ -32,7 +32,10 @@ class ControladorInversiones {
             res.status(200).json(inversion);
         } catch (error) {
             if (error instanceof InvalidCredentialsError) {
-                res.status(400).json(error.message);
+                // Como me tira error, lo saco y hago que devuelva false
+                res.status(200).json(false);
+                //res.status(400).json(error.message);
+
             } else {
                 res.status(500).json({
                     message:
