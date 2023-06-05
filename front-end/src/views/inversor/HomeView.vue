@@ -15,7 +15,6 @@ import TablaInversiones from "../../components/inversor/TablaInversiones.vue";
   position: absolute;
   top: 0;
   background-size: cover;
-  width: 100%;
- 
+  width: 100%; 
 }
 </style>
