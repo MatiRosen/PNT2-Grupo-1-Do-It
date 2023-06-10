@@ -12,24 +12,22 @@
           
         </div>
       </div>
-      <div class="col-md-8 ">
+      <div class="col-md-8 container">
         <div class="row my-1 " >
           <div class="card shadow-lg">
               <div class="card-block position-relative">
                 <div class="row">
                   <div class="col-md-12 ">
-                      <h2>
-                        datos
-                      </h2>
                       <div v-if="estaLogueado">
-                        <h1>{{ user.nombre }}</h1>
+                        <h1 class="subtituloRojo">{{ user.nombre }}</h1>
                         <h1>{{ user.email }}</h1>
+                        <div>
+                          <img class="img-fluid imagen" src="../assets/ideas.jpg">
+                        </div>
                         <h1>{{ user.tipo }}</h1>
-                        <h1>{{ user.id }}</h1>
-                        <h1>{{ user.nombre }}</h1>
                         <div v-if="esInversor">
                             <RouterLink to="/billetera"
-                            ><button>Agregar dinero</button></RouterLink>
+                            ><button class="btn btn-primary boton">Agregar dinero</button></RouterLink>
                             <RouterLink to="/inversor/inversiones">Inversiones</RouterLink>
                         </div>
                     </div>
@@ -56,7 +54,24 @@ let { estaLogueado, esInversor } = storeToRefs(storeUser);
 
 
 <style scoped>
-
+.boton {
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
+.imagen {
+  width: 30%;
+  height: 30%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+.container {
+  height: 85vh;
+  display: flex;
+  width: fit-content;
+  flex-direction: column;
+  justify-items: center;
+  text-align: center;
+}
  .ideas{
   background: url("../assets/fondo-contacto.png");
   background-position: center;
@@ -80,7 +95,7 @@ let { estaLogueado, esInversor } = storeToRefs(storeUser);
 .subtituloRojo {
   font-weight: bold;
   color: #e20000;
-  font-size: 17px;
+  font-size: 50px;
 }
 .descripcion {
   font-weight: normal;
@@ -90,7 +105,6 @@ let { estaLogueado, esInversor } = storeToRefs(storeUser);
 .p {
   font-size: 12px;
 }
-
 
 .card {
   border-radius: 20px;
