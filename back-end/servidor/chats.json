@@ -80,5 +80,17 @@
 			"emisor": 0,
 			"contenido": ""
 		}
+	},
+	{
+		"id": 5,
+		"participantes": [
+			3,
+			4
+		],
+		"mensajes": [],
+		"ultimoMensaje": {
+			"emisor": 0,
+			"contenido": ""
+		}
 	}
 ]

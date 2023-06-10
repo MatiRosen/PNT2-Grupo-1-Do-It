@@ -23,9 +23,11 @@
                                 </h4>
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <button @click="contactarCreador(idea)" class="btn btn-success">
+                                        <RouteterLink @click="contactarCreador(idea)">
+                                            <button  class="btn btn-success">
                                                 Contactar Creador
-                                        </button>
+                                            </button>
+                                        </RouteterLink>
                                     </div>
                                     <div class="col-md-2 offset-md-2">
                                         <input v-if="!yaInvirtio"
