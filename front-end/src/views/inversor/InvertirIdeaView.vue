@@ -23,13 +23,9 @@
                                 </h4>
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <RouterLink
-                                            to="/inversor/inversiones/"
-                                            @click="invertirIdea(idea)"
-                                            ><button class="btn btn-success">
+                                        <button @click="contactarCreador(idea)" class="btn btn-success">
                                                 Contactar Creador
-                                            </button></RouterLink
-                                        >
+                                        </button>
                                     </div>
                                     <div class="col-md-2 offset-md-2">
                                         <input v-if="!yaInvirtio"
@@ -70,6 +66,8 @@ import { useUserStore } from "../../stores/user";
 import { ref, onMounted } from "vue";
 import ideaService from "../../services/ideaService";
 import {useInversionesStore} from "../../stores/inversor/inversiones";
+import chatService from "../../services/chatService";
+import router from "../../router";
 
 const { idea } = useIdeasStore();
 const imagen = `../src/assets/${idea.imagen}`;
@@ -124,8 +122,18 @@ const invertirIdea = async (idea) => {
 
     idea.cantidadInversiones += 1;
     await ideaService.actualizarIdea(idea, idea.id);
-
-
+};
+const contactarCreador = (idea) => {
+    let nuevoChat = {id: 0,
+		participantes: [user.id, parseInt(idea.idCreador)],
+		mensajes: [	],
+		ultimoMensaje: { emisor: 0,	contenido: "" }
+    }
+    chatService.crearChat(nuevoChat).then(res => {
+        console.log('nos vamos', res.data.id)
+        router.replace(`/chat/${res.data.id}`)
+        
+    });
 };
 </script>
 

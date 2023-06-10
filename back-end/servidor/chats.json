@@ -1,9 +1,84 @@
 [
-    { 
-    "id": 0,
-    "participantes": [3,2],
-    "mensajes": [ {"emisor": 2, "contenido": "hola"},
-    {"emisor": 3, "contenido": "chau"}],
-    "ultimoMensaje": {"emisor": 3, "contenido": "chau"}
-    }
+	{
+		"id": 0,
+		"participantes": [
+			3,
+			2
+		],
+		"mensajes": [
+			{
+				"emisor": 2,
+				"contenido": "hola"
+			},
+			{
+				"emisor": 3,
+				"contenido": "chau"
+			}
+		],
+		"ultimoMensaje": {
+			"emisor": 3,
+			"contenido": "chau"
+		}
+	},
+	{
+		"id": 1,
+		"participantes": [
+			3,
+			2
+		],
+		"mensajes": [
+			{
+				"emisor": 2,
+				"contenido": "hola"
+			},
+			{
+				"emisor": 3,
+				"contenido": "chau"
+			},
+			{
+				"emisor": 3,
+				"contenido": "buenos dias"
+			}
+		],
+		"ultimoMensaje": {
+			"emisor": 3,
+			"contenido": "buenos dias"
+		}
+	},
+	{
+		"id": 2,
+		"participantes": [
+			3,
+			4
+		],
+		"mensajes": [],
+		"ultimoMensaje": {
+			"emisor": 0,
+			"contenido": ""
+		}
+	},
+	{
+		"id": 3,
+		"participantes": [
+			3,
+			4
+		],
+		"mensajes": [],
+		"ultimoMensaje": {
+			"emisor": 0,
+			"contenido": ""
+		}
+	},
+	{
+		"id": 4,
+		"participantes": [
+			3,
+			4
+		],
+		"mensajes": [],
+		"ultimoMensaje": {
+			"emisor": 0,
+			"contenido": ""
+		}
+	}
 ]

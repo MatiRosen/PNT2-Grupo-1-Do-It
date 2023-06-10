@@ -45,13 +45,14 @@ class ModelFile {
 
     mandarMensaje = async (idChat,mensaje) => {
         let chats = [];
+        
         try {
             chats = JSON.parse(await this.leerArchivo());
         } catch {
             throw new DatabaseError("Error al leer el archivo de chats.");
         }
         
-        let chat = chats.find(c => c.id == idChat)
+        let chatAgregar = chats.find(c => c.id == idChat)
         chatAgregar.mensajes.push(mensaje)
         chatAgregar.ultimoMensaje = mensaje
         
@@ -71,11 +72,15 @@ class ModelFile {
         } catch {
             throw new DatabaseError("Error al leer el archivo de chats.");
         }
-
-        chats.push(chat);
-
+        
+        let nuevoId = chats[chats.length - 1].id + 1
+        let nuevoChat = {...chat, id: nuevoId}
+                
+        chats.push(nuevoChat);
+        
         try {
             await this.escribirArchivo(chats);
+            return nuevoChat;
         }
         catch {
             throw new DatabaseError("Error al escribir el archivo de chats.");
