@@ -1,0 +1,9 @@
+[
+    { 
+    "id": 0,
+    "participantes": [3,2],
+    "mensajes": [ {"emisor": 2, "contenido": "hola"},
+    {"emisor": 3, "contenido": "chau"}],
+    "ultimoMensaje": {"emisor": 3, "contenido": "chau"}
+    }
+]

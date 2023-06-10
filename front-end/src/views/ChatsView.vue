@@ -45,19 +45,18 @@ import { storeToRefs } from "pinia";
 import { useUserStore } from "../stores/user";
 import { useChatStore } from "../stores/chat";
 import { ref, onMounted } from "vue";
-import service from "../services/userService";
+
 
 const storeUser = useUserStore();
 const { user } = storeToRefs(storeUser);
 
 const chatStore = useChatStore()
 
-const chatsDelUsuario = ref(chatStore.getChats(user.value.id))
+const aux = ref(chatStore.getChatsDelUsuario(user.value.id))
+const chatsDelUsuario = aux.value.then((res) => {
+  return res
+})  
 
-const buscarUsuario = async c =>{
-  c.otherUser = (await service.obtenerUsuario(c.participantes.find(p => p != user.value.id))).data
-}
-chatsDelUsuario.value.forEach(buscarUsuario)
 </script>
 
 <style scoped>
