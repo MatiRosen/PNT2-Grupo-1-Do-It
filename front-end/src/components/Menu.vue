@@ -66,25 +66,18 @@ const logout = () => {
 </script>
 
 <style scoped>
-#nav {
+.nav {
     padding: 30px;
     text-align: center;
 }
 
-#nav a {
+.nav a {
     font-weight: bold;
     color: #2c3e50;
 }
 
-#nav a.router-link-exact-active {
-    color: whitesmoke;
-    background: crimson;
-    border-radius: 0.5rem;
-}
-.menu-component {
-    position: relative;
-    z-index: 2; /* Valor mayor que el fondo */
-}
+
+
 
 .money {
     color: #3eb805;

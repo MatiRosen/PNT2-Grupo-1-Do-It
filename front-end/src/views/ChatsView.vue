@@ -61,17 +61,6 @@ chatsDelUsuario.value.forEach(buscarUsuario)
 </script>
 
 <style scoped>
-
- .ideas{
-  background: url("../assets/fondo-contacto.png");
-  background-position: center;
-  position: absolute;
-  top: 0;
-  background-size: cover;
-  width: 100%;
-  height: 100%;
-}
-
 .titulosgrises {
   font-weight: bold;
   color: #6a6a6a;
@@ -119,48 +108,5 @@ chatsDelUsuario.value.forEach(buscarUsuario)
   margin: 0;
 }
 
-.color-gradiente {
-  color: white;
-  padding: 15px;
-  background: rgba(107, 35, 35, 1);
-  background: -moz-linear-gradient(
-    left,
-    rgba(107, 35, 35, 1) 0%,
-    rgba(231, 55, 39, 1) 69%,
-    rgba(231, 55, 39, 1) 100%
-  );
-  background: -webkit-gradient(
-    left top,
-    right top,
-    color-stop(0%, rgba(107, 35, 35, 1)),
-    color-stop(69%, rgba(231, 55, 39, 1)),
-    color-stop(100%, rgba(231, 55, 39, 1))
-  );
-  background: -webkit-linear-gradient(
-    left,
-    rgba(107, 35, 35, 1) 0%,
-    rgba(231, 55, 39, 1) 69%,
-    rgba(231, 55, 39, 1) 100%
-  );
-  background: -o-linear-gradient(
-    left,
-    rgba(107, 35, 35, 1) 0%,
-    rgba(231, 55, 39, 1) 69%,
-    rgba(231, 55, 39, 1) 100%
-  );
-  background: -ms-linear-gradient(
-    left,
-    rgba(107, 35, 35, 1) 0%,
-    rgba(231, 55, 39, 1) 69%,
-    rgba(231, 55, 39, 1) 100%
-  );
-  background: linear-gradient(
-    to right,
-    rgba(107, 35, 35, 1) 0%,
-    rgba(231, 55, 39, 1) 69%,
-    rgba(231, 55, 39, 1) 100%
-  );
-  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#6b2323', endColorstr='#e73727', GradientType=1);
-}
 
 </style>

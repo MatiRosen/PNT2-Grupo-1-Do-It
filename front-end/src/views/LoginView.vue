@@ -91,7 +91,12 @@ export default {
                     vue.agregarUsuario(
                         response.data.id,
                         response.data.nombre,
+                        response.data.apellido,
                         response.data.email,
+                        response.data.dni,
+                        response.data.genero,
+                        response.data.telefono,
+                        response.data.direccion,
                         response.data.tipo,
                         response.data.dinero
                     );
@@ -149,30 +154,6 @@ h2 {
     justify-items: center;
     justify-content: flex-end;
 }
-.tooltip {
-    position: relative;
-    display: inline-block;
-}
 
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: #000;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -60px;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
 
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-}
 </style>

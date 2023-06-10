@@ -69,39 +69,6 @@ const guardarInversion = (inversion) => {
 </script>
 
 <style scoped>
-img {
-    width: 30px;
-    height: 30px;
-}
-.columnas {
-    margin-bottom: 20px;
-}
-.titulosgrises {
-    font-weight: bold;
-    color: #6a6a6a;
-    font-size: 20px;
-}
-.subtituloRojo {
-    font-weight: bold;
-    color: #e20000;
-    font-size: 17px;
-}
-.descripcion {
-    display: inline-block;
-    color: #6a6a6a;
-    font-size: 15px;
-}
-.precio {
-    margin-left: 5px;
-    display: inline-block;
-    font-weight: bold;
-    color: #16bd3a;
-    font-size: 15px;
-}
-.card {
-    border-radius: 20px;
-    border-color: white;
-    border: 0;
-}
+
 </style>
 

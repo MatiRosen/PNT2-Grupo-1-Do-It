@@ -18,8 +18,14 @@
               <h2 class="titulosgrises">{{ idea.titulo }}</h2>
               <h3 class="subtituloRojo">{{ idea.categoria }}</h3>
               <h4 class="descripcion">Descripcion</h4>
-              <p>{{ limitarTexto(idea.descripcion, 110) }}</p>
+              <p>{{ limitarTexto(idea.descripcion, 110) }}</p>            
+            
             </div>
+          </div>
+          <div class="row justify-content-right mb-2">
+            <div class="col-md-2 offset-md-8">
+              <button class="btn btn-success" @click="invertirIdea(idea)">Invertir</button>
+            </div>      
           </div>
         </div>
       </div>
@@ -68,7 +74,7 @@
     </div>
     <div class="col-md-8 lista-col">
       <div class="row mt-2 mb-4" v-for="idea in ideas" :key="idea.id">
-        <div class="card shadow-lg">
+        <div class="card shadow-lg w-100">
           <div class="card-block position-relative">
             <div class="row my-2">
               <div class="col-md-3">
@@ -79,10 +85,14 @@
                 <h2 class="titulosgrises">{{ idea.titulo }}</h2>
                 <h3 class="subtituloRojo">{{ idea.categoria }}</h3>
                 <h4 class="descripcion">Descripcion</h4>
-                <p>{{ limitarTexto(idea.descripcion, 250) }}</p>
-                <button class="btn btn-success" @click="invertirIdea(idea)">Invertir</button>
+                <p>{{ limitarTexto(idea.descripcion, 250) }}</p>              
               </div>
             </div>
+            <div class="row justify-content-right mb-2">
+            <div class="col-md-2 offset-md-10">
+              <button class="btn btn-success" @click="invertirIdea(idea)">Invertir</button>
+            </div>      
+          </div>
           </div>
         </div>
       </div>
@@ -226,7 +236,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+
 #filtro {
   width: 26rem;
 }
@@ -267,96 +278,13 @@ export default {
 .has-submenu ul.submenu {
   display: block;
 }
-.titulosgrises {
-  font-weight: bold;
-  color: #6a6a6a;
-  font-size: 20px;
-  margin-top: 20px;
-}
-.subtitulovioleta {
-  font-weight: bold;
-  color: #370a6d;
-  font-size: 17px;
-}
-.subtituloRojo {
-  font-weight: bold;
-  color: #e20000;
-  font-size: 17px;
-}
-.descripcion {
-  font-weight: normal;
-  color: #6a6a6a;
-  font-size: 15px;
-}
-.top-separation {
-  margin-top: 30px;
-}
-.p {
-  font-size: 12px;
-}
 .card {
-  border-radius: 20px;
-  border-color: white;
-  width: fit-content;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  border-color: red;
   border: 0;
-}
-
-.card-body {
-  padding: 0;
-  margin: 0;
-}
-
-.card-text {
-  padding: 10px;
-  margin: 5px 5px;
-}
-
-.card-title {
-  padding: 0;
-  margin: 0;
-}
-
-.color-gradiente {
-  color: white;
-  padding: 15px;
-  background: rgba(107, 35, 35, 1);
-  background: -moz-linear-gradient(
-    left,
-    rgba(107, 35, 35, 1) 0%,
-    rgba(231, 55, 39, 1) 69%,
-    rgba(231, 55, 39, 1) 100%
-  );
-  background: -webkit-gradient(
-    left top,
-    right top,
-    color-stop(0%, rgba(107, 35, 35, 1)),
-    color-stop(69%, rgba(231, 55, 39, 1)),
-    color-stop(100%, rgba(231, 55, 39, 1))
-  );
-  background: -webkit-linear-gradient(
-    left,
-    rgba(107, 35, 35, 1) 0%,
-    rgba(231, 55, 39, 1) 69%,
-    rgba(231, 55, 39, 1) 100%
-  );
-  background: -o-linear-gradient(
-    left,
-    rgba(107, 35, 35, 1) 0%,
-    rgba(231, 55, 39, 1) 69%,
-    rgba(231, 55, 39, 1) 100%
-  );
-  background: -ms-linear-gradient(
-    left,
-    rgba(107, 35, 35, 1) 0%,
-    rgba(231, 55, 39, 1) 69%,
-    rgba(231, 55, 39, 1) 100%
-  );
-  background: linear-gradient(
-    to right,
-    rgba(107, 35, 35, 1) 0%,
-    rgba(231, 55, 39, 1) 69%,
-    rgba(231, 55, 39, 1) 100%
-  );
-  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#6b2323', endColorstr='#e73727', GradientType=1);
+  width: fit-content;
+  border-radius: 20px;
 }
 </style>

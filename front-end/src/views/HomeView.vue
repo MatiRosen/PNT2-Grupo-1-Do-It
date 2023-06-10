@@ -16,7 +16,7 @@
 
 <script></script>
 
-<style>
+<style scoped>
 #index {
   background: url("../assets/index.png");
   width: 100%;

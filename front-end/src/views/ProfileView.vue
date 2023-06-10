@@ -1,47 +1,92 @@
 <template>
-
-
-    <div class="ideas"></div>
-
-    
-    
-<section id="ideas">
+  <section id="perfil">
     <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          
-        </div>
-      </div>
-      <div class="col-md-8 ">
-        <div class="row my-1 " >
-          <div class="card shadow-lg">
-              <div class="card-block position-relative">
+      <div class="row top-separation perfilcard">  
+        <div class="card shadow-lg mb-4">
+          <div class="card-body position-relative">
+            <div class="row">
+              <div class="col-md-4 text-center">
+                <img
+                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                  alt="avatar"
+                  class="rounded-circle img-fluid"
+                  style="width: 350px"
+                />           
+                <h4 class="mt-3">{{ user.tipo }}</h4>     
+              </div>
+              <div class="col-md-8">
+                <div class="row mt-4">
+                  <div class="col-md-5">
+                    <p class="mb-0">Full Name</p>
+                  </div>
+                  <div class="col-md-7">
+                    <p class="text-muted mb-0">{{ user.nombre +" "+ user.apellido }}</p>
+                  </div>
+                </div>
+                <hr />
+                <div class="row mt-4">
+                  <div class="col-md-5">
+                    <p class="mb-0">Email</p>
+                  </div>
+                  <div class="col-md-7">
+                    <p class="text-muted mb-0">{{ user.email }}</p>
+                  </div>
+                </div>
+                <hr />
+                <div class="row mt-4">
+                  <div class="col-md-5">
+                    <p class="mb-0">Phone</p>
+                  </div>
+                  <div class="col-md-7">
+                    <p class="text-muted mb-0">{{ user.telefono }}</p>
+                  </div>
+                </div>
+                <hr />
+                <div class="row mt-4">
+                  <div class="col-md-5">
+                    <p class="mb-0">Genero</p>
+                  </div>
+                  <div class="col-md-7">
+                    <p class="text-muted mb-0">{{ user.genero }}</p>
+                  </div>
+                </div>
+                <hr />
                 <div class="row">
-                  <div class="col-md-12 ">
-                      <h2>
-                        datos
-                      </h2>
-                      <div v-if="estaLogueado">
-                        <h1>{{ user.nombre }}</h1>
-                        <h1>{{ user.email }}</h1>
-                        <h1>{{ user.tipo }}</h1>
-                        <h1>{{ user.id }}</h1>
-                        <h1>{{ user.nombre }}</h1>
-                        <div v-if="esInversor">
-                            <RouterLink to="/billetera"
-                            ><button>Agregar dinero</button></RouterLink>
-                            <RouterLink to="/inversor/inversiones">Inversiones</RouterLink>
-                        </div>
+                  <div class="col-md-5">
+                    <p class="mb-0">Direccion</p>
+                  </div>
+                  <div class="col-md-7">
+                    <p class="text-muted mb-0">{{ user.direccion }}</p>
+                  </div>
+                </div>
+                <div v-if="esInversor">
+                  <div class="row mt-2 justify-content-right">
+                    <div class="col-md-5 pr-0">
+                      <RouterLink to="/billetera"
+                        ><button class="btn btn-success">
+                          Agregar dinero
+                        </button></RouterLink
+                      >
+                    </div>
+                    <div class="col-md-4 pl-0">
+                      <RouterLink to="/inversor/inversiones"
+                        ><button class="btn btn-danger">
+                          Inversiones
+                        </button></RouterLink
+                      >
                     </div>
                   </div>
                 </div>
+                <div v-else>
+                  <div class="row m-2"></div>
+                </div>
               </div>
             </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
-
 </template>
 
 <script setup>
@@ -54,108 +99,13 @@ const { user } = storeToRefs(storeUser);
 let { estaLogueado, esInversor } = storeToRefs(storeUser);
 </script>
 
-
 <style scoped>
-
- .ideas{
-  background: url("../assets/fondo-contacto.png");
-  background-position: center;
-  position: absolute;
-  top: 0;
-  background-size: cover;
-  width: 100%;
-  height: 100%;
+.container {
+    height: 50vh;
+    display: flex;
+    width: fit-content;
+    flex-direction: column;
+    justify-items: center;
+    justify-content: flex-end;
 }
-
-.titulosgrises {
-  font-weight: bold;
-  color: #6a6a6a;
-  font-size: 20px;
-}
-.subtitulovioleta {
-  font-weight: bold;
-  color: #370a6d;
-  font-size: 17px;
-}
-.subtituloRojo {
-  font-weight: bold;
-  color: #e20000;
-  font-size: 17px;
-}
-.descripcion {
-  font-weight: normal;
-  color: #6a6a6a;
-  font-size: 15px;
-}
-.p {
-  font-size: 12px;
-}
-
-
-.card {
-  border-radius: 20px;
-  border-color: white;
-  width: fit-content;
-  border: 0;
-}
-
-.card-body {
-  padding: 0;
-  margin: 0;
-}
-
-.card-text {
-  padding: 10px;
-  margin: 5px 5px;
-}
-
-.card-title {
-  padding: 0;
-  margin: 0;
-}
-
-.color-gradiente {
-  color: white;
-  padding: 15px;
-  background: rgba(107, 35, 35, 1);
-  background: -moz-linear-gradient(
-    left,
-    rgba(107, 35, 35, 1) 0%,
-    rgba(231, 55, 39, 1) 69%,
-    rgba(231, 55, 39, 1) 100%
-  );
-  background: -webkit-gradient(
-    left top,
-    right top,
-    color-stop(0%, rgba(107, 35, 35, 1)),
-    color-stop(69%, rgba(231, 55, 39, 1)),
-    color-stop(100%, rgba(231, 55, 39, 1))
-  );
-  background: -webkit-linear-gradient(
-    left,
-    rgba(107, 35, 35, 1) 0%,
-    rgba(231, 55, 39, 1) 69%,
-    rgba(231, 55, 39, 1) 100%
-  );
-  background: -o-linear-gradient(
-    left,
-    rgba(107, 35, 35, 1) 0%,
-    rgba(231, 55, 39, 1) 69%,
-    rgba(231, 55, 39, 1) 100%
-  );
-  background: -ms-linear-gradient(
-    left,
-    rgba(107, 35, 35, 1) 0%,
-    rgba(231, 55, 39, 1) 69%,
-    rgba(231, 55, 39, 1) 100%
-  );
-  background: linear-gradient(
-    to right,
-    rgba(107, 35, 35, 1) 0%,
-    rgba(231, 55, 39, 1) 69%,
-    rgba(231, 55, 39, 1) 100%
-  );
-  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#6b2323', endColorstr='#e73727', GradientType=1);
-}
-
 </style>
