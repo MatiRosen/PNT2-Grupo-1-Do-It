@@ -3,9 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="card shadow-lg">
-                    <div
-                        v-if="!estaLogueado"
-                        class="card-block position-relative">
+                    <div class="card-block position-relative">
                         <div class="row text-center">
                             <h2>Iniciar sesión</h2>
                         </div>
@@ -41,11 +39,6 @@
                                     </div>
                                 </form>
                             </div>
-                        </div>
-                    </div>
-                    <div v-else class="card-block position-relative">
-                        <div class="row text-center">
-                            <h2>{{ user.nombre }}</h2>
                         </div>
                     </div>
                 </div>
@@ -148,6 +141,4 @@ h2 {
     justify-items: center;
     justify-content: flex-end;
 }
-
-
 </style>

@@ -120,7 +120,6 @@
                                                 name="Tipo"
                                                 id="creador"
                                                 value="Creador"
-                                                checked
                                                 required />
                                             <label
                                                 class="form-check-label"
@@ -239,13 +238,7 @@ h2 {
     background-color: #e20000;
     border-color: #e20000;
 }
-#Registrar {
-    background: url("../assets/fondo-contacto.png");
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    background-size: 100% 100%;
-}
+
 .card {
     border-radius: 20px;
     border-color: white;
@@ -260,7 +253,7 @@ h2 {
     margin: 0;
 }
 .container {
-    height: 85vh;
+    height: 110vh;
     display: flex;
     width: fit-content;
     flex-direction: column;

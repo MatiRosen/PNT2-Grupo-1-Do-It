@@ -21,9 +21,13 @@ class Servicio {
             const usuarioGuardado = await this.model.guardarUsuario(usuario);
             return {
                 id: usuarioGuardado.id,
-                dni: usuarioGuardado.dni,
                 nombre: usuarioGuardado.nombre,
+                apellido: usuarioGuardado.apellido,
                 email: usuarioGuardado.email,
+                dni: usuarioGuardado.dni,
+                genero: usuarioGuardado.genero,
+                telefono: usuarioGuardado.telefono,
+                direccion: usuarioGuardado.direccion,
                 tipo: usuarioGuardado.tipo,
                 dinero: usuarioGuardado.dinero,
             };
@@ -41,13 +45,16 @@ class Servicio {
             }
             const usuarioAux = await this.model.obtenerUsuarios(usuario.email);
 
-            if (
-                usuario.contraseña == usuarioAux.contraseña
-            ) {
+            if (usuario.contraseña == usuarioAux.contraseña) {
                 return {
                     id: usuarioAux.id,
                     nombre: usuarioAux.nombre,
+                    apellido: usuarioAux.apellido,
                     email: usuarioAux.email,
+                    dni: usuarioAux.dni,
+                    genero: usuarioAux.genero,
+                    telefono: usuarioAux.telefono,
+                    direccion: usuarioAux.direccion,
                     tipo: usuarioAux.tipo,
                     dinero: usuarioAux.dinero,
                 };
@@ -61,9 +68,7 @@ class Servicio {
 
     actualizarDinero = async (id, usuario) => {
         if (!usuario.dinero)
-            throw new InvalidCredentialsError(
-                "Debe ingresar el dinero."
-            );
+            throw new InvalidCredentialsError("Debe ingresar el dinero.");
 
         for (let atributo in usuario) {
             if (atributo != "dinero") {
@@ -72,7 +77,7 @@ class Servicio {
                 );
             }
         }
-        
+
         try {
             const usuarioActualizado = await this.model.actualizarUsuario(
                 id,
@@ -103,7 +108,7 @@ class Servicio {
     obtenerCreadores = async (idCreador) => {
         try {
             const usuarios = await this.model.obtenerCreadores(idCreador);
-            
+
             return usuarios;
         } catch (error) {
             throw error;
