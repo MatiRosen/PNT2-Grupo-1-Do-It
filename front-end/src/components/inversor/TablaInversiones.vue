@@ -1,23 +1,32 @@
 <template>
   <div class="container">
+    <form @submit.prevent="buscar(busqueda)" name="form">
+      <div class="row top-separation justify-content-center">
+        <div class="col-md-5 offset-md-1">
+          <input
+            v-model="busqueda"
+            type="text"
+            name="query" 
+            placeholder="Ingresa tu búsqueda"
+          />
+        </div>
+        <div class="col-md-1 buscar">
+          <input type="submit" value="Buscar" />
+        </div>
+      </div>
+    </form>
     <div class="row top-separation">
       <div class="col-md-12 text-center">
         <h2>Ideas mas vistas</h2>
       </div>
     </div>
-    <div> 
-      <form @submit.prevent="buscar(busqueda)" name="form">
-        <input v-model="busqueda" type="text" name="query" placeholder="Ingresa tu búsqueda">
-        <input type="submit" value="Buscar">
-  </form>
-</div>
     <div class="row">
       <div class="col-md-4" v-for="idea in ideasTop" :key="idea.id">
         <div class="card shadow-lg topIdeas">
           <div class="card-block position-relative">
-            <div class="row p-4">            
+            <div class="row p-4">
               <div class="col-md-11">
-                <img class="img-fluid" :src="getImageUrl(idea.imagen)" />   
+                <img class="img-fluid" :src="getImageUrl(idea.imagen)" />
                 <h2 class="titulosgrises">{{ idea.titulo }}</h2>
                 <h3 class="subtituloRojo">{{ idea.categoria }}</h3>
                 <h4 class="descripcion">Descripcion</h4>
@@ -39,7 +48,7 @@
       <div class="col-md-4">
         <div class="card shadow-lg filtro w-100">
           <div class="card-block position-relative">
-            <div class="row ">
+            <div class="row">
               <div class="col-md-12 text-center mt-4">
                 <h2>Filtros</h2>
                 <ul class="menu">
@@ -81,8 +90,11 @@
           <div class="card shadow-lg">
             <div class="card-block position-relative">
               <div class="row px-4 pt-4">
-                <div class="col-md-5">                 
-                  <img class="img-fluid justify-content-center" :src="getImageUrl(idea.imagen)" />  
+                <div class="col-md-5">
+                  <img
+                    class="img-fluid justify-content-center"
+                    :src="getImageUrl(idea.imagen)"
+                  />
                 </div>
                 <div class="col-md-7">
                   <h2 class="titulosgrises">{{ idea.titulo }}</h2>
@@ -135,10 +147,10 @@ export default {
       };
     },
   },
-  methods:{
+  methods: {
     getImageUrl(imageName) {
       return `http://localhost:8080/images/${imageName}`;
-    }
+    },
   },
   setup() {
     const router = useRouter();
@@ -159,7 +171,9 @@ export default {
     const busqueda = ref("");
 
     const buscar = async (busqueda) => {
-      ideas.value = (await ideaService.obtenerIdeasPorCampo("titulo",busqueda)).data;
+      ideas.value = (
+        await ideaService.obtenerIdeasPorCampo("titulo", busqueda)
+      ).data;
     };
 
     onMounted(getIdeas);
@@ -222,7 +236,7 @@ export default {
     ]);
 
     const toggleSubmenu = (campo) => {
-        campo.showSubmenu = !campo.showSubmenu;      
+      campo.showSubmenu = !campo.showSubmenu;
     };
     const processIdeas = () => {
       ideas.value.forEach((item) => {
@@ -264,6 +278,9 @@ export default {
 </script>
 
 <style scoped>
+.buscar{
+  margin-top: 3px;
+}
 #filtro {
   width: 26rem;
 }
@@ -272,12 +289,11 @@ export default {
   padding-right: 24px;
 }
 .topIdeas {
-  height: fit-content;  
+  height: fit-content;
 }
-img { 
+img {
   max-width: 380px;
   max-height: 220px;
-
 }
 .filtro-seleccionado {
   font-weight: bold;
@@ -305,7 +321,6 @@ input[type="submit"] {
 input[type="submit"]:hover {
   background-color: #45a049;
 }
-
 
 .quitar-filtro {
   cursor: pointer;
@@ -338,7 +353,7 @@ input[type="submit"]:hover {
   margin-top: 40px;
   border: 0;
   border-radius: 20px;
-  align-items:normal;
+  align-items: normal;
   min-height: 310px;
   justify-content: flex-start;
 }

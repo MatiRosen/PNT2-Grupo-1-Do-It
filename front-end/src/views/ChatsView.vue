@@ -1,40 +1,39 @@
 <template>
-    <section id="Loguear">
+  <section id="Loguear">
     <div class="container">
-      <div class="row">
+      <div class="row top-separation">
         <div class="col-md-12">
           <h2>Chats</h2>
         </div>
       </div>
-      <div class="row top-separation" v-for="c in chatsDelUsuario" :key="c.id">
-        
-        
-          <RouterLink :to="{name: 'chat', params: {id: c.id}}" class="card shadow-lg">
-           
-              <div class="card-block position-relative">
-                <div class="row">
-                  <div class="col offset-md-1">
-                      <h2 class="titulosgrises">chat con {{ c.otherUser }}</h2>
-
-                      <h2>
-                        <div v-if="c.ultimoMensaje.emisor == user.email" class="subtituloRojo">
-                          {{ c.ultimoMensaje.contenido }}
-                        </div>
-                        <div v-else class="subtitulovioleta">
-                          {{ c.ultimoMensaje.contenido }}
-                        </div>
-                      </h2>
+      <div class="row" v-for="c in chatsDelUsuario" :key="c.id">
+        <div class="card shadow-lg">
+          <div class="card-block position-relative">
+            <div class="row">
+              <div class="col-md-12">
+                <RouterLink :to="{ name: 'chat', params: { id: c.id } }"
+                  ><h2 class="titulosgrises">
+                    Conversar con {{ c.otherUser }}
+                  </h2></RouterLink
+                >
+                <h2>
+                  <div
+                    v-if="c.ultimoMensaje.emisor == user.email"
+                    class="subtituloRojo"
+                  >
+                    {{ c.ultimoMensaje.contenido }}
                   </div>
-                </div>
+                  <div v-else class="subtitulovioleta">
+                    {{ c.ultimoMensaje.contenido }}
+                  </div>
+                </h2>
               </div>
-            
-          </RouterLink>
-        
-        
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
-
 </template>
 
 <script setup>
@@ -47,28 +46,34 @@ import service from "../services/userService.js";
 const storeUser = useUserStore();
 const { user } = storeToRefs(storeUser);
 
-const chatStore = useChatStore()
+const chatStore = useChatStore();
 
-const chatsDelUsuario = ref('')
+const chatsDelUsuario = ref("");
 
-chatStore.getChatsDelUsuario(user.value.id).then(c => {
-  chatsDelUsuario.value = c.data
+chatStore.getChatsDelUsuario(user.value.id).then((c) => {
+  chatsDelUsuario.value = c.data;
 
-  chatsDelUsuario.value.forEach(c => {
-    (service.obtenerUsuario(c.participantes.find(p => p != user.value.id))).then(x => {
-     c.otherUser = x.data.nombre
-    })
-  })
-})
-
+  chatsDelUsuario.value.forEach((c) => {
+    service
+      .obtenerUsuario(c.participantes.find((p) => p != user.value.id))
+      .then((x) => {
+        c.otherUser = x.data.nombre;
+      });
+  });
+});
 </script>
 
 <style scoped>
-@import '../assets/estilos.css';
+@import "../assets/estilos.css";
+.a{
+  text-decoration: transparent;
+}
 .titulosgrises {
   font-weight: bold;
   color: #6a6a6a;
   font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 .subtitulovioleta {
   font-weight: bold;
@@ -89,12 +94,12 @@ chatStore.getChatsDelUsuario(user.value.id).then(c => {
   font-size: 12px;
 }
 
-
 .card {
   border-radius: 20px;
   border-color: white;
-  width: 100%;
+  width: fit-content;
   border: 0;
+  margin-top: 20px;
 }
 
 .card-body {
@@ -111,6 +116,4 @@ chatStore.getChatsDelUsuario(user.value.id).then(c => {
   padding: 0;
   margin: 0;
 }
-
-
 </style>

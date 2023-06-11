@@ -1,40 +1,52 @@
-<template>    
-<section id="Loguear">
+<template>
+  <section id="Loguear">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h2 v-for="p in chat.participantes"><span v-if="p != user.id">Chat con {{ chat.otherUser }} </span></h2>
+          <h2 v-for="p in chat.participantes">
+            <span v-if="p != user.id">Chat con {{ chat.otherUser }} </span>
+          </h2>
         </div>
       </div>
-      <div class="col-md-8 ">
-        <div class="row my-1 " v-for="m in chat.mensajes">
+      <div class="col-md-8">
+        <div class="row my-1" v-for="m in chat.mensajes">
           <div class="card shadow-lg">
-              <div class="card-block position-relative">
-                <div class="row">
-                  <div class="col-md-12 ">
-                      <h2>
-                        <div v-if="m.emisor == user.id" class="subtituloRojo">
-                          {{ m.contenido }}
-                        </div>
-                        <div v-else class="subtitulovioleta">
-                          {{ m.contenido }}
-                        </div>
-                      </h2>
-                  </div>
+            <div class="card-block position-relative">
+              <div class="row">
+                <div class="col-md-12">
+                  <h2>
+                    <div v-if="m.emisor == user.id" class="subtituloRojo">
+                      {{ m.contenido }}
+                    </div>
+                    <div v-else class="subtitulovioleta">
+                      {{ m.contenido }}
+                    </div>
+                  </h2>
                 </div>
               </div>
             </div>
+          </div>
         </div>
-        <form @submit.prevent="mandarMensaje(contenido,chat.id)">
-            <input type="text" v-model="contenido">
-            <button type="submit">mandar mensaje</button>
-        </form>
+        <div class="row"></div>
+        <form @submit.prevent="mandarMensaje(contenido, chat.id)">
+          <div class="row top-separation">
+            <div class="col-md-5 mt-2">
+              <input
+                class="form-control shadow"
+                type="text"
+                v-model="contenido"
+              />
+            </div>
+            <div class="col-md-5">
+              <button class="btn btn-secondary" type="submit">
+                mandar mensaje
+              </button>
+            </div>
+          </div>
+        </form>       
       </div>
     </div>
   </section>
-
-
-
 </template>
 
 <script setup>
@@ -52,35 +64,34 @@ const chatId = route.params.id;
 
 const chatStore = useChatStore();
 
+const chat = ref("");
 
-const chat = ref('')
+chatStore.getChat(chatId).then((c) => {
+  chat.value = c.data;
 
-chatStore.getChat(chatId).then(c => {
-  chat.value = c.data
+  service
+    .obtenerUsuario(chat.value.participantes.find((p) => p != user.id))
+    .then((x) => {
+      chat.value.otherUser = x.data.nombre;
+    });
+});
 
-  service.obtenerUsuario(chat.value.participantes.find(p => p != user.id)).then(x =>{    
-    chat.value.otherUser = x.data.nombre
-  })
-})
+let contenido = ref("");
 
-let contenido = ref('')
-
-const mandarMensaje = (contenido, chatId) =>{
-  let mensajeMandar = { emisor: user.id, contenido}
-  console.log(mensajeMandar)
-  chatStore.mandarMensaje(chatId, mensajeMandar).then(x =>{
-    chatStore.getChat(chatId).then(c => {
-      chat.value = c.data
-    })
-  })
-}
-
-
+const mandarMensaje = (contenido, chatId) => {
+  let mensajeMandar = { emisor: user.id, contenido };
+  console.log(mensajeMandar);
+  chatStore.mandarMensaje(chatId, mensajeMandar).then((x) => {
+    chatStore.getChat(chatId).then((c) => {
+      chat.value = c.data;
+    });
+  });
+};
 </script>
 
 <style scoped>
-@import '../assets/estilos.css';
- .ideas{
+@import "../assets/estilos.css";
+.ideas {
   background: url("../assets/fondo-contacto.png");
   background-position: center;
   position: absolute;
@@ -114,7 +125,6 @@ const mandarMensaje = (contenido, chatId) =>{
   font-size: 12px;
 }
 
-
 .card {
   border-radius: 20px;
   border-color: white;
@@ -136,6 +146,4 @@ const mandarMensaje = (contenido, chatId) =>{
   padding: 0;
   margin: 0;
 }
-
-
 </style>
