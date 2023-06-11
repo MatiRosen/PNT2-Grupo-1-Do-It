@@ -86,4 +86,7 @@ img {
 .lupa {
   align-items: self-start;
 }
+.container{
+    min-height: 81vh;
+}
 </style>
