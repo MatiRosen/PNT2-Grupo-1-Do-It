@@ -9,7 +9,7 @@
                     <div class="card shadow-lg">
                         <div>
                             <div>
-                                <RouterLink to="/inversion/${inversion.id}" @click="guardarInversion(inversion)"><img src="../../assets/lupa.png"></RouterLink>
+                                <button @click="guardarInversion(inversion)"><img src="../../assets/lupa.png"></button>
                                 <div class="col-md-7 offset-md-1">
                                     <h2 class="titulosgrises">
                                         {{ inversion.titulo }}
@@ -34,12 +34,15 @@ import { ref, onMounted } from "vue";
 import { useUserStore } from "../../stores/user";
 import inversionService from "../../services/inversionService";
 import ideaService from "../../services/ideaService";
-import { RouterLink } from "vue-router";
 import { useInversionesStore } from "../../stores/inversor/inversiones";
+import { useRouter } from "vue-router";
+import { useIdeasStore } from "../../stores/creador/ideas";
 
+const router = useRouter();
 const inversiones = ref([]);
 const { user } = useUserStore();
 const { setInversion } = useInversionesStore();
+const { setIdea } = useIdeasStore();
 
 const getInversiones = async () => {
     const inversionesUsuario = (await inversionService.obtenerInversionesPorCampo("idInversor", user.id)).data;
@@ -60,10 +63,15 @@ const getInversiones = async () => {
     }
 };
 
+
 onMounted(getInversiones);
 
-const guardarInversion = (inversion) => {
-    setInversion(inversion);
+const guardarInversion = async (inversion) => {
+    const idea = await ideaService.obtenerIdeasPorCampo("id", inversion.id);
+    const inversionAux = await inversionService.obtenerInversion(inversion.id, user.id);
+    setInversion(inversionAux.data);
+    setIdea(idea.data[0]);
+    router.push(`/invertirIdea/${inversion.id}`);
 };
 
 </script>

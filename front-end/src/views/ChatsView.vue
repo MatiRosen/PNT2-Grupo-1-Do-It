@@ -14,11 +14,11 @@
             <div class="card shadow-lg">
               <div class="card-block position-relative">
                 <div class="row">
-                  <div class="col-md-2">
+                  <div class="col-md-2">  
                     <img class="img-fluid" src="../assets/ideas.jpg" />
                   </div>
                   <div class="col-md-7 offset-md-1">
-                      <h2 class="titulosgrises">chat con {{ c.otherUser.nombre }}</h2>
+                      <h2 class="titulosgrises">chat con {{ c.otherUser }}</h2>
 
                       <h2>
                         <div v-if="c.ultimoMensaje.emisor == user.email" class="subtituloRojo">
@@ -44,20 +44,26 @@
 import { storeToRefs } from "pinia";
 import { useUserStore } from "../stores/user";
 import { useChatStore } from "../stores/chat";
-import { ref, onMounted } from "vue";
-import service from "../services/userService";
+import { ref, onMounted, reactive } from "vue";
+import service from "../services/userService.js";
 
 const storeUser = useUserStore();
 const { user } = storeToRefs(storeUser);
 
 const chatStore = useChatStore()
 
-const chatsDelUsuario = ref(chatStore.getChats(user.value.id))
+const chatsDelUsuario = ref('')
 
-const buscarUsuario = async c =>{
-  c.otherUser = (await service.obtenerUsuario(c.participantes.find(p => p != user.value.id))).data
-}
-chatsDelUsuario.value.forEach(buscarUsuario)
+chatStore.getChatsDelUsuario(user.value.id).then(c => {
+  chatsDelUsuario.value = c.data
+
+  chatsDelUsuario.value.forEach(c => {
+    (service.obtenerUsuario(c.participantes.find(p => p != user.value.id))).then(x => {
+     c.otherUser = x.data.nombre
+    })
+  })
+})
+
 </script>
 
 <style scoped>

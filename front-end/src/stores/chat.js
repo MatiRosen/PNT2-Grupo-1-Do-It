@@ -1,30 +1,24 @@
 import { defineStore } from "pinia";
+import chatService from "../services/chatService.js";
 
 export const useChatStore = defineStore('chat',{
     state: () => ({
-        chats: [
-            { id: 0,
-            participantes: [3,2],
-            mensajes: [ {emisor: 2, contenido: 'hola'},
-            {emisor: 3, contenido: 'chau'}],
-            ultimoMensaje: {emisor: 3, contenido: 'chau'}, }
-        ]
+        chats: []
     }),
     actions: {
-        mandarMensaje(id, mensaje){
-            let chatAgregar = this.chats.find(c => c.id == id)
-            chatAgregar.mensajes.push(mensaje)
-            chatAgregar.ultimoMensaje = mensaje
+        async mandarMensaje(id, mensaje){
+            await chatService.mandarMensaje(id, mensaje)
         },
-        getChat(chatId) {
-            return this.chats.find(c => c.id == chatId)
+        async getChat(chatId) {
+            return await chatService.obtenerChat(chatId)
         },
-        getChats(userId) {
-            return this.chats.filter(c => c.participantes.includes(userId))
+        async getChatsDelUsuario(userId) {
+            let c = chatService.obtenerChats(userId)
+            this.chats = c
+            return this.chats
         }
     },
     getters: {
-        
         
     }
 })

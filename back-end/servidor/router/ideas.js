@@ -25,7 +25,8 @@ class RouterIdeas {
         this.router.get("/obtenerTop", this.controlador.obtenerTop);
         this.router.post("/", upload.single('imagen'), this.controlador.agregarIdea);        
         this.router.delete("/:id", this.controlador.eliminarIdea);
-        this.router.put("/idea/:id", upload.single('imagen'), this.actualizarIdeaMiddleware, this.controlador.actualizarIdea);
+        this.router.put("/idea/imagen/:id", upload.single('imagen'), this.actualizarIdeaMiddleware, this.controlador.actualizarImagenIdea);
+        this.router.put("/idea/:id", this.controlador.actualizarIdea);
 
         return this.router;
     }

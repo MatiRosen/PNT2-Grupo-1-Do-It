@@ -95,12 +95,14 @@ const router = createRouter({
                 if (useUserStore().estaLogueado) {
                     let chatId = to.params.id;
                     let userId = useUserStore().user.id;
-                    let chat = useChatStore().getChat(chatId);
-                    if (chat.participantes.includes(userId)) {
-                        next();
-                    } else {
-                        next({ name: "chats" });
-                    }
+                    
+                    useChatStore().getChat(chatId).then(c =>{                   
+                        if (c.data.participantes.includes(userId)) {
+                            next();
+                        } else {
+                            next({ name: "chats" });
+                        }
+                    });
                 } else {
                     next({ name: "home" });
                 }
@@ -142,15 +144,23 @@ const router = createRouter({
                 }
             }
         },
-        { // Cualquier otra ruta que no sea ninguna de las anteriores, redirige a la home
-            path: "/:pathMatch(.*)*",
-            redirect: { name: "home" },
-        },
         {
             path: "/inversor/inversiones",
             name: "inversiones",
             component: () => import("../views/inversor/Inversiones.vue"),
+            beforeEnter: (to, from, next) => {
+                if (useUserStore().esInversor) {
+                    next();
+                } else {
+                    next({ name: "home" });
+                }
+            }
         },
+        { // Cualquier otra ruta que no sea ninguna de las anteriores, redirige a la home
+            path: "/:pathMatch(.*)*",
+            redirect: { name: "home" },
+        },
+        
     ],
 });
 

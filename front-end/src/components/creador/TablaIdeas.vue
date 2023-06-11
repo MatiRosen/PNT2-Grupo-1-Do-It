@@ -39,22 +39,24 @@ export default {
                     v-for="idea in ideas"
                     :key="idea.id">
                     <div class="card shadow-lg">
-                        <div>
+                        <div class="card-block position-relative">
                             <div>
-                                <RouterLink
-                                    to="/idea/${idea.id}"
-                                    @click="guardarIdea(idea)"
-                                    ><img src="../../assets/lupa.png"
-                                /></RouterLink>
-                                <div class="col-md-7 offset-md-1">
-                                    <h2 class="titulosgrises">
-                                        {{ idea.titulo }}
-                                    </h2>
-                                    <h3 class="subtituloRojo">
-                                        {{ idea.categoria }}
-                                    </h3>
-                                    <h4 class="descripcion">Precio:</h4>
-                                    <p class="precio">${{ idea.precio }}</p>
+                                <div>
+                                    <RouterLink
+                                        to="/idea/${idea.id}"
+                                        @click="guardarIdea(idea)"
+                                        ><img src="../../assets/lupa.png"
+                                    /></RouterLink>
+                                    <div class="col-md-7 offset-md-1">
+                                        <h2 class="titulosgrises">
+                                            {{ idea.titulo }}
+                                        </h2>
+                                        <h3 class="subtituloRojo">
+                                            {{ idea.categoria }}
+                                        </h3>
+                                        <h4 class="descripcion">Precio:</h4>
+                                        <p class="precio">${{ idea.precio }}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>

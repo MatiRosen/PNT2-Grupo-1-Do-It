@@ -1,82 +1,15 @@
 <template>
   <div class="container">
-  <div class="row top-separation">
-    <div class="col-md-12 text-center">
-      <h4>Ideas mas vistas</h4>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-4" v-for="idea in ideasTop" :key="idea.id">
-      <div class="card shadow-lg topIdeas">
-        <div class="card-block position-relative">
-          <div class="row">
-            <div class="col-md-3">
-              <!-- <img class="img-fluid" :src="idea.imagen" /> -->
-              <img class="img-fluid" src="../../assets/ideas.jpg" />
-            </div>
-            <div class="col-md-7 offset-md-1">
-              <h2 class="titulosgrises">{{ idea.titulo }}</h2>
-              <h3 class="subtituloRojo">{{ idea.categoria }}</h3>
-              <h4 class="descripcion">Descripcion</h4>
-              <p>{{ limitarTexto(idea.descripcion, 110) }}</p>            
-            
-            </div>
-          </div>
-          <div class="row justify-content-right mb-2">
-            <div class="col-md-2 offset-md-8">
-              <button class="btn btn-success" @click="invertirIdea(idea)">Invertir</button>
-            </div>      
-          </div>
-        </div>
+    <div class="row top-separation">
+      <div class="col-md-12 text-center">
+        <h4>Ideas mas vistas</h4>
       </div>
     </div>
-  </div>
-  <div class="row top-separation">
-    <div class="col-md-4 my-2">
-      <div class="card shadow-lg w-100 h-50">
-        <div class="card-block position-relative">
-          <div class="row">
-            <div class="col-md-8 text-center mt-4">
-              <h2>Filtros</h2>
-              <ul class="menu">
-                <li
-                  class="has-submenu"
-                  v-for="campo in campos"
-                  :key="campo.campo"
-                  @click="toggleSubmenu(campo)"
-                >
-                  {{ campo.campo }}
-                  <ul class="submenu" v-show="campo.showSubmenu">
-                    <li
-                      v-for="valor in campo.opciones"
-                      :key="valor.id"
-                      @click="filtrarIdeas(campo, valor)"
-                    >
-                      <span
-                        v-if="categoriaSeleccionada === valor.valores"
-                        class="filtro-seleccionado"
-                        >{{ valor.valores }}
-                        <span
-                          class="quitar-filtro"
-                          @click="filtrarIdeas(campo, valor)"
-                          >x</span
-                        ></span
-                      >
-                      <span v-else>{{ valor.valores }}</span>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-8 lista-col">
-      <div class="row mt-2 mb-4" v-for="idea in ideas" :key="idea.id">
-        <div class="card shadow-lg w-100">
+    <div class="row">
+      <div class="col-md-4" v-for="idea in ideasTop" :key="idea.id">
+        <div class="card shadow-lg topIdeas">
           <div class="card-block position-relative">
-            <div class="row my-2">
+            <div class="row">
               <div class="col-md-3">
                 <!-- <img class="img-fluid" :src="idea.imagen" /> -->
                 <img class="img-fluid" src="../../assets/ideas.jpg" />
@@ -85,20 +18,92 @@
                 <h2 class="titulosgrises">{{ idea.titulo }}</h2>
                 <h3 class="subtituloRojo">{{ idea.categoria }}</h3>
                 <h4 class="descripcion">Descripcion</h4>
-                <p>{{ limitarTexto(idea.descripcion, 250) }}</p>              
+                <p>{{ limitarTexto(idea.descripcion, 110) }}</p>
               </div>
             </div>
             <div class="row justify-content-right mb-2">
-            <div class="col-md-2 offset-md-10">
-              <button class="btn btn-success" @click="invertirIdea(idea)">Invertir</button>
-            </div>      
+              <div class="col-md-2 offset-md-8">
+                <button class="btn btn-success" @click="invertirIdea(idea)">
+                  Invertir
+                </button>
+              </div>
+            </div>
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="row top-separation">
+      <div class="col-md-4 my-2">
+        <div class="card shadow-lg w-100 h-50">
+          <div class="card-block position-relative">
+            <div class="row">
+              <div class="col-md-8 text-center mt-4">
+                <h2>Filtros</h2>
+                <ul class="menu">
+                  <li
+                    class="has-submenu"
+                    v-for="campo in campos"
+                    :key="campo.campo"
+                    @click="toggleSubmenu(campo)"
+                  >
+                    {{ campo.campo }}
+                    <ul class="submenu" v-show="campo.showSubmenu">
+                      <li
+                        v-for="valor in campo.opciones"
+                        :key="valor.id"
+                        @click="filtrarIdeas(campo, valor)"
+                      >
+                        <span
+                          v-if="categoriaSeleccionada === valor.valores"
+                          class="filtro-seleccionado"
+                          >{{ valor.valores }}
+                          <span
+                            class="quitar-filtro"
+                            @click="filtrarIdeas(campo, valor)"
+                            >x</span
+                          ></span
+                        >
+                        <span v-else>{{ valor.valores }}</span>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8 lista-col">
+        <div class="row mt-2 mb-4" v-for="idea in ideas" :key="idea.id">
+          <div class="card shadow-lg">
+            <div class="card-block position-relative">
+              <div class="row my-2">
+                <div class="col-md-3">
+                  <!-- <img class="img-fluid" :src="idea.imagen" /> -->
+                  <img class="img-fluid" src="../../assets/ideas.jpg" />
+                </div>
+                <div class="col-md-7 offset-md-1">
+                  <h2 class="titulosgrises">{{ idea.titulo }}</h2>
+                  <h3 class="subtituloRojo">{{ idea.categoria }}</h3>
+                  <h4 class="descripcion">Descripcion</h4>
+                  <p>
+                    {{ limitarTexto(idea.descripcion, 250) }}
+                  </p>
+                </div>
+              </div>
+              <div class="row justify-content-right mb-2">
+                <div class="col-md-2 offset-md-8">
+                  <button class="btn btn-success" @click="invertirIdea(idea)">
+                    Invertir
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -147,11 +152,17 @@ export default {
     onMounted(getIdeas);
 
     const invertirIdea = async (idea) => {
-      setIdea(idea);
-      let inversion = (await inversionService.obtenerInversion(idea.id, user.id)).data;
-      if (inversion){
+      let inversion = (
+        await inversionService.obtenerInversion(idea.id, user.id)
+      ).data;
+      if (inversion) {
         setInversion(inversion);
-      } 
+      } else {
+        idea.vecesVisto = Number(idea.vecesVisto) + 1;
+        await ideaService.actualizarIdea(idea.id, idea);
+      }
+
+      setIdea(idea);
       router.push(`/invertirIdea/${idea.id}`);
     };
 
@@ -237,7 +248,6 @@ export default {
 </script>
 
 <style scoped>
-
 #filtro {
   width: 26rem;
 }

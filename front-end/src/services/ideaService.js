@@ -11,22 +11,25 @@ export default {
     },
     agregarIdea(formData) {
         return apiClient.post("/api/ideas", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
         });
     },
     eliminarIdea(id) {
         return apiClient.delete(`/api/ideas/${id}`);
     },
-    obtenerIdeasPorCampo(campo,valor){
+    obtenerIdeasPorCampo(campo, valor) {
         return apiClient.get(`/api/ideas/filtro/${campo}/${valor}`);
     },
-    actualizarIdea(formData, id) {
-        return apiClient.put(`/api/ideas/idea/` + id, formData, {
+    actualizarIdea(id, idea) {
+        return apiClient.put(`/api/ideas/idea/${id}`, idea);
+    },
+    actualizarImagenIdea(formData, id) {
+        return apiClient.put(`/api/ideas/idea/imagen/` + id, formData, {
             headers: {
                 "Content-Type": "multipart/form-data",
-            }
-        })
-    }
+            },
+        });
+    },
 };

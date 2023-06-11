@@ -23,7 +23,6 @@
 
 <script setup>
 import { useInversionesStore } from "../../stores/inversor/inversiones"
-import { useRouter } from "vue-router";
 import usuarioService from "../../services/userService";
 import { ref, onMounted } from "vue";
 

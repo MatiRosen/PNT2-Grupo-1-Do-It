@@ -23,7 +23,7 @@ export default {
       });
 
       ideaService
-        .actualizarIdea(formData, idea.id)
+        .actualizarImagenIdea(formData, idea.id)
         .then((response) => {
           router.push("/creador");
         })

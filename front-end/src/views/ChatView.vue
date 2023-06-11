@@ -5,7 +5,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h2 v-for="p in chat.participantes"><span v-if="p != user.id">Chat con {{ otherUser.nombre }} </span></h2>
+          <h2 v-for="p in chat.participantes"><span v-if="p != user.id">Chat con {{ chat.otherUser }} </span></h2>
         </div>
       </div>
       <div class="col-md-8 ">
@@ -44,7 +44,7 @@ import { useChatStore } from "../stores/chat";
 import { useRoute } from "vue-router";
 import { ref, onMounted } from "vue";
 import { useUserStore } from "../stores/user";
-import service from "../services/userService";
+import service from "../services/userService.js";
 
 const storeUser = useUserStore();
 const { user } = storeUser;
@@ -53,24 +53,31 @@ const route = useRoute();
 const chatId = route.params.id;
 
 const chatStore = useChatStore();
-const chat = chatStore.getChat(chatId);
+
+
+const chat = ref('')
+
+chatStore.getChat(chatId).then(c => {
+  chat.value = c.data
+
+  service.obtenerUsuario(chat.value.participantes.find(p => p != user.id)).then(x =>{    
+    chat.value.otherUser = x.data.nombre
+  })
+})
 
 let contenido = ref('')
 
 const mandarMensaje = (contenido, chatId) =>{
-    let mensajeMandar = { emisor: user.id, contenido}
-    chatStore.mandarMensaje(chatId, mensajeMandar)
+  let mensajeMandar = { emisor: user.id, contenido}
+  console.log(mensajeMandar)
+  chatStore.mandarMensaje(chatId, mensajeMandar).then(x =>{
+    chatStore.getChat(chatId).then(c => {
+      chat.value = c.data
+    })
+  })
 }
 
-const otherUser = ref('')
 
-const getOtherUser = async () => {
-    let otherUserId = chat.participantes.find(p => p != user.id)
-    otherUser.value = (await service.obtenerUsuario(otherUserId)).data
-    console.log(otherUser)
-}
-
-onMounted(getOtherUser)
 </script>
 
 <style scoped>
