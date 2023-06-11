@@ -17,11 +17,15 @@
 			{
 				"emisor": 2,
 				"contenido": "Como estas?"
+			},
+			{
+				"emisor": 3,
+				"contenido": "sadsaf"
 			}
 		],
 		"ultimoMensaje": {
-			"emisor": 2,
-			"contenido": "Como estas?"
+			"emisor": 3,
+			"contenido": "sadsaf"
 		}
 	},
 	{

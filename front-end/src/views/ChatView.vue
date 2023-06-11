@@ -1,7 +1,5 @@
-<template>
-<div class="ideas"></div>
-    
-<section id="ideas">
+<template>    
+<section id="Loguear">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -81,7 +79,7 @@ const mandarMensaje = (contenido, chatId) =>{
 </script>
 
 <style scoped>
-
+@import '../assets/estilos.css';
  .ideas{
   background: url("../assets/fondo-contacto.png");
   background-position: center;
