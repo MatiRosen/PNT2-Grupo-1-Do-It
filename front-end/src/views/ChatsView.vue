@@ -1,23 +1,19 @@
 <template>
-    <div class="ideas"></div>
-
-    <section id="ideas">
+    <section id="Loguear">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
           <h2>Chats</h2>
         </div>
       </div>
-      <div class="row top-separation">
-        <div class=" columnas" v-for="c in chatsDelUsuario" :key="c.id">
-          <RouterLink :to="{name: 'chat', params: {id: c.id}}">
-            <div class="card shadow-lg">
+      <div class="row top-separation" v-for="c in chatsDelUsuario" :key="c.id">
+        
+        
+          <RouterLink :to="{name: 'chat', params: {id: c.id}}" class="card shadow-lg">
+           
               <div class="card-block position-relative">
                 <div class="row">
-                  <div class="col-md-2">  
-                    <img class="img-fluid" src="../assets/ideas.jpg" />
-                  </div>
-                  <div class="col-md-7 offset-md-1">
+                  <div class="col offset-md-1">
                       <h2 class="titulosgrises">chat con {{ c.otherUser }}</h2>
 
                       <h2>
@@ -31,9 +27,10 @@
                   </div>
                 </div>
               </div>
-            </div>
+            
           </RouterLink>
-        </div>
+        
+        
       </div>
     </div>
   </section>
@@ -67,6 +64,7 @@ chatStore.getChatsDelUsuario(user.value.id).then(c => {
 </script>
 
 <style scoped>
+@import '../assets/estilos.css';
 .titulosgrises {
   font-weight: bold;
   color: #6a6a6a;
@@ -95,7 +93,7 @@ chatStore.getChatsDelUsuario(user.value.id).then(c => {
 .card {
   border-radius: 20px;
   border-color: white;
-  width: fit-content;
+  width: 100%;
   border: 0;
 }
 
