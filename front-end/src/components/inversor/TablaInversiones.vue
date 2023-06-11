@@ -2,23 +2,20 @@
   <div class="container">
     <div class="row top-separation">
       <div class="col-md-12 text-center">
-        <h4>Ideas mas vistas</h4>
+        <h2>Ideas mas vistas</h2>
       </div>
     </div>
     <div class="row">
       <div class="col-md-4" v-for="idea in ideasTop" :key="idea.id">
         <div class="card shadow-lg topIdeas">
           <div class="card-block position-relative">
-            <div class="row">
-              <div class="col-md-3">
-                <!-- <img class="img-fluid" :src="idea.imagen" /> -->
-                <img class="img-fluid" src="../../assets/ideas.jpg" />
-              </div>
-              <div class="col-md-7 offset-md-1">
+            <div class="row p-4">            
+              <div class="col-md-11">
+                <img class="img-fluid" :src="getImageUrl(idea.imagen)" />   
                 <h2 class="titulosgrises">{{ idea.titulo }}</h2>
                 <h3 class="subtituloRojo">{{ idea.categoria }}</h3>
                 <h4 class="descripcion">Descripcion</h4>
-                <p>{{ limitarTexto(idea.descripcion, 110) }}</p>
+                <p>{{ limitarTexto(idea.descripcion, 200) }}</p>
               </div>
             </div>
             <div class="row justify-content-right mb-2">
@@ -32,12 +29,12 @@
         </div>
       </div>
     </div>
-    <div class="row top-separation">
-      <div class="col-md-4 my-2">
-        <div class="card shadow-lg w-100 h-50">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card shadow-lg filtro w-100">
           <div class="card-block position-relative">
-            <div class="row">
-              <div class="col-md-8 text-center mt-4">
+            <div class="row ">
+              <div class="col-md-12 text-center mt-4">
                 <h2>Filtros</h2>
                 <ul class="menu">
                   <li
@@ -74,15 +71,14 @@
         </div>
       </div>
       <div class="col-md-8 lista-col">
-        <div class="row mt-2 mb-4" v-for="idea in ideas" :key="idea.id">
+        <div class="row" v-for="idea in ideas" :key="idea.id">
           <div class="card shadow-lg">
             <div class="card-block position-relative">
-              <div class="row my-2">
-                <div class="col-md-3">
-                  <!-- <img class="img-fluid" :src="idea.imagen" /> -->
-                  <img class="img-fluid" src="../../assets/ideas.jpg" />
+              <div class="row px-4 pt-4">
+                <div class="col-md-5">                 
+                  <img class="img-fluid justify-content-center" :src="getImageUrl(idea.imagen)" />  
                 </div>
-                <div class="col-md-7 offset-md-1">
+                <div class="col-md-7">
                   <h2 class="titulosgrises">{{ idea.titulo }}</h2>
                   <h3 class="subtituloRojo">{{ idea.categoria }}</h3>
                   <h4 class="descripcion">Descripcion</h4>
@@ -115,7 +111,7 @@ import { useUserStore } from "../../stores/user";
 import { useIdeasStore } from "../../stores/creador/ideas";
 import inversionService from "../../services/inversionService";
 import { useInversionesStore } from "../../stores/inversor/inversiones";
-
+const imagen = `http://localhost:8080/images/`;
 export default {
   computed: {
     limitarTexto() {
@@ -132,6 +128,11 @@ export default {
         }
       };
     },
+  },
+  methods:{
+    getImageUrl(imageName) {
+      return `http://localhost:8080/images/${imageName}`;
+    }
   },
   setup() {
     const router = useRouter();
@@ -209,7 +210,7 @@ export default {
     ]);
 
     const toggleSubmenu = (campo) => {
-      campo.showSubmenu = !campo.showSubmenu;
+        campo.showSubmenu = !campo.showSubmenu;      
     };
     const processIdeas = () => {
       ideas.value.forEach((item) => {
@@ -242,6 +243,7 @@ export default {
       processIdeas,
       invertirIdea,
       ideasTop,
+      imagen,
     };
   },
 };
@@ -251,12 +253,18 @@ export default {
 #filtro {
   width: 26rem;
 }
+
 .lista-col {
   padding-left: 24px;
   padding-right: 24px;
 }
 .topIdeas {
-  height: 300px;
+  height: fit-content;  
+}
+img { 
+  max-width: 380px;
+  max-height: 220px;
+
 }
 .filtro-seleccionado {
   font-weight: bold;
@@ -288,13 +296,14 @@ export default {
 .has-submenu ul.submenu {
   display: block;
 }
-.card {
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-  border-color: red;
+.filtro {
+  display: flex;
+  justify-items: center;
+  margin-top: 40px;
   border: 0;
-  width: fit-content;
   border-radius: 20px;
+  align-items:normal;
+  min-height: 310px;
+  justify-content: flex-start;
 }
 </style>

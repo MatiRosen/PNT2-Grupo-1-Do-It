@@ -39,7 +39,7 @@
 		"categoria": "Alimentación y bebidas",
 		"precio": "60",
 		"idCreador": "4",
-		"vecesVisto": 2,
+		"vecesVisto": 7,
 		"cantidadInversiones": 1,
 		"imagen": "plato.jpg"
 	},
@@ -105,7 +105,7 @@
 		"categoria": "Viajes y turismo",
 		"precio": "85",
 		"idCreador": "2",
-		"vecesVisto": 4,
+		"vecesVisto": 9,
 		"cantidadInversiones": "0",
 		"imagen": "playa.jpg"
 	}

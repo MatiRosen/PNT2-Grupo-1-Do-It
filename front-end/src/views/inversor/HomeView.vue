@@ -1,7 +1,7 @@
 <template>
-  <div class="ideas mt-5">
+  <section id="inversor">
     <TablaInversiones></TablaInversiones>
-  </div>
+  </section>
 </template>
 
 <script setup>

@@ -96,16 +96,16 @@ import { useUserStore } from "../stores/user";
 
 const storeUser = useUserStore();
 const { user } = storeToRefs(storeUser);
-let { estaLogueado, esInversor } = storeToRefs(storeUser);
+let { esInversor } = storeToRefs(storeUser);
 </script>
 
 <style scoped>
 .container {
-    height: 50vh;
+  height: 55vh;
     display: flex;
     width: fit-content;
     flex-direction: column;
     justify-items: center;
-    justify-content: flex-end;
+    justify-content: flex-end;     
 }
 </style>

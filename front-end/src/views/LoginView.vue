@@ -126,13 +126,7 @@ h2 {
     background-color: #e20000;
     border-color: #e20000;
 }
-#Loguear {
-    background: url("../assets/fondo-contacto.png");
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    background-size: 100% 100%;
-}
+
 .card {
     border-radius: 20px;
     border-color: white;

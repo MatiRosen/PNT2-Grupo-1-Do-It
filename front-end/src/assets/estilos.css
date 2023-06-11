@@ -6,21 +6,39 @@
   font-size: 12px;
 }
 .ideas {
-  background: url("../../assets/fondo-contacto.png");
+  background: url("../../assets/fondo-horizontal.png");
   background-position: center;
   position: absolute;
   top: 0;
   background-size: cover;
   width: 100%;
 }
-#perfil {
-  background: url("../assets/fondo-contacto.png");
-  background-position: center;
-  position: absolute;
-  top: 0;
+#inversor{
+  background: url("../assets/fondo-vertical.png");
   background-size: cover;
+  background-repeat: no-repeat;
+  height: fit-content;
+}
+#Loguear, #perfil, #invertirIdea {
+  background: url("../assets/fondo-horizontal.png");
   width: 100%;
   height: 100%;
+  position: fixed;
+  background-size: 100% 100%;
+}
+#inversiones {
+  background: url("../assets/fondo-inversiones.png");
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-size: 100% 100%;
+}
+#invertirIdea {
+  background: url("../assets/fondo-inversion.png");
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-size: 100% 100%;
 }
 .columnas {
   margin-bottom: 20px;
@@ -42,7 +60,6 @@
   justify-content: center;
   align-items: center;
   margin-top: 40px;
-  border-color: red;
   border: 0;
   width: fit-content;
   border-radius: 20px;
@@ -66,13 +83,14 @@
   color: #16bd3a;
   font-size: 15px;
 }
+
 img {
   width: 100%;
   height: 100%;
-  max-width: 400px;
-  max-height: 400px;
+  max-width: 300px;
+  max-height: 200px;
   object-fit: contain;
-  margin-top: 5px;
+  margin-top: 10px;
 }
 button {
   margin: 10px;
@@ -99,7 +117,4 @@ button {
 .perfilcard{
   justify-content: center;  
 }
-#perfil .container{
-  align-items: center;
-  height: 55vh;
-}
+
