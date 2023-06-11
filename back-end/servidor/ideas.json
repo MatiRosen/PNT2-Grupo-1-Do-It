@@ -18,7 +18,7 @@
 		"precio": "50",
 		"idCreador": "4",
 		"vecesVisto": "0",
-		"cantidadInversiones": 4,
+		"cantidadInversiones": 3,
 		"imagen": "bosquejpg.jpg"
 	},
 	{
@@ -61,9 +61,10 @@
 		"categoria": "Arte y cultura",
 		"precio": "70",
 		"idCreador": "4",
-		"vecesVisto": 2,
-		"cantidadInversiones": "0",
-		"imagen": "arte.jpg"
+		"vecesVisto": 3,
+		"cantidadInversiones": 1,
+		"imagen": "arte.jpg",
+		"invertido": 100
 	},
 	{
 		"id": 7,
