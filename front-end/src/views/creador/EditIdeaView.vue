@@ -1,7 +1,7 @@
 <script>
-import { useIdeasStore } from '../../stores/creador/ideas';
-import ideaService from '../../services/ideaService';
-import { useRouter } from 'vue-router';
+import { useIdeasStore } from "../../stores/creador/ideas";
+import ideaService from "../../services/ideaService";
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
@@ -42,102 +42,95 @@ export default {
 </script>
 
 <template>
-  <div class="container">
-    <form @submit.prevent="actualizarIdea(idea)" enctype="multipart/form-data">
-      <div class="card shadow-lg">
-        <div>
-          <img :src="imagen">
-          <input
-            type="file"
-            id="imagen"
-            name="imagen"
-            class="form-control shadow"
-            accept="image/*"
-            placeholder="Imagen"
-          >
+  <section id="RegistrarIdea">
+    <div class="container">
+      <div class="row top-separation">
+        <div class="card shadow-lg">
+          <div class="card-block position-relative">
+            <div class="row text-center">
+              <h2>Editar Idea</h2>
+            </div>
+            <div class="row">
+              <div class="col-md-12 mt-3">
+                <form
+                  @submit.prevent="actualizarIdea(idea)"
+                  enctype="multipart/form-data"
+                >
+                  <div>
+                    <img :src="imagen" />
+                    <input
+                      type="file"
+                      id="imagen"
+                      name="imagen"
+                      class="form-control shadow"
+                      accept="image/*"
+                      placeholder="Imagen"
+                    />
+                  </div>
+                  <input
+                    v-model="idea.titulo"
+                    type="text"
+                    class="form-control"
+                    placeholder="Titulo"
+                  />
+                  <input
+                    v-model="idea.categoria"
+                    type="text"
+                    class="form-control"
+                    placeholder="Categoria"
+                  />
+                  <textarea
+                    v-model="idea.descripcion"
+                    type="text"
+                    class="form-control"
+                    placeholder="Descripcion"
+                  >
+                  </textarea>
+                  <div class="descripcion-container">
+                    <h4 class="precio ml-2 mt-1">Precio</h4>
+                  </div>
+                  <input
+                    v-model="idea.precio"
+                    type="text"
+                    class="form-control"
+                    placeholder="Precio"
+                  />
+                  <button type="submit" class="btn btn-primary">Guardar</button>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-        <input 
-          v-model="idea.titulo"
-          type="text"
-          class="form-control"
-          placeholder="Titulo"
-        >
-        <input
-          v-model="idea.categoria"
-          type="text"
-          class="form-control"
-          placeholder="Categoria"
-        >
-        <input
-          v-model="idea.descripcion"
-          type="text"
-          class="form-control"
-          placeholder="Descripcion"
-        > 
-        <div class="descripcion-container">
-          <h4 class="descripcion">Precio</h4>
-        </div>
-        <input
-          v-model="idea.precio"
-          type="text"
-          class="form-control"
-          placeholder="Precio"
-        >
-        <button type="submit" class="btn btn-primary">Guardar</button>
       </div>
-    </form>    
-  </div>    
+    </div>
+  </section>
 </template>
 
-
 <style scoped>
-.titulosgrises {
-  font-weight: bold;
-  color: #6a6a6a;
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-.subtituloRojo {
-  margin-top: 5px;
-  font-weight: bold;
-  color: #e20000;
-  font-size: 17px;
-}
+@import '../../assets/estilos.css';
 .card {
-  justify-content: center;
-  align-items: center;
-  margin-top: 40px;
-  border-color: white;
-  border: 0;
   border-radius: 20px;
-  
+  border-color: white;
+  width: auto;
+  border: 2;
+  padding-inline: 50px;
+  padding-top: 30px;
 }
-.texto{
-  font-weight: normal;
-  color: #6a6a6a;
-  font-size: 15px;
-  width: 600px;
-  text-align: center;
+.card-body {
+  padding: 0;
+  margin: 0;
 }
-.descripcion {
-  font-weight: normal;
-  color: #6a6a6a;
-  font-size: 15px;
+.container {
+  height: 70vh;
+  display: flex;
+  width: fit-content;
+  flex-direction: column;
+  justify-items: center;
+  justify-content: flex-end;
 }
-.precio{
-  font-weight: bold;
-  color: #16bd3a;
-  font-size: 15px;
+@media(min-width:768px) and (max-width:1024px) {
+  .container {
+  height: 55vh;
 }
-img{
-  width: 100%;
-  height: 100%;
-  max-width: 400px;
-  max-height: 400px;
-  object-fit:contain;
-  margin-top: 5px;
-}
-button{
-  margin: 10px;
 }
 </style>

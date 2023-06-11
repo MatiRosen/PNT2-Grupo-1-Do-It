@@ -66,5 +66,18 @@
 		"contraseña": "1234",
 		"tipo": "Inversor",
 		"dinero": 10
+	},
+	{
+		"id": 6,
+		"nombre": "test",
+		"apellido": "test",
+		"email": "test@test.com",
+		"dni": 951606301,
+		"nacimiento": "2001-02-23",
+		"genero": "mujer",
+		"telefono": 123465,
+		"direccion": "test",
+		"contraseña": "1234",
+		"tipo": "Creador"
 	}
 ]

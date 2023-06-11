@@ -227,6 +227,7 @@ export default {
 </script>
 
 <style scoped>
+@import "../assets/estilos.css";
 h2 {
     color: #e20000;
 }
