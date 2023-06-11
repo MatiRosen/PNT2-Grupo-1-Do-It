@@ -118,8 +118,8 @@
                                                 class="form-check-input mt-1"
                                                 type="radio"
                                                 name="Tipo"
-                                                id="tipo"
-                                                value="tipo"
+                                                id="creador"
+                                                value="Creador"
                                                 required />
                                             <label
                                                 class="form-check-label"
@@ -135,7 +135,7 @@
                                                 type="radio"
                                                 name="Tipo"
                                                 id="tipo"
-                                                value="tipo"
+                                                value="Inversor"
                                                 required />
                                             <label
                                                 class="form-check-label"
