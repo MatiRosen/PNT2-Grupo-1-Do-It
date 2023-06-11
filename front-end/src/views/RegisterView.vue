@@ -118,8 +118,8 @@
                                                 class="form-check-input mt-1"
                                                 type="radio"
                                                 name="Tipo"
-                                                id="creador"
-                                                value="Creador"
+                                                id="tipo"
+                                                value="tipo"
                                                 required />
                                             <label
                                                 class="form-check-label"
@@ -134,8 +134,8 @@
                                                 class="form-check-input mt-1"
                                                 type="radio"
                                                 name="Tipo"
-                                                id="inversor"
-                                                value="Inversor"
+                                                id="tipo"
+                                                value="tipo"
                                                 required />
                                             <label
                                                 class="form-check-label"
@@ -254,7 +254,7 @@ h2 {
     margin: 0;
 }
 .container {
-    height: 110vh;
+    height: 80vh;
     display: flex;
     width: fit-content;
     flex-direction: column;
