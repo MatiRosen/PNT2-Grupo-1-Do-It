@@ -24,7 +24,7 @@ Además, en caso de no encontrar desarrolladores, Do It contará con sus propios
    - ~~Sexo~~
    - ~~País~~
    - ~~Elegir tipo de usuario: Inversor o creador~~
-   - Agregar validaciones
+   - ~~Agregar validaciones~~
 
 ### Iniciar sesión
 1. **Login**
@@ -32,15 +32,14 @@ Además, en caso de no encontrar desarrolladores, Do It contará con sus propios
    - ~~Verificamos el tipo de usuario y llevamos a un home u otro dependiendo el mismo~~
 ### Inversor
 1. **Home**
-   - Ideas ordenadas por popularidad
-   - Ordenamiento por categoría (Aplica filtro en la lista)
+   - ~~Ideas ordenadas por popularidad~~
+   - ~~Ordenamiento por categoría (Aplica filtro en la lista)~~
    - Barra de busqueda
-   - Historial: La última idea visitada será la primera que aparece en "recien vistos"
 2. **Idea**
-   - Info de la idea
-   - Botón de chat
+   - ~~Info de la idea~~
+   - ~~Botón de chat~~
 3. **Lista de inversiones**
-   - Lista de inversiones ordenadas por orden de acuerdo
+   - ~~Lista de inversiones ordenadas por orden de acuerdo~~
 ### Creador (Ponerlo bonito uwu {*o.o*})
 1. **Home**
    - ~~Lista de ideas propias + botón crear~~
@@ -50,18 +49,18 @@ Además, en caso de no encontrar desarrolladores, Do It contará con sus propios
    - ~~Categoría~~
    - ~~Inversión esperada (en $)~~
 3. **Idea seleccionada** 
-   - Detalle de la idea + info del inversor
-   - Botón editar (si no tiene inversor)
-   - Botón borrar (te lleva a la home)
+   -~~ Detalle de la idea~~
+   -~~ Botón editar (si no tiene inversor)~~
+   - ~~Botón borrar (te lleva a la home)~~
 4. **Editar idea**
-   - La misma info editable (A menos que tenga inversor)
+   -~~ La misma info editable (A menos que tenga inversor)~~
 
 ### Común entre ambos perfiles
 1. **Perfil**
    - ~~Nombre~~
-   - Botón agregar plata (Validaciones)
+   -~~ Botón agregar plata (Validaciones)~~
 2. **Chat** 
    - Lista de mensajes (Faltan detallitos y detallotes)
 
 ### Concretar el trato
-El inversor podrá confirmar que desea invertir en la idea, y entonces podrá usar créditos. Si la idea llegó a la meta, ponerla de un color distinto.
+~~El inversor podrá confirmar que desea invertir en la idea, y entonces podrá usar créditos.~~

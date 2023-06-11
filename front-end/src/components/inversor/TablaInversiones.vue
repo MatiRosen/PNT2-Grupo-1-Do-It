@@ -5,6 +5,12 @@
         <h2>Ideas mas vistas</h2>
       </div>
     </div>
+    <div> 
+      <form @submit.prevent="buscar(busqueda)" name="form">
+        <input v-model="busqueda" type="text" name="query" placeholder="Ingresa tu búsqueda">
+        <input type="submit" value="Buscar">
+  </form>
+</div>
     <div class="row">
       <div class="col-md-4" v-for="idea in ideasTop" :key="idea.id">
         <div class="card shadow-lg topIdeas">
@@ -150,6 +156,12 @@ export default {
       processIdeas();
     };
 
+    const busqueda = ref("");
+
+    const buscar = async (busqueda) => {
+      ideas.value = (await ideaService.obtenerIdeasPorCampo("titulo",busqueda)).data;
+    };
+
     onMounted(getIdeas);
 
     const invertirIdea = async (idea) => {
@@ -242,6 +254,8 @@ export default {
       toggleSubmenu,
       processIdeas,
       invertirIdea,
+      busqueda,
+      buscar,
       ideasTop,
       imagen,
     };
@@ -253,7 +267,6 @@ export default {
 #filtro {
   width: 26rem;
 }
-
 .lista-col {
   padding-left: 24px;
   padding-right: 24px;
@@ -270,6 +283,29 @@ img {
   font-weight: bold;
   font-style: italic;
 }
+
+input[type="text"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+input[type="submit"] {
+  width: 100%;
+  background-color: #4caf50;
+  color: white;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
 
 .quitar-filtro {
   cursor: pointer;
