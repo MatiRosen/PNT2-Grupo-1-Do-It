@@ -261,5 +261,10 @@ h2 {
     justify-items: center;
     justify-content: flex-end;
 }
+@media(min-width:768px) and (max-width:1024px) {
+  .container {
+  height: 55vh;
+}
+}
 </style>
 |
