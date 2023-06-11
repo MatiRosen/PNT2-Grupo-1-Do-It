@@ -23,14 +23,16 @@
                                 </h4>
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <RouteterLink @click="contactarCreador(idea)">
-                                            <button  class="btn btn-success">
+                                        <RouteterLink
+                                            @click="contactarCreador(idea)">
+                                            <button class="btn btn-success">
                                                 Contactar Creador
                                             </button>
                                         </RouteterLink>
                                     </div>
                                     <div class="col-md-2 offset-md-2">
-                                        <input v-if="!yaInvirtio"
+                                        <input
+                                            v-if="!yaInvirtio"
                                             v-model="idea.invertido"
                                             type="number"
                                             id="txtInvertido"
@@ -39,16 +41,19 @@
                                             required />
                                     </div>
                                     <div class="col-md-4" v-if="!yaInvirtio">
-                                        <RouterLink
-                                            :to="ruta"
-                                            @click="invertirIdea(idea)"
-                                            ><button class="btn btn-success">
-                                                Invertir
-                                            </button></RouterLink
+                                        ><button
+                                            class="btn btn-success"
+                                            @click="invertirIdea(idea)">
+                                            Invertir
+                                        </button>
                                         >
                                     </div>
                                     <div class="col-md-4" v-else>
-                                      <h4>Dinero invertido: ${{ inversion.dineroInvertido }}</h4>
+                                        <h4>
+                                            Dinero invertido: ${{
+                                                inversion.dineroInvertido
+                                            }}
+                                        </h4>
                                     </div>
                                 </div>
                             </div>
@@ -67,22 +72,21 @@ import inversionService from "../../services/inversionService";
 import { useUserStore } from "../../stores/user";
 import { ref, onMounted } from "vue";
 import ideaService from "../../services/ideaService";
-import {useInversionesStore} from "../../stores/inversor/inversiones";
+import { useInversionesStore } from "../../stores/inversor/inversiones";
 import chatService from "../../services/chatService";
-import router from "../../router";
+import { useRouter } from "vue-router";
 
 const { idea } = useIdeasStore();
-const imagen = `../src/assets/${idea.imagen}`;
+
+const imagen = `http://localhost:8080/images/${idea.imagen}`;
 
 const { inversion } = useInversionesStore();
-
+const router = useRouter();
 const { user } = useUserStore();
 const creador = ref();
 const nombreCreador = ref();
 
 const yaInvirtio = ref(true);
-
-const ruta = yaInvirtio ? "/inversor/inversiones/" : "/inversor/";
 
 const getInversiones = async () => {
     const inversion = (
@@ -122,19 +126,20 @@ const invertirIdea = async (idea) => {
     user.dinero -= idea.invertido;
     await usuarioService.sumarDinero({ dinero: user.dinero }, user.id);
 
-    idea.cantidadInversiones += 1;
-    await ideaService.actualizarIdea(idea, idea.id);
+    idea.cantidadInversiones = Number(idea.cantidadInversiones) + 1
+
+    await ideaService.actualizarIdea(idea.id, idea);
+    router.push(`/inversor/inversiones/`);
 };
 const contactarCreador = (idea) => {
-    let nuevoChat = {id: 0,
-		participantes: [user.id, parseInt(idea.idCreador)],
-		mensajes: [	],
-		ultimoMensaje: { emisor: 0,	contenido: "" }
-    }
-    chatService.crearChat(nuevoChat).then(res => {
-        console.log('nos vamos', res.data.id)
-        router.replace(`/chat/${res.data.id}`)
-        
+    let nuevoChat = {
+        id: 0,
+        participantes: [user.id, parseInt(idea.idCreador)],
+        mensajes: [],
+        ultimoMensaje: { emisor: 0, contenido: "" },
+    };
+    chatService.crearChat(nuevoChat).then((res) => {
+        router.replace(`/chat/${res.data.id}`);
     });
 };
 </script>

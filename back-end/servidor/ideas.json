@@ -6,7 +6,7 @@
 		"categoria": "Tecnología",
 		"precio": "100",
 		"idCreador": "4",
-		"vecesVisto": "0",
+		"vecesVisto": 1,
 		"cantidadInversiones": 2,
 		"imagen": "tecnologia.jpg"
 	},
@@ -18,7 +18,7 @@
 		"precio": "50",
 		"idCreador": "4",
 		"vecesVisto": "0",
-		"cantidadInversiones": "0",
+		"cantidadInversiones": 4,
 		"imagen": "bosquejpg.jpg"
 	},
 	{
@@ -29,7 +29,7 @@
 		"precio": "75",
 		"idCreador": "4",
 		"vecesVisto": "0",
-		"cantidadInversiones": "0",
+		"cantidadInversiones": 1,
 		"imagen": "doctor.jpg"
 	},
 	{
@@ -39,8 +39,8 @@
 		"categoria": "Alimentación y bebidas",
 		"precio": "60",
 		"idCreador": "4",
-		"vecesVisto": "0",
-		"cantidadInversiones": "0",
+		"vecesVisto": 2,
+		"cantidadInversiones": 1,
 		"imagen": "plato.jpg"
 	},
 	{
@@ -51,7 +51,7 @@
 		"precio": "80",
 		"idCreador": "4",
 		"vecesVisto": "0",
-		"cantidadInversiones": "0",
+		"cantidadInversiones": 1,
 		"imagen": "solar.jpg"
 	},
 	{
@@ -61,7 +61,7 @@
 		"categoria": "Arte y cultura",
 		"precio": "70",
 		"idCreador": "4",
-		"vecesVisto": "0",
+		"vecesVisto": 2,
 		"cantidadInversiones": "0",
 		"imagen": "arte.jpg"
 	},
@@ -72,7 +72,7 @@
 		"categoria": "Bienes raíces",
 		"precio": "90",
 		"idCreador": "4",
-		"vecesVisto": "0",
+		"vecesVisto": 1,
 		"cantidadInversiones": "0",
 		"imagen": "casa.jpg"
 	},
@@ -83,7 +83,7 @@
 		"categoria": "Educación",
 		"precio": "65",
 		"idCreador": "2",
-		"vecesVisto": "0",
+		"vecesVisto": 1,
 		"cantidadInversiones": "0",
 		"imagen": "estudiante.jpg"
 	},
@@ -105,7 +105,7 @@
 		"categoria": "Viajes y turismo",
 		"precio": "85",
 		"idCreador": "2",
-		"vecesVisto": "0",
+		"vecesVisto": 4,
 		"cantidadInversiones": "0",
 		"imagen": "playa.jpg"
 	}

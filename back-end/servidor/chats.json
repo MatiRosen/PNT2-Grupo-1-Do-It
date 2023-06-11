@@ -13,11 +13,15 @@
 			{
 				"emisor": 3,
 				"contenido": "chau"
+			},
+			{
+				"emisor": 2,
+				"contenido": "Como estas?"
 			}
 		],
 		"ultimoMensaje": {
-			"emisor": 3,
-			"contenido": "chau"
+			"emisor": 2,
+			"contenido": "Como estas?"
 		}
 	},
 	{
