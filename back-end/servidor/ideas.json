@@ -6,7 +6,7 @@
 		"categoria": "Tecnología",
 		"precio": "100",
 		"idCreador": "4",
-		"vecesVisto": 1,
+		"vecesVisto": 28,
 		"cantidadInversiones": 2,
 		"imagen": "tecnologia.jpg"
 	},
@@ -28,7 +28,7 @@
 		"categoria": "Salud",
 		"precio": "75",
 		"idCreador": "4",
-		"vecesVisto": "0",
+		"vecesVisto": 1,
 		"cantidadInversiones": 1,
 		"imagen": "doctor.jpg"
 	},
@@ -39,7 +39,7 @@
 		"categoria": "Alimentación y bebidas",
 		"precio": "60",
 		"idCreador": "4",
-		"vecesVisto": 8,
+		"vecesVisto": 9,
 		"cantidadInversiones": 1,
 		"imagen": "plato.jpg"
 	},

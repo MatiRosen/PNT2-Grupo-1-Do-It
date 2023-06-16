@@ -14,7 +14,6 @@ class ModelMongo {
                 const usuario = await CnxMongoDB.db
                     .collection("usuarios")
                     .findOne({ email: email });
-                console.log(usuario);
                 return usuario;
             } else {
                 const usuarios = await CnxMongoDB.db
@@ -36,7 +35,7 @@ class ModelMongo {
         try {
             usuario = await CnxMongoDB.db
                 .collection("usuarios")
-                .findOne({ _id: new ObjectId(id) });
+                .findOne({ _id: this.generarObjectId(id) });
         } catch {
             throw new DatabaseError("Error al leer el archivo de usuarios.");
         }
@@ -70,7 +69,6 @@ class ModelMongo {
         return usuario;
     };
 
-    
     validarUsuarioExistente = async (campo, valor) => {
         let usuarioExistente = null;
         try {
@@ -95,7 +93,7 @@ class ModelMongo {
         try {
             await CnxMongoDB.db
                 .collection("usuarios")
-                .updateOne({ _id: new ObjectId(id) }, { $set: usuario });
+                .updateOne({ _id: this.generarObjectId(id) }, { $set: usuario });
         } catch {
             throw new DatabaseError("Error al actualizar el usuario.");
         }
@@ -111,7 +109,7 @@ class ModelMongo {
         try {
             await CnxMongoDB.db
                 .collection("usuarios")
-                .deleteOne({ _id: new ObjectId(id) });
+                .deleteOne({ _id: this.generarObjectId(id) });
         } catch {
             throw new DatabaseError("Error al eliminar el usuario.");
         }
@@ -127,7 +125,7 @@ class ModelMongo {
             if (idCreador) {
                 const creador = await CnxMongoDB.db
                     .collection("usuarios")
-                    .findOne({ _id: new ObjectId(idCreador), tipo: "Creador" });
+                    .findOne({ _id: this.generarObjectId(idCreador), tipo: "Creador" });
                 return creador;
             } else {
                 const creadores = await CnxMongoDB.db
@@ -136,10 +134,20 @@ class ModelMongo {
                     .toArray();
                 return creadores;
             }
-        } catch {
+        } catch(error){
+            if (error instanceof InvalidCredentialsError) {
+                throw error;
+            }
             throw new DatabaseError("Error al leer el archivo de creadores.");
         }
     };
+
+    generarObjectId = (id) => {
+        if (!ObjectId.isValid(id)) {
+            throw new InvalidCredentialsError("El id no es válido.");
+        }
+        return new ObjectId(id);
+    }
 }
 
 export default ModelMongo;

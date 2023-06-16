@@ -252,7 +252,7 @@ export default {
       usuarios.value.forEach((usuario) => {
         const val = {
           valores: usuario.nombre + " " + usuario.apellido,
-          id: usuario.id.toString(),
+          id: usuario.id,
         };
         campos.value[1].opciones.push(val);
       });
