@@ -79,6 +79,8 @@ class ModelFile {
         }
 
         let nuevoChat = {...chat, id: nuevoId}
+
+        chats.push(nuevoChat)
         
         try {
             await this.escribirArchivo(chats);

@@ -95,8 +95,7 @@ const router = createRouter({
                 if (useUserStore().estaLogueado) {
                     let chatId = to.params.id;
                     let userId = useUserStore().user.id;
-
-                    useChatStore().getChat(chatId).then(c =>{                  
+                    useChatStore().getChat(chatId).then(c =>{                    
                         if (c.data.participantes.includes(userId)) {
                             next();
                         } else {

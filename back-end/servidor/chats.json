@@ -15,5 +15,17 @@
 			"emisor": 3,
 			"contenido": "hola buenas"
 		}
+	},
+	{
+		"id": 2,
+		"participantes": [
+			3,
+			2
+		],
+		"mensajes": [],
+		"ultimoMensaje": {
+			"emisor": 0,
+			"contenido": ""
+		}
 	}
 ]
