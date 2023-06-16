@@ -42,6 +42,15 @@ class ControladorChats {
         }
     }
 
+    obtenerChatPorParticipantes = async (req, res) => {
+        try {
+            const chat = await this.servicio.obtenerChatPorParticipantes(req.params.id1, req.params.id2);
+            res.json(chat);
+        } catch (error) {
+            res.status(500).json({mensaje: error.message});
+        }
+    }
+
 }
 
 export default ControladorChats;

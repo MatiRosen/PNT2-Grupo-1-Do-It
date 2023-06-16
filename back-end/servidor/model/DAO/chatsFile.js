@@ -72,11 +72,13 @@ class ModelFile {
         } catch {
             throw new DatabaseError("Error al leer el archivo de chats.");
         }
+        let nuevoId = 1
         
-        let nuevoId = chats[chats.length - 1].id + 1
+        if(chats.length != 0){
+            nuevoId = chats[chats.length - 1].id + 1
+        }
+
         let nuevoChat = {...chat, id: nuevoId}
-                
-        chats.push(nuevoChat);
         
         try {
             await this.escribirArchivo(chats);
@@ -86,6 +88,23 @@ class ModelFile {
             throw new DatabaseError("Error al escribir el archivo de chats.");
         }
     };
+
+    obtenerChatPorParticipantes = async (idUsuario1, idUsuario2) => {
+        let chats = [];
+        try {
+            chats = JSON.parse(await this.leerArchivo());
+        } catch {
+            throw new DatabaseError("Error al leer el archivo de chats.");
+        }
+        
+        const res = chats.find(c => c.participantes.includes(parseInt(idUsuario1)) && c.participantes.includes(parseInt(idUsuario2)));
+
+        if (res == undefined) {
+            throw new InvalidCredentialsError("No existe un chat entre los usuarios.");
+        }
+
+        return res;
+    }
 }
 
 export default ModelFile;
