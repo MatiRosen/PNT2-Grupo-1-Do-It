@@ -42,6 +42,15 @@ class ServicioChats {
             throw error;
         }
     }
+
+    obtenerChatPorParticipantes = async (idUsuario1, idUsuario2) => {
+        try {
+            const chat = await this.model.obtenerChatPorParticipantes(idUsuario1, idUsuario2);
+            return chat;
+        } catch (error) {
+            throw error;
+        }
+    }
     
 }
 

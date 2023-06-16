@@ -139,15 +139,25 @@ const invertirIdea = async (idea) => {
     router.push(`/inversor/inversiones/`);
 };
 const contactarCreador = (idea) => {
-    let nuevoChat = {
-        id: 0,
-        participantes: [user.id, parseInt(idea.idCreador)],
-        mensajes: [],
-        ultimoMensaje: { emisor: 0, contenido: "" },
-    };
-    chatService.crearChat(nuevoChat).then((res) => {
-        router.replace(`/chat/${res.data.id}`);
-    });
+
+  let id = user.id;
+  let idCreador = parseInt(idea.idCreador);
+  
+  chatService.obtenerChatPorParticipantes(id, idCreador).then(res => {
+    router.replace(`/chat/${res.data.id}`);
+  }).catch(err => {
+      let nuevoChat = {
+          id: 0,
+          participantes: [id, idCreador],
+          mensajes: [],
+          ultimoMensaje: { emisor: 0, contenido: "" },
+      };
+      chatService.crearChat(nuevoChat).then((res) => {
+          router.replace(`/chat/${res.data.id}`);
+      });
+  })
+
+  
 };
 </script>
 

@@ -14,5 +14,8 @@ export default {
     },
     mandarMensaje(idChat, mensaje) {
         return apiClient.post(`/api/chats/mensaje/${idChat}`, mensaje);
+    },
+    obtenerChatPorParticipantes(idUsuario1, idUsuario2) {
+        return apiClient.get(`/api/chats/usuarios/${idUsuario1}/${idUsuario2}`);
     }
 };

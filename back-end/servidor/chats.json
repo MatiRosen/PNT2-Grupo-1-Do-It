@@ -1,214 +1,31 @@
 [
 	{
-		"id": 0,
-		"participantes": [
-			3,
-			2
-		],
-		"mensajes": [
-			{
-				"emisor": 2,
-				"contenido": "hola"
-			},
-			{
-				"emisor": 3,
-				"contenido": "chau"
-			},
-			{
-				"emisor": 2,
-				"contenido": "Como estas?"
-			},
-			{
-				"emisor": 3,
-				"contenido": "sadsaf"
-			}
-		],
-		"ultimoMensaje": {
-			"emisor": 3,
-			"contenido": "sadsaf"
-		}
-	},
-	{
 		"id": 1,
 		"participantes": [
 			3,
-			2
+			4
 		],
 		"mensajes": [
 			{
-				"emisor": 2,
-				"contenido": "hola"
-			},
-			{
 				"emisor": 3,
-				"contenido": "chau"
-			},
-			{
-				"emisor": 3,
-				"contenido": "buenos dias"
+				"contenido": "hola buenas"
 			}
 		],
 		"ultimoMensaje": {
 			"emisor": 3,
-			"contenido": "buenos dias"
+			"contenido": "hola buenas"
 		}
 	},
 	{
 		"id": 2,
 		"participantes": [
 			3,
-			4
+			2
 		],
 		"mensajes": [],
 		"ultimoMensaje": {
 			"emisor": 0,
 			"contenido": ""
-		}
-	},
-	{
-		"id": 3,
-		"participantes": [
-			3,
-			4
-		],
-		"mensajes": [],
-		"ultimoMensaje": {
-			"emisor": 0,
-			"contenido": ""
-		}
-	},
-	{
-		"id": 4,
-		"participantes": [
-			3,
-			4
-		],
-		"mensajes": [],
-		"ultimoMensaje": {
-			"emisor": 0,
-			"contenido": ""
-		}
-	},
-	{
-		"id": 5,
-		"participantes": [
-			3,
-			4
-		],
-		"mensajes": [],
-		"ultimoMensaje": {
-			"emisor": 0,
-			"contenido": ""
-		}
-	},
-	{
-		"id": 6,
-		"participantes": [
-			5,
-			4
-		],
-		"mensajes": [],
-		"ultimoMensaje": {
-			"emisor": 0,
-			"contenido": ""
-		}
-	},
-	{
-		"id": 7,
-		"participantes": [
-			5,
-			4
-		],
-		"mensajes": [],
-		"ultimoMensaje": {
-			"emisor": 0,
-			"contenido": ""
-		}
-	},
-	{
-		"id": 8,
-		"participantes": [
-			1,
-			4
-		],
-		"mensajes": [],
-		"ultimoMensaje": {
-			"emisor": 0,
-			"contenido": ""
-		}
-	},
-	{
-		"id": 9,
-		"participantes": [
-			1,
-			4
-		],
-		"mensajes": [
-			{
-				"emisor": 1,
-				"contenido": "Hola!"
-			},
-			{
-				"emisor": 1,
-				"contenido": ""
-			},
-			{
-				"emisor": 1,
-				"contenido": ""
-			},
-			{
-				"emisor": 1,
-				"contenido": ""
-			},
-			{
-				"emisor": 1,
-				"contenido": ""
-			},
-			{
-				"emisor": 1,
-				"contenido": ""
-			},
-			{
-				"emisor": 1,
-				"contenido": ""
-			},
-			{
-				"emisor": 1,
-				"contenido": ""
-			},
-			{
-				"emisor": 1,
-				"contenido": ""
-			},
-			{
-				"emisor": 1,
-				"contenido": ""
-			},
-			{
-				"emisor": 1,
-				"contenido": ""
-			}
-		],
-		"ultimoMensaje": {
-			"emisor": 1,
-			"contenido": ""
-		}
-	},
-	{
-		"id": 10,
-		"participantes": [
-			1,
-			4
-		],
-		"mensajes": [
-			{
-				"emisor": 1,
-				"contenido": "Hola!"
-			}
-		],
-		"ultimoMensaje": {
-			"emisor": 1,
-			"contenido": "Hola!"
 		}
 	}
 ]

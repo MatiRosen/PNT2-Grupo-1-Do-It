@@ -50,7 +50,7 @@
 		"categoria": "Energía",
 		"precio": "80",
 		"idCreador": "4",
-		"vecesVisto": "0",
+		"vecesVisto": 1,
 		"cantidadInversiones": 1,
 		"imagen": "solar.jpg"
 	},
@@ -84,7 +84,7 @@
 		"categoria": "Educación",
 		"precio": "65",
 		"idCreador": "2",
-		"vecesVisto": 1,
+		"vecesVisto": 8,
 		"cantidadInversiones": "0",
 		"imagen": "estudiante.jpg"
 	},
@@ -106,7 +106,7 @@
 		"categoria": "Viajes y turismo",
 		"precio": "85",
 		"idCreador": "2",
-		"vecesVisto": 9,
+		"vecesVisto": 13,
 		"cantidadInversiones": "0",
 		"imagen": "playa.jpg"
 	}
