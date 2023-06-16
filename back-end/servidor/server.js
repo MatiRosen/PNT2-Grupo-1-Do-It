@@ -5,6 +5,7 @@ import RouterInversiones from "./router/inversiones.js";
 import RouterChats from "./router/chats.js";
 import config from "./config.js";
 import cors from "cors";
+import CnxMongo from "./model/DBMongo.js"
 
 const app = express();
 
@@ -18,6 +19,8 @@ app.use("/api/usuarios", new RouterUsuarios().start());
 app.use("/api/ideas", new RouterIdeas().start());
 app.use("/api/inversiones", new RouterInversiones().start());
 app.use("/api/chats", new RouterChats().start());
+
+if (config.MODO_PERSISTENCIA === "MONGO") await CnxMongo.conectar();
 
 const PORT = config.PORT;
 const server = app.listen(PORT, () =>

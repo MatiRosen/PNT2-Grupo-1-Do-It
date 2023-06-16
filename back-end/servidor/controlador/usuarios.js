@@ -14,10 +14,10 @@ class Controlador {
             res.json(usuario);
         } catch (error) {
            if (error instanceof InvalidCredentialsError) {
-                res.status(400).json(error.message);
+                res.json(error.message);
                
             } else {
-                 res.status(500).json({
+                 res.json({
                 message:
                     "Hubo un problema interno. Intente nuevamente más tarde.",
             });
@@ -33,9 +33,9 @@ class Controlador {
             res.json(usuarioGuardado);
         } catch (error) {
             if (error instanceof InvalidCredentialsError) {
-                res.status(400).json(error.message);
+                res.json(error.message);
             } else {
-                res.status(500).json({
+                res.json({
                     message:
                         "Hubo un problema interno. Intente nuevamente más tarde.",
                 });
@@ -48,12 +48,12 @@ class Controlador {
             const usuario = req.body;
             const usuarioLogueado = await this.servicio.logUsuario(usuario);
 
-            res.status(200).json(usuarioLogueado);
+            res.json(usuarioLogueado);
         } catch (error) {
             if (error instanceof InvalidCredentialsError) {
-                res.status(400).json(error.message);
+                res.json(error.message);
             } else {
-                res.status(500).json({
+                res.json({
                     message:
                         "Hubo un problema interno. Intente nuevamente más tarde.",
                 });
@@ -70,13 +70,13 @@ class Controlador {
                 usuario
             );
 
-            res.status(200).json(usuarioActualizado);
+            res.json(usuarioActualizado);
         } catch (error) {
             if (error instanceof InvalidCredentialsError) {
-                res.status(400).json(error.message);
+                res.json(error.message);
                 return;
             } else {
-                res.status(500).json({
+                res.json({
                     message:
                         "Hubo un problema interno. Intente nuevamente más tarde.",
                 });
@@ -89,12 +89,12 @@ class Controlador {
             const { id } = req.params;
             const usuarioBorrado = await this.servicio.eliminarUsuario(id);
 
-            res.status(200).json(usuarioBorrado);
+            res.json(usuarioBorrado);
         } catch (error) {
             if (error instanceof InvalidCredentialsError) {
-                res.status(400).json(error.message);
+                res.json(error.message);
             } else {
-                res.status(500).json({
+                res.json({
                     message:
                         "Hubo un problema interno. Intente nuevamente más tarde.",
                 });
@@ -107,12 +107,12 @@ class Controlador {
             const { idCreador } = req.params;
             const creadores = await this.servicio.obtenerCreadores(idCreador);
 
-            res.status(200).json(creadores);
+            res.json(creadores);
         } catch (error) {
             if (error instanceof InvalidCredentialsError) {
-                res.status(400).json(error.message);
+                res.json(error.message);
             } else {
-                res.status(500).json({
+                res.json({
                     message:
                         "Hubo un problema interno. Intente nuevamente más tarde.",
                 });

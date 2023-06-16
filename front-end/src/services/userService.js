@@ -15,7 +15,7 @@ export default {
         return apiClient.delete('/api/usuarios/' + id);
     },
     obtenerCreadores(idCreador) {
-        return apiClient.get(`/api/usuarios/${idCreador}`);
+        return apiClient.get(`/api/usuarios/creadores/${idCreador}`);
     },
     obtenerUsuario(id){
         return apiClient.get(`/api/usuarios/id/${id}`)
