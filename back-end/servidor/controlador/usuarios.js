@@ -1,5 +1,5 @@
 import Servicio from "../servicio/usuarios.js";
-import { InvalidCredentialsError } from "../../errores.js";
+import { InvalidCredentialsError, ValidationError } from "../../errores.js";
 
 class Controlador {
     constructor() {
@@ -32,7 +32,7 @@ class Controlador {
 
             res.json(usuarioGuardado);
         } catch (error) {
-            if (error instanceof InvalidCredentialsError) {
+            if (error instanceof InvalidCredentialsError || error instanceof ValidationError) {
                 res.json(error.message);
             } else {
                 res.json({

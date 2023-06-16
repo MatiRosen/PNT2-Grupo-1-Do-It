@@ -1,6 +1,7 @@
 import ModelFactory from "../model/DAO/usuariosFactory.js";
 import config from "../config.js";
-import { InvalidCredentialsError } from "../../errores.js";
+import { InvalidCredentialsError, ValidationError } from "../../errores.js";
+import { validar } from "../validaciones/usuarios.js";
 
 class Servicio {
     constructor() {
@@ -18,6 +19,11 @@ class Servicio {
 
     guardarUsuario = async (usuario) => {
         try {
+            const res = validar(usuario);
+            if (!res.result) {
+                throw new ValidationError(`Campo inválido: ${res.error.message}`); 
+            }
+
             const usuarioGuardado = await this.model.guardarUsuario(usuario);
             return {
                 id: usuarioGuardado.id,
