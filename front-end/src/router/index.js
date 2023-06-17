@@ -39,16 +39,37 @@ const router = createRouter({
             path: "/idea/:id",
             name: "idea",
             component: () => import("../views/creador/IdeaView.vue"),
+            beforeEnter: (to, from, next) => {
+                if (useUserStore().estaLogueado) {
+                    next();
+                } else {
+                    next({ name: "home" });
+                }
+            }
         },
         {
             path: "/inversion/:id",
             name: "inversion",
             component: () => import("../views/inversor/InversionView.vue"),
+            beforeEnter: (to, from, next) => {
+                if (useUserStore().estaLogueado) {
+                    next();
+                } else {
+                    next({ name: "home" });
+                }
+            }
         },
         {
             path: "/editarIdea/:id",
             name: "editarIdea",
             component: () => import("../views/creador/EditIdeaView.vue"),
+            beforeEnter: (to, from, next) => {
+                if (useUserStore().estaLogueado) {
+                    next();
+                } else {
+                    next({ name: "home" });
+                }
+            }
         },
         {
             path: "/inversor",

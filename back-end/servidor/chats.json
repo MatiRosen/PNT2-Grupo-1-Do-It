@@ -27,5 +27,26 @@
 			"emisor": 0,
 			"contenido": ""
 		}
+	},
+	{
+		"id": 3,
+		"participantes": [
+			1,
+			4
+		],
+		"mensajes": [
+			{
+				"emisor": 1,
+				"contenido": "Hola!"
+			},
+			{
+				"emisor": 4,
+				"contenido": "Hola, como estas?"
+			}
+		],
+		"ultimoMensaje": {
+			"emisor": 4,
+			"contenido": "Hola, como estas?"
+		}
 	}
 ]
