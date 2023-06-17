@@ -33,14 +33,14 @@ class ControladorChats {
         }
     }
 
-    crearChat = async (req, res) => {
+    /*crearChat = async (req, res) => {
         try {
             const chat = await this.servicio.crearChat(req.body);
             res.json(chat);
         } catch (error) {
             res.status(500).json({mensaje: error.message});
         }
-    }
+    }*/
 
     obtenerChatPorParticipantes = async (req, res) => {
         try {

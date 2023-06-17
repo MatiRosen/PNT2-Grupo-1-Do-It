@@ -39,7 +39,7 @@
 		"categoria": "Alimentación y bebidas",
 		"precio": "60",
 		"idCreador": "4",
-		"vecesVisto": 9,
+		"vecesVisto": 17,
 		"cantidadInversiones": 1,
 		"imagen": "plato.jpg"
 	},
@@ -84,7 +84,7 @@
 		"categoria": "Educación",
 		"precio": "65",
 		"idCreador": "2",
-		"vecesVisto": 8,
+		"vecesVisto": 9,
 		"cantidadInversiones": "0",
 		"imagen": "estudiante.jpg"
 	},
@@ -106,7 +106,7 @@
 		"categoria": "Viajes y turismo",
 		"precio": "85",
 		"idCreador": "2",
-		"vecesVisto": 13,
+		"vecesVisto": 15,
 		"cantidadInversiones": "0",
 		"imagen": "playa.jpg"
 	}

@@ -145,16 +145,6 @@ const contactarCreador = (idea) => {
   
   chatService.obtenerChatPorParticipantes(id, idCreador).then(res => {
     router.replace(`/chat/${res.data.id}`);
-  }).catch(err => {
-      let nuevoChat = {
-          id: 0,
-          participantes: [id, idCreador],
-          mensajes: [],
-          ultimoMensaje: { emisor: 0, contenido: "" },
-      };
-      chatService.crearChat(nuevoChat).then((res) => {
-          router.replace(`/chat/${res.data.id}`);
-      });
   })
 
   
@@ -164,7 +154,7 @@ const contactarCreador = (idea) => {
 <style scoped>
 .btn-info {
     color: #fff;
-    background-color: #17a2b8;
+    background-color: #17a2b8;  
     border-color: #17a2b8;
 }
 .precio {
