@@ -202,6 +202,9 @@ export default {
                 })
                 .catch(() => {
                     ideas.value = [];
+                })
+                .finally(() => {
+                    categoriaSeleccionada.value = "";
                 });
         };
 
@@ -231,12 +234,17 @@ export default {
                 categoriaSeleccionada.value = opcionSeleccionada.valores;
 
                 if (campo.categoria === "autor") {
-                    ideas.value = (
-                        await ideaService.obtenerIdeasPorCampo(
+                    await ideaService
+                        .obtenerIdeasPorCampo(
                             "idCreador",
                             opcionSeleccionada.id.toString()
                         )
-                    ).data;
+                        .then((res) => {
+                            ideas.value = res.data;
+                        })
+                        .catch(() => {
+                            ideas.value = [];
+                        });
                 } else {
                     ideas.value = (
                         await ideaService.obtenerIdeasPorCampo(
