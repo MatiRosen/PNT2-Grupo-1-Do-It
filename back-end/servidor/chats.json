@@ -7,51 +7,13 @@
 		"mensajes": [
 			{
 				"emisor": 3,
-				"contenido": "sdasd"
+				"contenido": "asdadasd"
 			}
 		],
 		"ultimoMensaje": {
 			"emisor": 3,
-<<<<<<< HEAD
-			"contenido": "sdasd"
+			"contenido": "asdadasd"
 		},
 		"id": 1
-=======
-			"contenido": "hola buenas"
-		}
-	},
-	{
-		"id": 2,
-		"participantes": [
-			3,
-			2
-		],
-		"mensajes": [],
-		"ultimoMensaje": {
-			"emisor": 0,
-			"contenido": ""
-		}
-	},
-	{
-		"id": 3,
-		"participantes": [
-			1,
-			4
-		],
-		"mensajes": [
-			{
-				"emisor": 1,
-				"contenido": "Hola!"
-			},
-			{
-				"emisor": 4,
-				"contenido": "Hola, como estas?"
-			}
-		],
-		"ultimoMensaje": {
-			"emisor": 4,
-			"contenido": "Hola, como estas?"
-		}
->>>>>>> f8510359b690fcd11ffd66d3bdd1a4a468931c0e
 	}
 ]
