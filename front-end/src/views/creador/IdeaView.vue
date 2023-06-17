@@ -44,7 +44,6 @@ export default {
          return inversor.nombre;
       });
       usuarios.value = nombresInversores;
-      console.log(usuarios.value);
     };
 
     onMounted(obtenerInversores)
