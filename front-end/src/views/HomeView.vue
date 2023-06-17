@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-md-12 d-flex justify-content-center">
             <p class="efecto rounded-pill">
-              ¡Bienvenido!
+              ¡Bienvenid@s a Do It!!
             </p>
           </div>
         </div>

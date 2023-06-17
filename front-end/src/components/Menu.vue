@@ -3,6 +3,9 @@
     <nav class="navbar navbar-expand-lg">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div class="navbar-nav mr-auto">
+          <img src="../assets/doit.jpg">    
+        </div>
+        <div class="navbar-nav mr-auto">
           <RouterLink :to="rutaTipo" class="nav-item nav-link">Home</RouterLink>
         </div>
         <div v-if="estaLogueado">
@@ -28,7 +31,7 @@
               Iniciar sesion</RouterLink
             >
           </div>
-        </div>
+        </div>        
       </div>
     </nav>
   </div>
@@ -75,4 +78,8 @@ const logout = () => {
   color: #3eb805;
 }
 
+img {
+  height: 30px;
+  margin-right: 10px;
+}
 </style>
