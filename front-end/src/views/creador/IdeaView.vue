@@ -2,6 +2,9 @@
 import { useIdeasStore } from "../../stores/creador/ideas";
 import { useRouter } from "vue-router";
 import ideaService from "../../services/ideaService";
+import inversionService from "../../services/inversionService";
+import userService from "../../services/userService";
+import { ref, onMounted } from "vue";
 
 export default {
   setup() {
@@ -9,6 +12,7 @@ export default {
     const { idea } = useIdeasStore();
     const imagen = `http://localhost:8080/images/${idea.imagen}`;
     let { tieneInversores } = useIdeasStore();
+    let usuarios = ref ([])
 
     const editarIdea = () => {
       router.push({ name: "editarIdea" });
@@ -25,6 +29,26 @@ export default {
         });
     };
 
+    const obtenerInversores = async () => {
+      const inversores = await inversionService.obtenerInversiones();
+      const inversoresFiltrados = inversores.data.filter(
+        (inversion) => inversion.idIdea === idea.id
+      );
+      for (let i = 0; i < inversoresFiltrados.length; i++) {
+        const inversor = await userService.obtenerUsuario(
+          inversoresFiltrados[i].idInversor
+        );
+        inversoresFiltrados[i].nombre = inversor.data.nombre;
+      }
+      const nombresInversores = inversoresFiltrados.map((inversor) => {
+         return inversor.nombre;
+      });
+      usuarios.value = nombresInversores;
+      console.log(usuarios.value);
+    };
+
+    onMounted(obtenerInversores)
+
     return {
       idea,
       tieneInversores,
@@ -32,6 +56,9 @@ export default {
       ideaService,
       eliminarIdea,
       imagen,
+      obtenerInversores,
+      usuarios,
+      userService
     };
   },
 };
@@ -56,6 +83,8 @@ export default {
                   </h3>
                   <p class="texto">{{ idea.descripcion }}</p>
                   <h4 class="precio">Meta total ${{ idea.precio }}</h4>
+                  <h4 v-if="tieneInversores" class="precio">Inversores:</h4>
+                  <p class="nombres" v-for="usuario in usuarios">{{ usuario }}</p>
                   <button
                     v-if="!tieneInversores"
                     @click="editarIdea"
@@ -82,5 +111,8 @@ export default {
 
 <style scoped>
 @import '../../assets/estilos.css';
- 
+.nombres {
+  display: inline-block;
+  margin-right: 10px;
+}
 </style>
