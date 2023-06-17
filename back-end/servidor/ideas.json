@@ -6,7 +6,7 @@
 		"categoria": "Tecnología",
 		"precio": "100",
 		"idCreador": "4",
-		"vecesVisto": 1,
+		"vecesVisto": 28,
 		"cantidadInversiones": 2,
 		"imagen": "tecnologia.jpg"
 	},
@@ -39,7 +39,11 @@
 		"categoria": "Alimentación y bebidas",
 		"precio": "60",
 		"idCreador": "4",
+<<<<<<< HEAD
 		"vecesVisto": 17,
+=======
+		"vecesVisto": 9,
+>>>>>>> f8510359b690fcd11ffd66d3bdd1a4a468931c0e
 		"cantidadInversiones": 1,
 		"imagen": "plato.jpg"
 	},
@@ -85,8 +89,14 @@
 		"precio": "65",
 		"idCreador": "2",
 		"vecesVisto": 9,
+<<<<<<< HEAD
 		"cantidadInversiones": "0",
 		"imagen": "estudiante.jpg"
+=======
+		"cantidadInversiones": 1,
+		"imagen": "estudiante.jpg",
+		"invertido": 50
+>>>>>>> f8510359b690fcd11ffd66d3bdd1a4a468931c0e
 	},
 	{
 		"id": 9,
@@ -106,7 +116,7 @@
 		"categoria": "Viajes y turismo",
 		"precio": "85",
 		"idCreador": "2",
-		"vecesVisto": 13,
+		"vecesVisto": 15,
 		"cantidadInversiones": "0",
 		"imagen": "playa.jpg"
 	}

@@ -14,10 +14,10 @@ class Controlador {
             res.json(usuario);
         } catch (error) {
            if (error instanceof InvalidCredentialsError) {
-                res.json(error.message);
+                res.status(401).json(error.message);
                
             } else {
-                 res.json({
+                 res.status(500).json({
                 message:
                     "Hubo un problema interno. Intente nuevamente más tarde.",
             });
@@ -33,9 +33,9 @@ class Controlador {
             res.json(usuarioGuardado);
         } catch (error) {
             if (error instanceof InvalidCredentialsError || error instanceof ValidationError) {
-                res.json(error.message);
+                res.status(401).json(error.message);
             } else {
-                res.json({
+                res.status(500).json({
                     message:
                         "Hubo un problema interno. Intente nuevamente más tarde.",
                 });
@@ -51,9 +51,9 @@ class Controlador {
             res.json(usuarioLogueado);
         } catch (error) {
             if (error instanceof InvalidCredentialsError) {
-                res.json(error.message);
+                res.status(401).json(error.message);
             } else {
-                res.json({
+                res.status(500).json({
                     message:
                         "Hubo un problema interno. Intente nuevamente más tarde.",
                 });
@@ -73,10 +73,10 @@ class Controlador {
             res.json(usuarioActualizado);
         } catch (error) {
             if (error instanceof InvalidCredentialsError) {
-                res.json(error.message);
+                res.status(401).json(error.message);
                 return;
             } else {
-                res.json({
+                res.status(500).json({
                     message:
                         "Hubo un problema interno. Intente nuevamente más tarde.",
                 });
@@ -92,9 +92,9 @@ class Controlador {
             res.json(usuarioBorrado);
         } catch (error) {
             if (error instanceof InvalidCredentialsError) {
-                res.json(error.message);
+                res.status(401).json(error.message);
             } else {
-                res.json({
+                res.status(500).json({
                     message:
                         "Hubo un problema interno. Intente nuevamente más tarde.",
                 });
@@ -110,9 +110,9 @@ class Controlador {
             res.json(creadores);
         } catch (error) {
             if (error instanceof InvalidCredentialsError) {
-                res.json(error.message);
+                res.status(401).json(error.message);
             } else {
-                res.json({
+                res.status(500).json({
                     message:
                         "Hubo un problema interno. Intente nuevamente más tarde.",
                 });

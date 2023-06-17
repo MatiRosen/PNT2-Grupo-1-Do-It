@@ -21,7 +21,9 @@ class Servicio {
         try {
             const res = validar(usuario);
             if (!res.result) {
-                throw new ValidationError(`Campo inválido: ${res.error.message}`); 
+                throw new ValidationError(
+                    `Campo inválido: ${res.error.message}`
+                );
             }
 
             const usuarioGuardado = await this.model.guardarUsuario(usuario);
@@ -50,6 +52,12 @@ class Servicio {
                 );
             }
             const usuarioAux = await this.model.obtenerUsuarios(usuario.email);
+
+            if (!usuarioAux) {
+                throw new InvalidCredentialsError(
+                    "Credenciales inválidas. El email ingresado no existe."
+                );
+            }
 
             if (usuario.contraseña == usuarioAux.contraseña) {
                 return {
