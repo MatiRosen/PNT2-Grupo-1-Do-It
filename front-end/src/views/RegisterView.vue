@@ -56,6 +56,8 @@
                                         <input
                                             v-model="usuario.nacimiento"
                                             type="Date"
+                                            min="1900-01-01"
+                                            :max="fechaActual"
                                             id="txtFechaNacimiento"
                                             name="txtFechaNacimiento"
                                             class="form-control shadow"
@@ -163,6 +165,7 @@
 import { storeToRefs } from "pinia";
 import { useUserStore } from "../stores/user";
 import userService from "../services/userService";
+import { ref } from "vue";
 
 export default {
     setup() {
@@ -170,9 +173,11 @@ export default {
         const { user } = storeToRefs(storeUser);
         const { agregarUsuario } = storeUser;
         let { estaLogueado } = storeToRefs(storeUser);
+        const  fechaActual = ref(new Date().toISOString().slice(0, 10));
 
         return {
             user,
+            fechaActual,
             agregarUsuario,
             estaLogueado,
             userService,

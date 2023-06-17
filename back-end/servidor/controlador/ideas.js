@@ -13,9 +13,9 @@ class ControladorIdeas {
             res.json(topIdeas);
         } catch (error) {
             if (error instanceof InvalidCredentialsError) {
-                res.json(error.message);
+                res.status(401).json(error.message);
             } else {
-                res.json({
+                res.status(500).json({
                     message:
                         "Hubo un problema interno. Intente nuevamente más tarde.",
                 });
@@ -31,9 +31,9 @@ class ControladorIdeas {
             res.json(ideas);
         } catch (error) {
             if (error instanceof InvalidCredentialsError) {
-                res.json(error.message);
+                res.status(401).json(error.message);
             } else {
-                res.json({
+                res.status(500).json({
                     message:
                         "Hubo un problema interno. Intente nuevamente más tarde.",
                 });
@@ -52,9 +52,9 @@ class ControladorIdeas {
             res.json(ideas);
         } catch (error) {
             if (error instanceof InvalidCredentialsError) {
-                res.json(error.message);
+                res.status(401).json(error.message);
             } else {
-                res.json({
+                res.status(500).json({
                     message:
                         "Hubo un problema interno. Intente nuevamente más tarde.",
                 });
@@ -71,9 +71,9 @@ class ControladorIdeas {
             res.json(ideaAgregada);
         } catch (error) {
             if (error instanceof InvalidCredentialsError) {
-                res.json(error.message);
+                res.status(401).json(error.message);
             } else {
-                res.json({
+                res.status(500).json({
                     message:
                         "Hubo un problema interno. Intente nuevamente más tarde.",
                 });
@@ -89,9 +89,9 @@ class ControladorIdeas {
             res.json({ message: "Idea eliminada exitosamente." });
         } catch (error) {
             if (error instanceof InvalidCredentialsError) {
-                res.json(error.message);
+                res.status(401).json(error.message);
             } else {
-                res.json({
+                res.status(500).json({
                     message:
                         "Hubo un problema interno. Intente nuevamente más tarde.",
                 });
@@ -110,9 +110,9 @@ class ControladorIdeas {
             res.json(ideaActualizada);
         } catch (error) {
             if (error instanceof InvalidCredentialsError) {
-                res.json(error.message);
+                res.status(401).json(error.message);
             } else {
-                res.json({
+                res.status(500).json({
                     message:
                         "Hubo un problema interno. Intente nuevamente más tarde.",
                 });
@@ -133,7 +133,7 @@ class ControladorIdeas {
             );
             res.json(ideaActualizada);
         } catch (error) {
-            res.json({
+            res.status(500).json({
                 message:
                     "Hubo un problema interno. Intente nuevamente más tarde.",
             });
