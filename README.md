@@ -5,7 +5,6 @@ El objetivo del proyecto es conectar gente que tenga ideas con personas o equipo
 Además, en caso de no encontrar desarrolladores, Do It contará con sus propios equipos para poner a disposición de quien lo necesite.
 
 ## Funcionalidades
-### HACERLO RESPONSIVE!
 ### Menu
 1. **Menu**
    - Redireccionamiento al perfil del usuario
