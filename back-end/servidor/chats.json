@@ -1,6 +1,5 @@
 [
 	{
-		"id": 1,
 		"participantes": [
 			3,
 			4
@@ -8,24 +7,13 @@
 		"mensajes": [
 			{
 				"emisor": 3,
-				"contenido": "hola buenas"
+				"contenido": "sdasd"
 			}
 		],
 		"ultimoMensaje": {
 			"emisor": 3,
-			"contenido": "hola buenas"
-		}
-	},
-	{
-		"id": 2,
-		"participantes": [
-			3,
-			2
-		],
-		"mensajes": [],
-		"ultimoMensaje": {
-			"emisor": 0,
-			"contenido": ""
-		}
+			"contenido": "sdasd"
+		},
+		"id": 1
 	}
 ]

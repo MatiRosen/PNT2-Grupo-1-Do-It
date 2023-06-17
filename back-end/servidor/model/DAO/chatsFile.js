@@ -65,7 +65,7 @@ class ModelFile {
         }
     };
 
-    agregarChat = async (chat) => {
+    /*agregarChat = async (chat) => {
         let chats = [];
         try {
             chats = JSON.parse(await this.leerArchivo());
@@ -89,7 +89,7 @@ class ModelFile {
         catch {
             throw new DatabaseError("Error al escribir el archivo de chats.");
         }
-    };
+    };*/
 
     obtenerChatPorParticipantes = async (idUsuario1, idUsuario2) => {
         let chats = [];
@@ -98,11 +98,32 @@ class ModelFile {
         } catch {
             throw new DatabaseError("Error al leer el archivo de chats.");
         }
-        
-        const res = chats.find(c => c.participantes.includes(parseInt(idUsuario1)) && c.participantes.includes(parseInt(idUsuario2)));
+
+        let res = chats.find(c => c.participantes.includes(parseInt(idUsuario1)) && c.participantes.includes(parseInt(idUsuario2)));
 
         if (res == undefined) {
-            throw new InvalidCredentialsError("No existe un chat entre los usuarios.");
+            let nuevoChat = {
+                participantes: [parseInt(idUsuario1), parseInt(idUsuario2)],
+                mensajes: [],
+                ultimoMensaje: { emisor: 0, contenido: "" },
+            };
+
+            let nuevoId = 1
+        
+            if(chats.length != 0){
+                nuevoId = chats[chats.length - 1].id + 1
+            }
+
+            nuevoChat = {...nuevoChat, id: nuevoId}
+
+            chats.push(nuevoChat);
+            try {
+                await this.escribirArchivo(chats);
+                res = nuevoChat;
+            }
+            catch {
+                throw new DatabaseError("Error al escribir el archivo de chats.");
+            }
         }
 
         return res;

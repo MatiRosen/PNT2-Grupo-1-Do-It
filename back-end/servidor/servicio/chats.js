@@ -34,14 +34,14 @@ class ServicioChats {
         }
     };
 
-    crearChat = async (chat) => {
+    /*crearChat = async (chat) => {
         try {
             const chatNuevo = await this.model.agregarChat(chat);
             return chatNuevo;
         } catch (error) {
             throw error;
         }
-    }
+    }*/
 
     obtenerChatPorParticipantes = async (idUsuario1, idUsuario2) => {
         try {

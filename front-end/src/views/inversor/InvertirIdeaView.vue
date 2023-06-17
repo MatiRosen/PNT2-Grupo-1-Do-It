@@ -131,16 +131,6 @@ const contactarCreador = (idea) => {
   
   chatService.obtenerChatPorParticipantes(id, idCreador).then(res => {
     router.replace(`/chat/${res.data.id}`);
-  }).catch(err => {
-    let nuevoChat = {
-      id: 0,
-      participantes: [id, idCreador],
-      mensajes: [],
-      ultimoMensaje: { emisor: 0, contenido: "" },
-    };
-    chatService.crearChat(nuevoChat).then((res) => {
-      router.replace(`/chat/${res.data.id}`);
-    });
   })
 
   
