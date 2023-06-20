@@ -1,5 +1,6 @@
 import ModelFactory from "../model/DAO/ideasFactory.js";
 import config from "../config.js";
+import { validar } from "../validaciones/ideas.js";
 
 class ServicioIdeas {
     constructor() {
@@ -36,6 +37,13 @@ class ServicioIdeas {
 
     agregarIdea = async (idea) => {
         try {
+            const res = validar(idea);
+            if (!res.result) {
+                throw new ValidationError(
+                    `Campo inválido: ${res.error.message}`
+                );
+            }
+
             const ideaAgregada = await this.model.agregarIdea(idea);
             return ideaAgregada;
         } catch (error) {

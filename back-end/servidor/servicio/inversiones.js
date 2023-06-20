@@ -1,5 +1,6 @@
 import ModelFactory from "../model/DAO/inversionesFactory.js";
 import config from "../config.js";
+import { validar } from "../validaciones/inversiones.js";
 
 class ServicioInversiones {
     constructor() {
@@ -35,6 +36,13 @@ class ServicioInversiones {
 
     agregarInversion = async (inversion) => {
         try {
+            const res = validar(inversion);
+            if (!res.result) {
+                throw new ValidationError(
+                    `Campo inválido: ${res.error.message}`
+                );
+            }
+
             const inversionAgregada = await this.model.agregarInversion(inversion);
             return inversionAgregada;
         } catch (error) {
