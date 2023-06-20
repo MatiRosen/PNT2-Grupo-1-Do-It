@@ -11,7 +11,9 @@ class ModelFactory {
                 console.log("**** Persistiendo usuarios en MongoDB ****");
                 return new ModelMongo();
             default:
-                console.log("**** Persistiendo usuarios en File System (default) ****");
+                console.log(
+                    "**** Persistiendo usuarios en File System (default) ****"
+                );
                 return new ModelFile();
         }
     }
