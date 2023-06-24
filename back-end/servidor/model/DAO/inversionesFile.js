@@ -87,7 +87,6 @@ class ModelFile {
                 inv.idInversor == inversion.idInversor
         );
 
-        console.log(existeInversion);
         if (existeInversion) {
             throw new InvalidCredentialsError(
                 "Ya existe una inversión con esos datos."

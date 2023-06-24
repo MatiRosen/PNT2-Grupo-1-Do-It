@@ -2,8 +2,8 @@ import Joi from "joi";
 
 export const validar = (inversion) => {
     const inversionSchema = Joi.object({
-        idIdea: Joi.string().required(),
-        idInversor: Joi.string().required(),
+        idIdea: Joi.required(),
+        idInversor: Joi.required(),
         dineroInvertido: Joi.number().min(0).required(),
     });
 

@@ -1,9 +1,11 @@
 import ServicioInversiones from "../servicio/inversiones.js";
 import { InvalidCredentialsError } from "../../errores.js";
+import ControladorMailer from "./mailer.js";
 
 class ControladorInversiones {
     constructor() {
-        this.ServicioInversiones = new ServicioInversiones();
+        this.ServicioInversiones = new ServicioInversiones();      
+        this.ControladorMailer = new ControladorMailer();  
     }
 
     obtenerInversiones = async (req, res) => {
@@ -71,10 +73,14 @@ class ControladorInversiones {
 
     agregarInversion = async (req, res) => {
         try {
-            const inversion = req.body;
-            const inversionAgregada = await this.ServicioInversiones.agregarInversion(inversion);
+            const inversion = req.body;   
 
+            await this.ControladorMailer.enviarMail(inversion)
+
+            const inversionAgregada = await this.ServicioInversiones.agregarInversion(inversion);
+            
             res.status(201).json(inversionAgregada);
+            
         } catch (error) {
             if (error instanceof InvalidCredentialsError) {
                 res.status(400).json(error.message);
