@@ -12,6 +12,7 @@
   "author": "Do-It Team",
   "license": "MIT",
   "dependencies": {
+    "@faker-js/faker": "^8.0.2",
     "chai": "^4.3.7",
     "cors": "^2.8.5",
     "dotenv": "^16.1.4",
