@@ -1,5 +1,5 @@
 <template>
-  <section id="Loguear">
+  <section id="Loguear" class="container-abs">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -112,6 +112,11 @@ const mandarMensaje = (contenido, chatId) => {
   background-size: cover;
   width: 100%;
   height: 100%;
+}
+
+.container-abs{
+  overflow-y: scroll;
+  padding-bottom: 100px;
 }
 
 .titulosgrises {
