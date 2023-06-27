@@ -42,8 +42,7 @@ class ServicioIdeas {
                 throw new ValidationError(
                     `Campo inválido: ${res.error.message}`
                 );
-            }
-
+            }            
             const ideaAgregada = await this.model.agregarIdea(idea);
             return ideaAgregada;
         } catch (error) {

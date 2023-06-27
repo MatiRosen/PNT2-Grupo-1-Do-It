@@ -6,9 +6,10 @@ export const validar = (idea) => {
         descripcion: Joi.string().required(),
         categoria: Joi.string().required(),
         precio: Joi.number().min(0).required(),
-        idCreador: Joi.string().required(),
+        idCreador: Joi.required(),
         vecesVisto: Joi.number().min(0).required(),
         cantidadInversiones: Joi.number().min(0).required(),
+        imagen: Joi.required(),
     });
 
     const { error } = ideaSchema.validate(idea);

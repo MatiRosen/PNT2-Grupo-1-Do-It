@@ -1,5 +1,5 @@
 import ServicioIdeas from "../servicio/ideas.js";
-import { InvalidCredentialsError } from "../../errores.js";
+import { InvalidCredentialsError, ValidationError } from "../../errores.js";
 
 class ControladorIdeas {
     constructor() {
@@ -12,7 +12,7 @@ class ControladorIdeas {
 
             res.json(topIdeas);
         } catch (error) {
-            if (error instanceof InvalidCredentialsError) {
+            if (error instanceof InvalidCredentialsError || error instanceof ValidationError) {
                 res.status(401).json(error.message);
             } else {
                 res.status(500).json({
@@ -30,7 +30,7 @@ class ControladorIdeas {
 
             res.json(ideas);
         } catch (error) {
-            if (error instanceof InvalidCredentialsError) {
+            if (error instanceof InvalidCredentialsError || error instanceof ValidationError) {
                 res.status(401).json(error.message);
             } else {
                 res.status(500).json({
@@ -51,7 +51,7 @@ class ControladorIdeas {
 
             res.json(ideas);
         } catch (error) {
-            if (error instanceof InvalidCredentialsError) {
+            if (error instanceof InvalidCredentialsError || error instanceof ValidationError) {
                 res.status(401).json(error.message);
             } else {
                 res.status(500).json({
@@ -64,13 +64,17 @@ class ControladorIdeas {
 
     agregarIdea = async (req, res) => {
         try {
-            const idea = req.body;
-            idea.imagen = req.file.filename;
+            const idea = req.body;            
+            if(req.file){
+                idea.imagen = req.file.filename;
+            }                
+            else idea.imagen = idea.imagen
+            
             const ideaAgregada = await this.ServicioIdeas.agregarIdea(idea);
 
             res.json(ideaAgregada);
         } catch (error) {
-            if (error instanceof InvalidCredentialsError) {
+            if (error instanceof InvalidCredentialsError || error instanceof ValidationError) {
                 res.status(401).json(error.message);
             } else {
                 res.status(500).json({
@@ -88,7 +92,7 @@ class ControladorIdeas {
 
             res.json({ message: "Idea eliminada exitosamente." });
         } catch (error) {
-            if (error instanceof InvalidCredentialsError) {
+            if (error instanceof InvalidCredentialsError || error instanceof ValidationError) {
                 res.status(401).json(error.message);
             } else {
                 res.status(500).json({
@@ -109,7 +113,7 @@ class ControladorIdeas {
             );
             res.json(ideaActualizada);
         } catch (error) {
-            if (error instanceof InvalidCredentialsError) {
+            if (error instanceof InvalidCredentialsError || error instanceof ValidationError) {
                 res.status(401).json(error.message);
             } else {
                 res.status(500).json({
