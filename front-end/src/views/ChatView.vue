@@ -76,6 +76,19 @@ chatStore.getChat(chatId).then((c) => {
     });
 });
 
+const actualizarChat = () => {
+  chatStore.getChat(chatId).then((c) => {
+    chat.value = c.data;
+  });
+};
+
+onMounted(() => {
+  actualizarChat();
+  setInterval(actualizarChat, 1000);
+});
+
+
+
 let contenido = ref("");
 
 const mandarMensaje = (contenido, chatId) => {
