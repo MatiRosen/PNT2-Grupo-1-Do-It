@@ -49,7 +49,8 @@ class ServicioIdeas {
                 throw new ValidationError(
                     `Campo inválido: ${res.error.message}`
                 );
-            }            
+            }
+            idea.vecesVisto = Number(idea.vecesVisto);
             const ideaAgregada = await this.model.agregarIdea(idea);
             return ideaAgregada;
         } catch (error) {

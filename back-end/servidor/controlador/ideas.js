@@ -64,7 +64,7 @@ class ControladorIdeas {
 
     agregarIdea = async (req, res) => {
         try {
-            const idea = req.body;            
+            const idea = req.body;   
             if(req.file){
                 idea.imagen = req.file.filename;
             }                

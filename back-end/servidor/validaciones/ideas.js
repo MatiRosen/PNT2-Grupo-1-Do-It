@@ -10,7 +10,7 @@ export const validar = (idea) => {
         vecesVisto: Joi.number().min(0).required(),
         cantidadInversiones: Joi.number().min(0).required(),
         imagen: Joi.required(),
-        id: Joi.required(),
+        id: Joi.any(),
     });
 
     const { error } = ideaSchema.validate(idea);
