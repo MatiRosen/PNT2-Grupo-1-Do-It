@@ -1,22 +1,11 @@
-import generador from './generador/idea.js'
+import generadorIdeas from './generador/idea.js'
+import generadorInversion from './generador/inversion.js'
 import { expect } from 'chai'
 import supertest from 'supertest'
-import multer from "multer";
-
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, '../back-end/public/images');
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.originalname);
-    },
-});
 
 const request = supertest('http://localhost:8080/api/')
-const upload = multer({ storage: storage });
 
 describe('Test ApiRestFul', () =>{
-    //CASOS DE PRUEBAS DE TODOS LOS GET
     describe('GET ideas', () => {
         it('Obtener ideas por creador deberia retornar un status 200', async () => {            
             const response = await request.get('ideas/creador/:idCreador?')
@@ -38,12 +27,38 @@ describe('Test ApiRestFul', () =>{
             const response = await request.get('ideas/obtenerTop')
             expect(response.status).to.eql(200)
         })
-    }) 
-    //CASOS DE PRUEBAS DE TODOS LOS POST
+    })
+    describe('GET usuarios', () => {
+        it('Obtener usuario por id deberia retornar un status 200', async () => {            
+            const response = await request.get('usuarios/id/1')
+            expect(response.status).to.eql(200)
+        })
+        it('Obtener usuario creador por id deberia retornar un status 200 y un usuario creador', async () => {            
+            const response = await request.get('usuarios/creadores/')
+            expect(response.status).to.eql(200)
+            for (let i = 0; i < response.body.length; i++) {
+                expect(response.body[i].tipo).eql('Creador')
+            }
+        })
+        it('Obtener usuario creador por id que no existe deberia retornar un status 401', async () => {            
+            const response = await request.get('usuarios/creadores/0')
+            expect(response.status).to.eql(401)
+        })
+    })
+    describe('GET inversiones', () => {
+        it('Obtener inversiones deberia retornar un status 200', async () => {            
+            const response = await request.get('inversiones/')
+            expect(response.status).to.eql(200)
+        })
+        it('Obtener inversiones por id de idea e id de inversor deberia retornar un status 200', async () => {            
+            const response = await request.get('inversiones/:idIdea/:idInversor')
+            expect(response.status).to.eql(200)
+        })
+    })
+
     describe('POST ideas', () => {
         it('Agregar una idea deberia retornar un status 200', async () => {            
-            const ideaEnviada = generador.getIdea()
-            console.log(ideaEnviada);
+            const ideaEnviada = generadorIdeas.getIdea()
             const response = await request.post('ideas/').send(ideaEnviada)
             expect(response.status).to.eql(200)
 

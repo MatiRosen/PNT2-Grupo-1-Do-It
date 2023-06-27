@@ -1,4 +1,4 @@
-import generador from '../generador/idea.js'
+import generador from './generador/idea.js'
 import { expect } from 'chai'
 
 describe('Test del generador de idea aleatoria', () =>{
