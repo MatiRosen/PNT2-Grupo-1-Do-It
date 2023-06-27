@@ -17,14 +17,18 @@ class Server {
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: true }));
         this.app.use(cors());
-        this.app.use(express.static("public"));
+        this.app.use(express.static("public")); 
+        
+        if (this.persistencia === "MONGO") await CnxMongo.conectar().catch((error) => {
+            console.log(error.message);
+            console.log("Usando persistencia en FS");
+            this.persistencia = "FS";
+        });
 
         this.app.use("/api/usuarios", new RouterUsuarios(this.persistencia).start());
         this.app.use("/api/ideas", new RouterIdeas(this.persistencia).start());
         this.app.use("/api/inversiones", new RouterInversiones(this.persistencia).start());
         this.app.use("/api/chats", new RouterChats(this.persistencia).start());
-
-        if (this.persistencia === "MONGO") await CnxMongo.conectar();
 
         const PORT = this.port;
         this.server = this.app.listen(PORT, () =>

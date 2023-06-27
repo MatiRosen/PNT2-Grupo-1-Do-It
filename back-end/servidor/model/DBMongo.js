@@ -21,7 +21,7 @@ class CnxMongoDB {
             CnxMongoDB.db = CnxMongoDB.client.db(config.BASE);
             CnxMongoDB.connection = true;
         } catch (error) {
-            console.log(`Error en la conexion a MongoDB: ${error.message}`);
+            throw new Error(`Error en la conexion a MongoDB: ${error.message}`);
         }
     };
 

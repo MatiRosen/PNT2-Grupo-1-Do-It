@@ -135,7 +135,6 @@ const invertirIdea = async (idea) => {
 
     user.dinero -= idea.invertido;
     await usuarioService.sumarDinero({ dinero: user.dinero }, user.id);
-
     idea.cantidadInversiones = Number(idea.cantidadInversiones) + 1;
 
     await ideaService.actualizarIdea(idea.id, idea);

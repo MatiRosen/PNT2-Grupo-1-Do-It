@@ -73,6 +73,9 @@ class ModelMongo {
 
         try {
             await CnxMongoDB.db.collection("usuarios").insertOne(usuario);
+
+            usuario.id = usuario._id;
+            delete usuario._id;
         } catch {
             throw new DatabaseError("Error al guardar el usuario.");
         }
