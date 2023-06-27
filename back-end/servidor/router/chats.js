@@ -2,9 +2,9 @@ import express from "express";
 import ControladorChats from "../controlador/chats.js";
 
 class RouterChats {
-    constructor() {
+    constructor(persistencia) {
         this.router = express.Router();
-        this.controlador = new ControladorChats();
+        this.controlador = new ControladorChats(persistencia);
     }
 
     start() {

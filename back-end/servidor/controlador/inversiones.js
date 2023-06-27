@@ -3,9 +3,9 @@ import { InvalidCredentialsError } from "../../errores.js";
 import ControladorMailer from "./mailer.js";
 
 class ControladorInversiones {
-    constructor() {
-        this.ServicioInversiones = new ServicioInversiones();      
-        this.ControladorMailer = new ControladorMailer();  
+    constructor(persistencia) {
+        this.ServicioInversiones = new ServicioInversiones(persistencia);      
+        this.ControladorMailer = new ControladorMailer();
     }
 
     obtenerInversiones = async (req, res) => {

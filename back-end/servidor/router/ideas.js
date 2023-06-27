@@ -14,9 +14,9 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 class RouterIdeas {
-    constructor() {
+    constructor(persistencia) {
         this.router = express.Router();
-        this.controlador = new ControladorIdeas();
+        this.controlador = new ControladorIdeas(persistencia);
     }
 
     start() {

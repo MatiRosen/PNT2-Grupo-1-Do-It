@@ -5,9 +5,9 @@
   "description": "",
   "main": "servidor/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node 'servidor/server.js'",
-    "watch": "nodemon 'servidor/server.js'",
+    "test": "mocha ./servidor/test/*.test.js --timeout 10000",
+    "start": "node servidor/index.js",
+    "watch": "nodemon servidor/index.js",
     "test-idea": "mocha ./servidor/test/idea/idea.test.js --timeout 10000",
     "test-api-ext": "mocha ./servidor/test/api.ext.test.js --timeout 10000"
   },

@@ -7,10 +7,11 @@ class ControladorMailer {
         this.ServicioUsuarios = new ServicioUsuarios();      
         this.ServicioIdeas = new ServicioIdeas();  
     }
+    
     opcionesMail = async (inversion) => {
         const inversor =  await this.ServicioUsuarios.obtenerUsuario(inversion.idInversor)
-        const idea = await this.ServicioIdeas.obtenerIdeasPorCampo("id", parseInt(inversion.idIdea))
-        const creador = await this.ServicioUsuarios.obtenerCreadores(parseInt(idea[0].idCreador))
+        const idea = await this.ServicioIdeas.obtenerIdeasPorCampo("id", inversion.idIdea)
+        const creador = await this.ServicioUsuarios.obtenerCreadores(idea[0].idCreador)
 
         const opciones = {
             from: '"Do It!" <do-it@example.com>',

@@ -2,9 +2,9 @@ import express from "express";
 import ControladorInversiones from "../controlador/inversiones.js";
 
 class RouterInversiones {
-    constructor() {
+    constructor(persistencia) {
         this.router = express.Router();
-        this.controlador = new ControladorInversiones();
+        this.controlador = new ControladorInversiones(persistencia);
     }
 
     start() {

@@ -9,7 +9,7 @@ export const validar = (usuario) => {
         nacimiento: Joi.date().greater("1-1-1900").less("now").required(),
         genero: Joi.string().alphanum().required(),
         telefono: Joi.number().required(),
-        direccion: Joi.string().pattern(new RegExp("^[a-zA-Z0-9 ]{3,30}$")).required(),
+        direccion: Joi.string().pattern(new RegExp("^[a-zA-Z0-9 ]{3,50}$")).required(),
         contraseña: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{5,30}$")).required(),
         tipo: Joi.string().pattern(new RegExp("^(Creador|Inversor)$")).required(),
         dinero: Joi.number().min(0)

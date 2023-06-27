@@ -1,11 +1,16 @@
 import ModelFactory from "../model/DAO/usuariosFactory.js";
-import config from "../config.js";
 import { InvalidCredentialsError, ValidationError } from "../../errores.js";
 import { validar } from "../validaciones/usuarios.js";
 
+// Usamos el patrón Singleton :)
+let instancia = null;
 class Servicio {
-    constructor() {
-        this.model = ModelFactory.get(config.MODO_PERSISTENCIA);
+    constructor(persistencia) {
+        if (!instancia) {
+            instancia = this;
+            this.model = ModelFactory.get(persistencia);
+        }
+        return instancia;
     }
 
     obtenerUsuario = async (id) => {

@@ -1,10 +1,17 @@
 import ModelFactory from "../model/DAO/ideasFactory.js";
-import config from "../config.js";
 import { validar } from "../validaciones/ideas.js";
+import { InvalidCredentialsError, ValidationError } from "../../errores.js";
 
+
+// Usamos el patrón Singleton :)
+let instancia = null;
 class ServicioIdeas {
-    constructor() {
-        this.model = ModelFactory.get(config.MODO_PERSISTENCIA);
+    constructor(persistencia) {
+        if (!instancia) {
+            instancia = this;
+            this.model = ModelFactory.get(persistencia);
+        } 
+        return instancia;
     }
 
     obtenerIdeas = async (idCreador) => {

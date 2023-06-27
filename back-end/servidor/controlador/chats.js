@@ -1,8 +1,8 @@
 import ServicioChats from "../servicio/chats.js";
 
 class ControladorChats {
-    constructor() {
-        this.servicio = new ServicioChats();
+    constructor(persistencia) {
+        this.servicio = new ServicioChats(persistencia);
     }
 
     obtenerChatsDelUsuario = async (req, res) => {

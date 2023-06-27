@@ -15,6 +15,11 @@ class ModelMongo {
                 .collection("inversiones")
                 .find({})
                 .toArray();
+
+            inversiones.forEach((inversion) => {
+                inversion.id = inversion._id;
+                delete inversion._id;
+            });
         } catch {
             throw new DatabaseError("Error al leer el archivo de inversiones.");
         }
@@ -31,6 +36,11 @@ class ModelMongo {
             inversion = await CnxMongoDB.db
                 .collection("inversiones")
                 .findOne({ idIdea: idIdea, idInversor: idInversor });
+            
+            if (inversion) {
+                inversion.id = inversion._id;
+                delete inversion._id;
+            }
         } catch {
             throw new DatabaseError("Error al leer el archivo de inversiones.");
         }
@@ -59,6 +69,11 @@ class ModelMongo {
                     },
                 })
                 .toArray();
+            
+            inversiones.forEach((inversion) => {
+                inversion.id = inversion._id;
+                delete inversion._id;
+            });
         } catch {
             throw new DatabaseError("Error al leer el archivo de inversiones.");
         }
@@ -89,6 +104,9 @@ class ModelMongo {
 
         try {
             await CnxMongoDB.db.collection("inversiones").insertOne(inversion);
+
+            inversion.id = inversion._id;
+            delete inversion._id;
         } catch {
             throw new DatabaseError("Error al guardar la inversión.");
         }
@@ -134,8 +152,6 @@ class ModelMongo {
                 "No existe una inversión con esos datos."
             );
         }
-
-        console.log(inversionEliminada);
     };
 
     actualizarInversion = async (idIdea, idInversor, inversion) => {
@@ -160,7 +176,7 @@ class ModelMongo {
                 "No existe una inversión con esos datos."
             );
         }
-        return await this.obtenerInversion(idIdea, idInversor);
+        return await inversionActualizada;
     };
 
     generarObjectId = (id) => {

@@ -17,6 +17,11 @@ class ModelMongo {
                 .sort({ vecesVisto: -1 })
                 .limit(3)
                 .toArray();
+
+            ideas.forEach((idea) => {
+                idea.id = idea._id;
+                delete idea._id;
+            });
             return ideas;
         } catch {
             throw new DatabaseError("Error al leer el archivo de ideas.");
@@ -33,12 +38,22 @@ class ModelMongo {
                     .collection("ideas")
                     .find({ idCreador: idCreador })
                     .toArray();
+
+                ideasUsuario.forEach((idea) => {
+                    idea.id = idea._id;
+                    delete idea._id;
+                });
                 return ideasUsuario;
             } else {
                 const ideas = await CnxMongoDB.db
                     .collection("ideas")
                     .find({})
                     .toArray();
+
+                ideas.forEach((idea) => {
+                    idea.id = idea._id;
+                    delete idea._id;
+                });
                 return ideas;
             }
         } catch {
@@ -61,6 +76,11 @@ class ModelMongo {
                     },
                 })
                 .toArray();
+
+            ideas.forEach((idea) => {
+                idea.id = idea._id;
+                delete idea._id;
+            });
         } catch {
             throw new DatabaseError("Error al leer el archivo de ideas.");
         }
@@ -78,42 +98,16 @@ class ModelMongo {
         if (!CnxMongoDB.connection)
             throw new DatabaseError("No hay conexión a la base de datos.");
 
-        // Podemos validar que no exista una idea con el mismo título
-        /*
-        try{
-            await this.validarIdeaExistente("titulo", idea.titulo);
-        } catch(error) {
-            throw error;
-        }
-        */
-
         try {
             await CnxMongoDB.db.collection("ideas").insertOne(idea);
         } catch {
             throw new DatabaseError("Error al guardar la idea.");
         }
 
+        idea.id = idea._id;
+        delete idea._id;
         return idea;
     };
-
-    /*
-    validarIdeaExistente = async (campo, valor) => {
-        let ideaExistente = null;
-        try {
-            ideaExistente = await CnxMongoDB.db
-                .collection("ideas")
-                .findOne({ [campo]: valor });
-        } catch {
-            throw new DatabaseError("Error al leer el archivo de ideas.");
-        }
-
-        if (ideaExistente) {
-            throw new InvalidCredentialsError(
-                `Ya hay una idea con ese ${campo}.`
-            );
-        }
-    }
-    */
 
     eliminarIdeas = async (idCreador) => {
         if (!CnxMongoDB.connection)
@@ -156,8 +150,6 @@ class ModelMongo {
                 "No existe una idea con el id indicado."
             );
         }
-
-        console.log(ideaEliminada);
     };
 
     actualizarIdea = async (id, idea) => {
@@ -173,7 +165,6 @@ class ModelMongo {
                     { $set: idea },
                     { returnNewDocument: true }
                 );
-            // findOneAndUpdate devuelve un objeto con la idea actualizada
         } catch {
             throw new DatabaseError("Error al actualizar la idea.");
         }
@@ -184,7 +175,7 @@ class ModelMongo {
             );
         }
 
-        return await this.obtenerIdea(id);
+        return await ideaActualizada;
     };
 
     generarObjectId = (id) => {

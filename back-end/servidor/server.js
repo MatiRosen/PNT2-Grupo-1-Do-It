@@ -3,30 +3,47 @@ import RouterUsuarios from "./router/usuarios.js";
 import RouterIdeas from "./router/ideas.js";
 import RouterInversiones from "./router/inversiones.js";
 import RouterChats from "./router/chats.js";
-import config from "./config.js";
 import cors from "cors";
-import CnxMongo from "./model/DBMongo.js"
+import CnxMongo from "./model/DBMongo.js";
 
-const app = express();
+class Server {
+    constructor(port, persistencia) {
+        this.app = express();
+        this.port = port;
+        this.persistencia = persistencia;
+    }
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+    async start() {
+        this.app.use(express.json());
+        this.app.use(express.urlencoded({ extended: true }));
+        this.app.use(cors());
+        this.app.use(express.static("public"));
 
-app.use(express.static('public'));
+        this.app.use("/api/usuarios", new RouterUsuarios(this.persistencia).start());
+        this.app.use("/api/ideas", new RouterIdeas(this.persistencia).start());
+        this.app.use("/api/inversiones", new RouterInversiones(this.persistencia).start());
+        this.app.use("/api/chats", new RouterChats(this.persistencia).start());
 
-app.use("/api/usuarios", new RouterUsuarios().start());
-app.use("/api/ideas", new RouterIdeas().start());
-app.use("/api/inversiones", new RouterInversiones().start());
-app.use("/api/chats", new RouterChats().start());
+        if (this.persistencia === "MONGO") await CnxMongo.conectar();
 
-if (config.MODO_PERSISTENCIA === "MONGO") await CnxMongo.conectar();
+        const PORT = this.port;
+        this.server = this.app.listen(PORT, () =>
+            console.log(
+                `Servidor HTTP express escuchando en http://localhost:${PORT}`
+            )
+        );
 
-const PORT = config.PORT;
-const server = app.listen(PORT, () =>
-    console.log(`Servidor HTTP express escuchando en http://localhost:${PORT}`)
-);
+        this.server.on("error", (error) =>
+            console.log(`Error en servidor: ${error.message}`)
+        );
 
-server.on("error", (error) =>
-    console.log(`Error en servidor: ${error.message}`)
-);
+        return this.app;
+    }
+
+    async stop() {
+        this.server.close(() => console.log("Servidor cerrado"));
+        await CnxMongo.desconectar();
+    }
+}
+
+export default Server;

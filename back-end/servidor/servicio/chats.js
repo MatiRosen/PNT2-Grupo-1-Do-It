@@ -1,10 +1,9 @@
 import ModelFactory from "../model/DAO/chatsFactory.js";
-import config from "../config.js";
-import { InvalidCredentialsError } from "../../errores.js";
+
 
 class ServicioChats {
-    constructor() {
-        this.model = ModelFactory.get(config.MODO_PERSISTENCIA);
+    constructor(persistencia) {
+        this.model = ModelFactory.get(persistencia);
     }
 
     obtenerChatsDelUsuario = async (userId) => {

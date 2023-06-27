@@ -14,12 +14,20 @@ class ModelMongo {
                 const usuario = await CnxMongoDB.db
                     .collection("usuarios")
                     .findOne({ email: email });
+
+                usuario.id = usuario._id;
+                delete usuario._id;
                 return usuario;
             } else {
                 const usuarios = await CnxMongoDB.db
                     .collection("usuarios")
                     .find({})
                     .toArray();
+                
+                usuarios.forEach((usuario) => {
+                    usuario.id = usuario._id;
+                    delete usuario._id;
+                });
                 return usuarios;
             }
         } catch {
@@ -36,6 +44,9 @@ class ModelMongo {
             usuario = await CnxMongoDB.db
                 .collection("usuarios")
                 .findOne({ _id: this.generarObjectId(id) });
+
+            usuario.id = usuario._id;
+            delete usuario._id;
         } catch {
             throw new DatabaseError("Error al leer el archivo de usuarios.");
         }
@@ -75,6 +86,9 @@ class ModelMongo {
             usuarioExistente = await CnxMongoDB.db
                 .collection("usuarios")
                 .findOne({ [campo]: valor });
+            
+            usuarioExistente.id = usuarioExistente._id;
+            delete usuarioExistente._id;
         } catch {
             throw new DatabaseError("Error al leer el archivo de usuarios.");
         }
@@ -126,12 +140,20 @@ class ModelMongo {
                 const creador = await CnxMongoDB.db
                     .collection("usuarios")
                     .findOne({ _id: this.generarObjectId(idCreador), tipo: "Creador" });
+
+                creador.id = creador._id;
+                delete creador._id;
                 return creador;
             } else {
                 const creadores = await CnxMongoDB.db
                     .collection("usuarios")
                     .find({ tipo: "Creador" })
                     .toArray();
+
+                creadores.forEach((creador) => {
+                    creador.id = creador._id;
+                    delete creador._id;
+                });
                 return creadores;
             }
         } catch(error){

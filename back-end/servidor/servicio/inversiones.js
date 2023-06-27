@@ -1,10 +1,9 @@
 import ModelFactory from "../model/DAO/inversionesFactory.js";
-import config from "../config.js";
 import { validar } from "../validaciones/inversiones.js";
 
 class ServicioInversiones {
-    constructor() {
-        this.model = ModelFactory.get(config.MODO_PERSISTENCIA);
+    constructor(persistencia) {
+        this.model = ModelFactory.get(persistencia);
     }
 
     obtenerInversiones = async () => {

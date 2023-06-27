@@ -2,8 +2,8 @@ import ServicioIdeas from "../servicio/ideas.js";
 import { InvalidCredentialsError, ValidationError } from "../../errores.js";
 
 class ControladorIdeas {
-    constructor() {
-        this.ServicioIdeas = new ServicioIdeas();
+    constructor(persistencia) {
+        this.ServicioIdeas = new ServicioIdeas(persistencia);
     }
 
     obtenerTop = async (req, res) => {
@@ -76,7 +76,7 @@ class ControladorIdeas {
         } catch (error) {
             if (error instanceof InvalidCredentialsError || error instanceof ValidationError) {
                 res.status(401).json(error.message);
-            } else {
+            } else {                   
                 res.status(500).json({
                     message:
                         "Hubo un problema interno. Intente nuevamente más tarde.",
@@ -137,6 +137,7 @@ class ControladorIdeas {
             );
             res.json(ideaActualizada);
         } catch (error) {
+            console.log(error);
             res.status(500).json({
                 message:
                     "Hubo un problema interno. Intente nuevamente más tarde.",

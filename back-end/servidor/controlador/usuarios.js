@@ -2,8 +2,8 @@ import Servicio from "../servicio/usuarios.js";
 import { InvalidCredentialsError, ValidationError } from "../../errores.js";
 
 class Controlador {
-    constructor() {
-        this.servicio = new Servicio();
+    constructor(persistencia) {
+        this.servicio = new Servicio(persistencia);
     }
 
     obtenerUsuario = async (req, res) => {
