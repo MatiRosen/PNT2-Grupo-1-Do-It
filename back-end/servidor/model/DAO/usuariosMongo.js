@@ -86,9 +86,6 @@ class ModelMongo {
             usuarioExistente = await CnxMongoDB.db
                 .collection("usuarios")
                 .findOne({ [campo]: valor });
-            
-            usuarioExistente.id = usuarioExistente._id;
-            delete usuarioExistente._id;
         } catch {
             throw new DatabaseError("Error al leer el archivo de usuarios.");
         }
