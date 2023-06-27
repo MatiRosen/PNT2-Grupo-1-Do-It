@@ -103,13 +103,16 @@ const getInversiones = async () => {
 };
 
 const getCreador = async () => {
-    await usuarioService.obtenerCreadores(idea.idCreador).then((res) => {
-        creador.value = res.data;
-        nombreCreador.value =
-            creador.value.nombre + " " + creador.value.apellido;
-    }).catch((err) => {
-      console.log(`Ha ocurrido un error: ${err.response.data}`);
-    })
+    await usuarioService
+        .obtenerCreadores(idea.idCreador)
+        .then((res) => {
+            creador.value = res.data;
+            nombreCreador.value =
+                creador.value.nombre + " " + creador.value.apellido;
+        })
+        .catch((err) => {
+            console.log(`Ha ocurrido un error: ${err.response.data}`);
+        });
 };
 
 onMounted(() => {
@@ -139,22 +142,19 @@ const invertirIdea = async (idea) => {
     router.push(`/inversor/inversiones/`);
 };
 const contactarCreador = (idea) => {
+    let id = user.id;
+    let idCreador = idea.idCreador;
 
-  let id = user.id;
-  let idCreador = parseInt(idea.idCreador);
-  
-  chatService.obtenerChatPorParticipantes(id, idCreador).then(res => {
-    router.replace(`/chat/${res.data.id}`);
-  })
-
-  
+    chatService.obtenerChatPorParticipantes(id, idCreador).then((res) => {
+        router.replace(`/chat/${res.data.id}`);
+    });
 };
 </script>
 
 <style scoped>
 .btn-info {
     color: #fff;
-    background-color: #17a2b8;  
+    background-color: #17a2b8;
     border-color: #17a2b8;
 }
 .precio {

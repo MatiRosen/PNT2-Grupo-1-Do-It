@@ -80,7 +80,7 @@ let contenido = ref("");
 
 const mandarMensaje = (contenido, chatId) => {
   let mensajeMandar = { emisor: user.id, contenido };
-  console.log(mensajeMandar);
+
   chatStore.mandarMensaje(chatId, mensajeMandar).then((x) => {
     chatStore.getChat(chatId).then((c) => {
       chat.value = c.data;

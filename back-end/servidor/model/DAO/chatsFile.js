@@ -43,7 +43,7 @@ class ModelFile {
         return chat;
     };
 
-    mandarMensaje = async (idChat,mensaje) => {
+    mandarMensaje = async (idChat, mensaje) => {
         let chats = [];
         
         try {

@@ -48,5 +48,10 @@
 		"idIdea": 8,
 		"idInversor": 1,
 		"dineroInvertido": 50
+	},
+	{
+		"idIdea": 10,
+		"idInversor": 1,
+		"dineroInvertido": 50
 	}
 ]

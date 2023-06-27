@@ -7,7 +7,6 @@
 		"mensajes": [
 			{
 				"emisor": 3,
-<<<<<<< HEAD
 				"contenido": "hola buenas"
 			},
 			{
@@ -31,15 +30,22 @@
 			"emisor": 0,
 			"contenido": ""
 		}
-=======
-				"contenido": "asdadasd"
+	},
+	{
+		"participantes": [
+			1,
+			4
+		],
+		"mensajes": [
+			{
+				"emisor": 1,
+				"contenido": "Hola!"
 			}
 		],
 		"ultimoMensaje": {
-			"emisor": 3,
-			"contenido": "asdadasd"
+			"emisor": 1,
+			"contenido": "Hola!"
 		},
-		"id": 1
->>>>>>> f18819b4a58dfb836fe47d255d45116312bfff90
+		"id": 3
 	}
 ]

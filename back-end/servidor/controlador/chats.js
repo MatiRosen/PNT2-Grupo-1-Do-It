@@ -1,4 +1,5 @@
 import ServicioChats from "../servicio/chats.js";
+import { InvalidCredentialsError } from "../../errores.js";
 
 class ControladorChats {
     constructor(persistencia) {
@@ -10,7 +11,14 @@ class ControladorChats {
             const chats = await this.servicio.obtenerChatsDelUsuario(req.params.id);
             res.json(chats);
         } catch (error) {
-            res.status(500).json({mensaje: error.message});
+            if (error instanceof InvalidCredentialsError) {
+                res.status(401).json(error.message);
+            } else {
+                res.status(500).json({
+                    message:
+                        "Hubo un problema interno. Intente nuevamente más tarde.",
+                });
+            }
         }
     }
 
@@ -19,7 +27,14 @@ class ControladorChats {
             const chat = await this.servicio.obtenerChat(req.params.id);
             res.json(chat);
         } catch (error) {
-            res.status(500).json({mensaje: error.message});
+            if (error instanceof InvalidCredentialsError) {
+                res.status(401).json(error.message);
+            } else {
+                res.status(500).json({
+                    message:
+                        "Hubo un problema interno. Intente nuevamente más tarde.",
+                });
+            }
         }
     }
 
@@ -29,7 +44,14 @@ class ControladorChats {
             
             res.json(mensaje);
         } catch (error) {
-            res.status(500).json({mensaje: error.message});
+            if (error instanceof InvalidCredentialsError) {
+                res.status(401).json(error.message);
+            } else {
+                res.status(500).json({
+                    message:
+                        "Hubo un problema interno. Intente nuevamente más tarde.",
+                });
+            }
         }
     }
 
@@ -47,7 +69,14 @@ class ControladorChats {
             const chat = await this.servicio.obtenerChatPorParticipantes(req.params.id1, req.params.id2);
             res.json(chat);
         } catch (error) {
-            res.status(500).json({mensaje: error.message});
+            if (error instanceof InvalidCredentialsError) {
+                res.status(401).json(error.message);
+            } else {
+                res.status(500).json({
+                    message:
+                        "Hubo un problema interno. Intente nuevamente más tarde.",
+                });
+            }
         }
     }
 

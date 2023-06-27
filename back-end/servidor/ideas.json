@@ -106,8 +106,9 @@
 		"categoria": "Viajes y turismo",
 		"precio": "85",
 		"idCreador": "2",
-		"vecesVisto": 15,
-		"cantidadInversiones": "0",
-		"imagen": "playa.jpg"
+		"vecesVisto": 16,
+		"cantidadInversiones": 1,
+		"imagen": "playa.jpg",
+		"invertido": 50
 	}
 ]
