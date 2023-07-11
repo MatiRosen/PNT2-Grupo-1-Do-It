@@ -39,7 +39,7 @@
                                                 </button>
                                             </RouteterLink>
                                         </div>
-                                        <div class="col-md-2 offset-md-1 pt-2">
+                                        <div class="col-md-3 offset-md-1 pt-2">
                                             <input
                                                 v-if="!yaInvirtio"
                                                 v-model="idea.invertido"
@@ -47,6 +47,7 @@
                                                 id="txtInvertido"
                                                 name="txtInvertido"
                                                 class="form-control shadow"
+                                                min="1"
                                                 required />
                                         </div>
                                         <div
@@ -131,14 +132,20 @@ const invertirIdea = async (idea) => {
         dineroInvertido: idea.invertido,
     };
 
-    await inversionService.agregarInversion(inversion);
+    await inversionService
+        .agregarInversion(inversion)
+        .then(async () => {
+            user.dinero -= idea.invertido;
+            await usuarioService.sumarDinero({ dinero: user.dinero }, user.id);
 
-    user.dinero -= idea.invertido;
-    await usuarioService.sumarDinero({ dinero: user.dinero }, user.id);
-    idea.cantidadInversiones = Number(idea.cantidadInversiones) + 1;
+            idea.cantidadInversiones = Number(idea.cantidadInversiones) + 1;
+            await ideaService.actualizarIdea(idea.id, idea);
 
-    await ideaService.actualizarIdea(idea.id, idea);
-    router.push(`/inversor/inversiones/`);
+            router.push(`/inversor/inversiones/`);
+        })
+        .catch((err) => {
+            alert(`Ha ocurrido un error: ${err.response.data}`);
+        });
 };
 const contactarCreador = (idea) => {
     let id = user.id;

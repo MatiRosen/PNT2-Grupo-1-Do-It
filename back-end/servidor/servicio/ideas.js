@@ -68,6 +68,7 @@ class ServicioIdeas {
 
     actualizarIdea = async (id, idea) => {
         try {
+            idea.vecesVisto = Number(idea.vecesVisto);
             const ideaActualizada = await this.model.actualizarIdea(id, idea);
             return ideaActualizada;
         } catch (error) {

@@ -72,7 +72,7 @@ class Controlador {
 
             res.json(usuarioActualizado);
         } catch (error) {
-            if (error instanceof InvalidCredentialsError) {
+            if (error instanceof InvalidCredentialsError || error instanceof ValidationError) {
                 res.status(401).json(error.message);
                 return;
             } else {
@@ -91,7 +91,7 @@ class Controlador {
 
             res.json(usuarioBorrado);
         } catch (error) {
-            if (error instanceof InvalidCredentialsError) {
+            if (error instanceof InvalidCredentialsError || error instanceof ValidationError) {
                 res.status(401).json(error.message);
             } else {
                 res.status(500).json({

@@ -1,6 +1,7 @@
 import ModelFactory from "../model/DAO/usuariosFactory.js";
 import { InvalidCredentialsError, ValidationError } from "../../errores.js";
 import { validar } from "../validaciones/usuarios.js";
+import axios from "axios";
 
 // Usamos el patrón Singleton :)
 let instancia = null;
@@ -58,12 +59,6 @@ class Servicio {
             }
             const usuarioAux = await this.model.obtenerUsuarios(usuario.email);
 
-            if (!usuarioAux) {
-                throw new InvalidCredentialsError(
-                    "Credenciales inválidas. El email ingresado no existe."
-                );
-            }
-
             if (usuario.contraseña == usuarioAux.contraseña) {
                 return {
                     id: usuarioAux.id,
@@ -86,9 +81,6 @@ class Servicio {
     };
 
     actualizarDinero = async (id, usuario) => {
-        if (!usuario.dinero)
-            throw new InvalidCredentialsError("Debe ingresar el dinero.");
-
         for (let atributo in usuario) {
             if (atributo != "dinero") {
                 throw new InvalidCredentialsError(
@@ -110,6 +102,43 @@ class Servicio {
 
     eliminarUsuario = async (id) => {
         try {
+            const usuario = await this.model.obtenerUsuario(id);
+            if (!usuario) {
+                throw new InvalidCredentialsError(
+                    "No se puede eliminar el usuario porque no existe."
+                );
+            }
+
+            if (usuario.tipo == "Inversor") {
+                let inversiones = [];
+                await axios
+                    .get(
+                        `http://localhost:8080/api/inversiones/filtro/idInversor/${id}`
+                    )
+                    .then((res) => {
+                        inversiones = res.data;
+                    })
+                    .catch((error) => {
+                        inversiones = [];
+                    });
+
+                if (inversiones.length > 0) {
+                    throw new InvalidCredentialsError(
+                        "No se puede eliminar el usuario porque tiene inversiones."
+                    );
+                }
+            } else {
+                const res = await axios.get(
+                    `http://localhost:8080/api/ideas/creador/${id}`
+                );
+                const ideas = res.data;
+                if (ideas.length > 0) {
+                    throw new InvalidCredentialsError(
+                        "No se puede eliminar el usuario porque tiene ideas registradas."
+                    );
+                }
+            }
+
             const usuarioEliminado = await this.model.eliminarUsuario(id);
             return {
                 id: usuarioEliminado.id,

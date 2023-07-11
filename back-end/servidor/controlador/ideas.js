@@ -28,7 +28,7 @@ class ControladorIdeas {
             const { idCreador } = req.params;
             const ideas = await this.ServicioIdeas.obtenerIdeas(idCreador);
 
-            res.json(ideas);
+            res.status(200).json(ideas);
         } catch (error) {
             if (error instanceof InvalidCredentialsError || error instanceof ValidationError) {
                 res.status(401).json(error.message);

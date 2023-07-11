@@ -30,6 +30,7 @@ export default {
         };
 
         const obtenerInversores = async () => {
+            if (!tieneInversores) return;
             const inversores = (
                 await inversionService.obtenerInversionesPorCampo(
                     "idIdea",
@@ -89,6 +90,9 @@ export default {
                                     <p class="texto">{{ idea.descripcion }}</p>
                                     <h4 class="precio">
                                         Meta total ${{ idea.precio }}
+                                    </h4>
+                                    <h4 class="precio" v-if="tieneInversores">
+                                        Inversión lograda ${{ idea.invertido }}
                                     </h4>
                                     <h4 v-if="tieneInversores" class="precio">
                                         Inversores:
