@@ -147,13 +147,15 @@ const invertirIdea = async (idea) => {
             alert(`Ha ocurrido un error: ${err.response.data}`);
         });
 };
-const contactarCreador = (idea) => {
+const contactarCreador = async (idea) => {
     let id = user.id;
     let idCreador = idea.idCreador;
 
-    chatService.obtenerChatPorParticipantes(id, idCreador).then((res) => {
+    await chatService.obtenerChatPorParticipantes(id, idCreador).then((res) => {
         router.replace(`/chat/${res.data.id}`);
-    });
+    }).catch((err) => {
+        alert(`Ha ocurrido un error: ${err}`);
+    })
 };
 </script>
 

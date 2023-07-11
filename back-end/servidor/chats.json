@@ -1,38 +1,6 @@
 [
 	{
 		"participantes": [
-			3,
-			4
-		],
-		"mensajes": [
-			{
-				"emisor": 3,
-				"contenido": "hola buenas"
-			},
-			{
-				"emisor": 4,
-				"contenido": "uwu"
-			}
-		],
-		"ultimoMensaje": {
-			"emisor": 4,
-			"contenido": "uwu"
-		}
-	},
-	{
-		"id": 2,
-		"participantes": [
-			3,
-			2
-		],
-		"mensajes": [],
-		"ultimoMensaje": {
-			"emisor": 0,
-			"contenido": ""
-		}
-	},
-	{
-		"participantes": [
 			1,
 			4
 		],
@@ -40,12 +8,16 @@
 			{
 				"emisor": 1,
 				"contenido": "Hola!"
+			},
+			{
+				"emisor": 4,
+				"contenido": "Holaa"
 			}
 		],
 		"ultimoMensaje": {
-			"emisor": 1,
-			"contenido": "Hola!"
+			"emisor": 4,
+			"contenido": "Holaa"
 		},
-		"id": 3
+		"id": 1
 	}
 ]

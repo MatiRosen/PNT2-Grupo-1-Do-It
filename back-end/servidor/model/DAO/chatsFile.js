@@ -96,12 +96,12 @@ class ModelFile {
         try {
             chats = JSON.parse(await this.leerArchivo());
         } catch {
-            throw new DatabaseError("Error al leer el archivo de chats.");
+            chats = [];
         }
 
         let res = chats.find(c => c.participantes.includes(parseInt(idUsuario1)) && c.participantes.includes(parseInt(idUsuario2)));
 
-        if (res == undefined) {
+        if (!res) {
             let nuevoChat = {
                 participantes: [parseInt(idUsuario1), parseInt(idUsuario2)],
                 mensajes: [],
